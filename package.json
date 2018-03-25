@@ -1,0 +1,25 @@
+{
+  "name": "answer-notification-extension",
+  "version": "1.0.0",
+  "description": "跟帖通知浏览器扩展",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YeomanYe/answer-notification-extension.git"
+  },
+  "keywords": [
+    "chrome-extension"
+  ],
+  "author": "Ming Ye",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/YeomanYe/answer-notification-extension/issues"
+  },
+  "homepage": "https://github.com/YeomanYe/answer-notification-extension#readme",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  }
+}
