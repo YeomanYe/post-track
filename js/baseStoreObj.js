@@ -11,3 +11,17 @@ function getBaseStoreObj(name,type){
     if(index >= 0)
         return _allBaseStoreObj[keys[index]](origin,type);
 }
+
+_allBaseStoreObj[SITE_SEGMENT_FAULT] = function (origin,type) {
+    origin = origin ? origin : 'https://segmentfault.com';
+    var baseUrl = origin + '/q/';
+
+    storObj = {
+        baseUrl:baseUrl,
+        type:type,
+        origin: origin,
+        site: SITE_SEGMENT_FAULT,
+        siteName:'SegmentFault'
+    };
+    return storObj;
+}

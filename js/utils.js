@@ -10,7 +10,6 @@ var _createQueryObjProto = {
     }
 };
 var _createQueryObj = Object.create(_createQueryObjProto);
-var _exportFunObj = {};
 
 /**
  * 获取两个URL中相同的部分
@@ -96,11 +95,11 @@ function getStoreLocal(keys, callback) {
 }
 
 /**
- * 获取某站点下所有收藏的漫画,以及漫画中更新的数目
+ * 获取某站点下所有的采集，以及更新的数目
  */
-function getFavs(siteName, type, callback) {
+function getCols(siteName, type, callback) {
     var defaultStore = getBaseStoreObj(siteName, type);
-    getStoreLocal(['allFavs', 'updateNum'], function (allFavs, updateNum) {
+    getStoreLocal([STOR_KEY_COLS, STOR_KEY_UPDATE_NUM], function (allFavs, updateNum) {
         allFavs = allFavs ? allFavs : [];
         updateNum = updateNum ? updateNum : 0;
         var index = -1;
@@ -117,7 +116,7 @@ function getFavs(siteName, type, callback) {
 }
 
 /**
- * 添加数组元素到数组中
+ * 添加数组元素到数组中，比起concat不会新建数组
  */
 function addArr(arr1, arr2) {
     for (var i = 0, len = arr2.length; i < len; i++) {
@@ -127,17 +126,17 @@ function addArr(arr1, arr2) {
 }
 
 /**
- * 减少更新的漫画数量，标志
+ * 减少更新的数量
  */
 function decUpdateNum(item) {
     if (item.isUpdate) {
         item.isUpdate = false;
-        getStoreLocal('updateNum', function (updateNum) {
+        getStoreLocal(STOR_KEY_UPDATE_NUM, function (updateNum) {
             --updateNum;
             storLocal.set({
                 updateNum: updateNum
             }, function () {
-                chrome.runtime.sendMessage(null, ['updateNumChange']);
+                chrome.runtime.sendMessage(null, [BG_CMD_UPDATE_NUM]);
             });
         });
     }
@@ -146,79 +145,15 @@ function decUpdateNum(item) {
 /**
  * 更新阅读记录
  */
-function updateColRecord(getCurComic) {
-    return function (favs, allFavs) {
-        var curIndex = getCurComic();
-        //解析当前页面并更新阅读记录
-        var index = arrEqStr(favs, {title: curIndex.title});
-        if (index < 0) return;
-        //更新图标
-        _$imgToggle.get(0).src = _src.collect;
-        var curItem = favs[index];
-        curItem.timestamp = Date.now();
-        if (!curIndex.curChapter) return;
-        curItem.curChapter = curIndex.curChapter;
-        curItem.curUrl = curIndex.curUrl.replace(baseChapterUrl, '');
-        //更新，当前更新的漫画数量
-        decUpdateNum(curItem);
-        storLocal.set({
-            allFavs: allFavs
-        });
-    }
+function updateColRecord() {
+
 }
 
 /**
  * 查询是否有更新的通用函数
  */
-function queryUpdate(baseObj, callback) {
-    var baseIndex = baseObj.baseIndex;
-    var baseImage = baseObj.baseImg;
-    var baseChapter = baseObj.baseChapter;
-    var afterStoreCall = callback._afterStore ? callback._afterStore : function () {
-    }; //存储成功之后的回调函数
-    var isUpdate = false;
-    return function (favs, allFavs, updateNum) {
-        var sucCall = function (data) {
-            try {
-                var resObj = callback(data);
-                var newUrl = resObj.newUrl,
-                    newChapter = resObj.newChapter;
-                if (col.newChapter !== newChapter) {
-                    col.newChapter = newChapter;
-                    col.newUrl = newUrl;
-                    //生成提示
-                    getStoreLocal('isCloseTips', (function (baseImage, col, newChapter, baseChatper, newUrl) {
-                        return function (isCloseTips) {
-                            if (!isCloseTips)
-                                createNotify(col.title, formatHref(col.imgUrl, baseImage), '更新到: ' + newChapter, baseChapter + newUrl);
-                        }
-                    })(baseImage, col, newChapter, baseChapter, newUrl));
+function queryUpdate() {
 
-                    isUpdate = true;
-                    if (!col.isUpdate) {
-                        col.isUpdate = true;
-                        setBadge(++updateNum);
-                    }
-                    storLocal.set({
-                        updateNum: updateNum,
-                        allFavs: allFavs
-                    }, afterStoreCall);
-                }
-            } catch (e) {
-                log(e);
-            }
-
-        };
-        for (var i = 0, len = favs.length; i < len; i++) {
-            var col = favs[i];
-            var indexUrl = col.indexUrl;
-            $.ajax(baseIndex + indexUrl, {
-                success: sucCall,
-                async: false
-            });
-        }
-        if (!isUpdate) afterStoreCall();
-    }
 }
 
 /**
@@ -272,108 +207,6 @@ function showTips(msg, time) {
 }
 
 /**
- * 处理响应数据
- */
-function handleResData(data) {
-    log('handleResData', data);
-    var status = data.status;
-    if (status === STATUS_OK) {
-        //更新当前页面收藏的图标
-        if (_updateCurFavFun) _updateCurFavFun();
-        showTips('操作成功');
-        return;
-    } else if (status === STATUS_UNAUTH) {
-        showTips('请先登录');
-    } else if (status === STATUS_EXPORT_FAIL) {
-        var str = '';
-        for (var i = 0, len = data.msg.length; i < len; i++) {
-            str += ' 《' + data.msg[i] + '》 ';
-        }
-        showTips('导出失败,请手动添加：' + str, TIME_LONG);
-        //更新当前页面收藏的图标
-        if (_updateCurFavFun) _updateCurFavFun();
-    }
-}
-
-/**
- * 根据决定条件决定是否执行导出函数，如果执行则将导出的漫画存储在本地中
- * extra需要从datas中带入到handlefun中的数据的字段的名称
- */
-function pipeExport(dataArg, handleFun, resSend) {
-    var site = dataArg.site, datas = dataArg.datas, type = dataArg.type;
-    var storObj = getBaseStoreObj(site),
-        baseImgUrl = storObj.baseImg,
-        baseIndexUrl = storObj.baseIndex,
-        baseChapter = storObj.baseChapter,
-        origin = storObj.origin;
-    var resObj = {status: STATUS_OK, msg: []};
-    var indexSucCall = function (cols, colItem, args) {
-        return function (text) {
-            var obj = handleFun(text, resSend, args);
-            if (obj.status !== STATUS_OK) {
-                resObj.status = STATUS_EXPORT_FAIL;
-                resObj.msg.push(obj.msg);
-                return;
-            }
-            //处理数据格式
-            var newUrl = obj.newUrl, curUrl = obj.curUrl;
-            if (newUrl.search('^https?://') < 0) {
-                newUrl = replaceOrigin(newUrl, origin).replace(baseChapter, '');
-                curUrl = replaceOrigin(curUrl, origin).replace(baseChapter, '');
-            } else {
-                newUrl = newUrl.replace(baseChapter, '');
-                curUrl = curUrl.replace(baseChapter, '');
-            }
-            obj.newUrl = newUrl;
-            obj.curUrl = curUrl;
-            obj.imgUrl = obj.imgUrl ? obj.imgUrl.replace(baseImgUrl, '') : undefined;
-            obj.isUpdate = false;
-
-            var index = arrEqStr(cols, {title: obj.title});
-            if (index < 0) {
-                assignColItem(obj, colItem);
-                cols.unshift(colItem);
-            }
-        }
-    }
-    getFavs(site, type, function (cols, allFavs) {
-        log('datas', datas);
-        for (var i = 0, len = datas.length; i < len; i++) {
-            var item = datas[i];
-            var index = arrEqStr(cols, {title: item.title});
-            //当收藏中没有该漫画时才添加
-            if (index < 0) {
-                var colItem = assignColItem(item);
-                $.ajax(formatHref(item.indexUrl, baseIndexUrl), {
-                    success: indexSucCall(cols, colItem, item),
-                    async: false
-                });
-            }
-        }
-        storLocal.set({
-            allFavs: allFavs
-        });
-        resSend(resObj);
-    });
-}
-
-/**
- * 将对象中关于收藏的数据更新到收藏对象中
- */
-function assignColItem(obj, colItem) {
-    colItem = colItem ? colItem : {};
-    colItem.isUpdate = obj.isUpdate !== undefined ? obj.isUpdate : colItem.isUpdate;
-    colItem.newUrl = obj.newUrl !== undefined ? obj.newUrl : colItem.newUrl;
-    colItem.curUrl = obj.curUrl !== undefined ? obj.curUrl : colItem.curUrl;
-    colItem.newChapter = obj.newChapter !== undefined ? obj.newChapter : colItem.newChapter;
-    colItem.curChapter = obj.curChapter !== undefined ? obj.curChapter : colItem.curChapter;
-    colItem.imgUrl = obj.imgUrl !== undefined ? obj.imgUrl : colItem.imgUrl;
-    colItem.indexUrl = obj.indexUrl !== undefined ? obj.indexUrl : colItem.indexUrl;
-    colItem.title = obj.title !== undefined ? obj.title : colItem.title;
-    return colItem;
-}
-
-/**
  * 格式化href
  * @param href
  */
@@ -410,3 +243,21 @@ var storeDebounce = function (obj, func) {
     };
     storeDebounce(obj, func);
 };
+
+/**
+ * 发送通知到全部的tab页
+ * @param data
+ */
+function sendToAllTabs(data) {
+    chrome.windows.getAll(null,function (wins) {
+        for(var i=0,len=wins.length;i<len;i++){
+            var win = wins[i];
+            chrome.tabs.query({windowId:win.id},function (tabs) {
+                for(var i=0,len=tabs.length;i<len;i++){
+                    var tab = tabs[i];
+                    chrome.tabs.sendMessage(tab.id,data);
+                }
+            });
+        }
+    });
+}
