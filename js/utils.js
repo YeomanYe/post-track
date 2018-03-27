@@ -99,19 +99,19 @@ function getStoreLocal(keys, callback) {
  */
 function getCols(siteName, type, callback) {
     var defaultStore = getBaseStoreObj(siteName, type);
-    getStoreLocal([STOR_KEY_COLS, STOR_KEY_UPDATE_NUM], function (allFavs, updateNum) {
-        allFavs = allFavs ? allFavs : [];
+    getStoreLocal([STOR_KEY_COLS, STOR_KEY_UPDATE_NUM], function (allCols, updateNum) {
+        allCols = allCols ? allCols : [];
         updateNum = updateNum ? updateNum : 0;
         var index = -1;
-        if (allFavs.length) index = arrEqStr(allFavs, {site: siteName, type: type});
+        if (allCols.length) index = arrEqStr(allCols, {site: siteName, type: type});
         var cols = [];
         if (index < 0) {
             defaultStore.cols = cols;
-            allFavs.unshift(defaultStore);
+            allCols.unshift(defaultStore);
         } else {
-            cols = allFavs[index].cols;
+            cols = allCols[index].cols;
         }
-        callback(cols, allFavs, updateNum);
+        callback(cols, allCols, updateNum);
     });
 }
 

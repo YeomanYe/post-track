@@ -87,6 +87,22 @@ function toggleMenu(){
  * 收藏或取消收藏
  * accessIndex是否访问目录页获取信息
  */
-function toggleCol(storObj, getCurIndex, getChapterInfo) {
-
+function toggleCol(getCurInfo) {
+    var obj = getCurInfo();
+    var baseUrl = storObj.baseUrl;
+    return function (cols,allCols) {
+        var index = arrEqStr(cols,{title:obj.title});
+        if(index >= 0) {
+            cols.splice(index,1);
+            showTips('取消收藏成功');
+            _$imgToggle.attr('src',_src.collectGrey);
+        }else{
+            obj.url = obj.url.replace(baseUrl,'');
+            cols.push(obj);
+            showTips('收藏成功');
+            _$imgToggle.attr('src',_src.collect);
+        }
+        storLocal.set({[STOR_KEY_COLS]:allCols});
+        log('allCols',allCols);
+    }
 }
