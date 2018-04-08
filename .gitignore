@@ -1,5 +1,8 @@
 bower_components/
 node_modules/
 package-lock.json
-build/
 *.pem
+dist/
+
+build/*
+!build/manifest.json
