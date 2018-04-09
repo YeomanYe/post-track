@@ -157,28 +157,32 @@ function updatePageCol(getCurInfo) {
  * 查询是否有更新的通用函数
  */
 function queryUpdate(baseObj, callback) {
-    var baseIndex = baseObj.baseIndex;
+    var baseUrl = baseObj.baseUrl;
     var siteName = baseObj.siteName;
     var icon = baseObj.icon;
     var emptyFun = function () {};
     var afterStoreCall = callback._afterStore ? callback._afterStore : emptyFun; //存储成功之后的回调函数
     var isUpdate = false;
-    return function (favs, allFavs, updateNum) {
+    return function (favs, allCols, updateNum) {
         var sucCall = function (data) {
             try {
                 var resObj = callback(data);
-                var answerNum = resObj.answerNum,
+                var answerNum = resObj.answerNum + 1,
                     isAccept = resObj.isAccept;
                 if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
-                    col.answerNum = answerNum;
-                    col.newUrl = isAccept;
+
                     //生成提示
-                    getStoreLocal(STOR_KEY_IS_CLOSE_TIPS, (function (icon, col) {
+                    getStoreLocal(STOR_KEY_IS_CLOSE_TIPS, (function (icon, col,isAccept) {
                         return function (isCloseTips) {
-                            if (!isCloseTips)
-                                createNotify(siteName, icon, col.title, formatHref(col.url,baseIndex));
+                            if(isCloseTips) {
+                                col.answerNum = answerNum;
+                                col.isAccept = isAccept;
+                                return;
+                            }
+                            if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, formatHref(col.url,baseUrl));
+                            else createNotify(siteName + ' 【采纳】', icon, col.title, formatHref(col.url,baseUrl));
                         }
-                    })(icon, col));
+                    })(icon, col,isAccept));
 
                     isUpdate = true;
                     if (!col.isUpdate) {
@@ -188,7 +192,7 @@ function queryUpdate(baseObj, callback) {
 
                     storLocal.set({
                         updateNum: updateNum,
-                        allFavs: allFavs
+                        allCols: allCols
                     }, afterStoreCall);
                 }
             } catch (e) {
@@ -199,7 +203,7 @@ function queryUpdate(baseObj, callback) {
         for (var i = 0, len = favs.length; i < len; i++) {
             var col = favs[i];
             var url = col.url;
-            $.ajax(formatHref(url,baseIndex), {
+            $.ajax(formatHref(url,baseUrl), {
                 success: sucCall,
                 async: false
             });

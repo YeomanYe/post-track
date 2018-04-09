@@ -8,7 +8,6 @@ _createQueryObj.createSfQuery = function () {
         var isAccept = !!$answers.find('.accepted-check').length;
         return {
             title:title,
-            url:curHref,
             isAccept:isAccept,
             answerNum:$answers.length
         };
