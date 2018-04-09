@@ -1,6 +1,7 @@
 var storLocal = chrome.storage.local;
 var log = console.log;
 var sendMsg = chrome.runtime.sendMessage;
+var cGetUrl = chrome.runtime.getURL;
 var _createQueryObjProto = {
     addAfterStore: function (queryFun, hangFun) {
         queryFun.afterStore = function (callback) {
@@ -11,18 +12,6 @@ var _createQueryObjProto = {
 };
 var _createQueryObj = Object.create(_createQueryObjProto);
 
-/**
- * 获取两个URL中相同的部分
- */
-function getBaseUrl(url1, url2) {
-    var arr1 = url1.split('/'),
-        arr2 = url2.split('/');
-    var sameArr = [];
-    for (var i = 0, len = arr1.length; i < len; i++) {
-        if (arr1[i] === arr2[i]) sameArr.push(arr1[i]);
-    }
-    return sameArr.join('/');
-}
 
 /**
  * 判断数组中是否有一个字符串在目标字符串中。并返回序列号。-1代表不存在
@@ -145,15 +134,82 @@ function decUpdateNum(item) {
 /**
  * 更新阅读记录
  */
-function updateColRecord() {
-
+function updatePageCol(getCurInfo) {
+    return function (cols, allCols) {
+        var curInfo = getCurInfo();
+        //解析当前页面并更新阅读记录
+        var index = arrEqStr(cols, {title: curInfo.title});
+        _$imgToggle.get(0).src = _src.collectGrey;
+        if (index < 0) return;
+        //更新图标
+        _$imgToggle.get(0).src = _src.collect;
+        var curItem = cols[index];
+        curItem.timestamp = Date.now();
+        //更新，当前更新的数量
+        decUpdateNum(curItem);
+        storLocal.set({
+            allCols: allCols
+        });
+    }
 }
 
 /**
  * 查询是否有更新的通用函数
  */
-function queryUpdate() {
+function queryUpdate(baseObj, callback) {
+    var baseIndex = baseObj.baseIndex;
+    var siteName = baseObj.siteName;
+    var icon = baseObj.icon;
+    var emptyFun = function () {};
+    var afterStoreCall = callback._afterStore ? callback._afterStore : emptyFun; //存储成功之后的回调函数
+    var isUpdate = false;
+    return function (favs, allFavs, updateNum) {
+        var sucCall = function (data) {
+            try {
+                var resObj = callback(data);
+                var answerNum = resObj.answerNum,
+                    isAccept = resObj.isAccept;
+                if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
+                    col.answerNum = answerNum;
+                    col.newUrl = isAccept;
+                    //生成提示
+                    getStoreLocal(STOR_KEY_IS_CLOSE_TIPS, (function (icon, col) {
+                        return function (isCloseTips) {
+                            if (!isCloseTips)
+                                createNotify(siteName, icon, col.title, formatHref(col.url,baseIndex));
+                        }
+                    })(icon, col));
 
+                    isUpdate = true;
+                    if (!col.isUpdate) {
+                        col.isUpdate = true;
+                        ++updateNum;
+                    }
+
+                    storLocal.set({
+                        updateNum: updateNum,
+                        allFavs: allFavs
+                    }, afterStoreCall);
+                }
+            } catch (e) {
+                log(e);
+            }
+
+        };
+        for (var i = 0, len = favs.length; i < len; i++) {
+            var col = favs[i];
+            var url = col.url;
+            $.ajax(formatHref(url,baseIndex), {
+                success: sucCall,
+                async: false
+            });
+        }
+        if (!isUpdate) afterStoreCall();
+        //更新查询完毕，替换掉正在查询标志“....”  改为更新的数量
+        if(afterStoreCall == emptyFun){
+            setBadge(updateNum);
+        }
+    }
 }
 
 /**

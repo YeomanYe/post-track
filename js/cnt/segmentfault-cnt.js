@@ -13,11 +13,11 @@ function toggleFavHandlerSf() {
 }
 
 function updateSf() {
-    
+    getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,updatePageCol(getCurInfoSf));
 }
 
 function getCurInfoSf() {
-    var title = $('#questionTitle').text();
+    var title = $('#questionTitle').text().trim();
     if(!title) return ;
     var answers = $('#goToReplyArea article');
     var isAccept = !!answers.find('.accepted-check').length;

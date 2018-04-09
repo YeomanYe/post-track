@@ -1,6 +1,5 @@
 var _$imgAss,_$imgToggle;
 var curHref = location.origin + location.pathname;
-var cGetUrl = chrome.runtime.getURL;
 var storLocal = chrome.storage.local;
 var _src = {
     collect:cGetUrl('images/collect.png'),

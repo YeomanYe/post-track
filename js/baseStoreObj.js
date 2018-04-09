@@ -21,7 +21,8 @@ _allBaseStoreObj[SITE_SEGMENT_FAULT] = function (origin,type) {
         type:type,
         origin: origin,
         site: SITE_SEGMENT_FAULT,
-        siteName:'SegmentFault'
+        siteName:'SegmentFault',
+        icon:cGetUrl('images/site-icon/sf.jpg')
     };
     return storObj;
-}
+};
