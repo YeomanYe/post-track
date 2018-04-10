@@ -167,7 +167,7 @@ function queryUpdate(baseObj, callback) {
         var sucCall = function (data) {
             try {
                 var resObj = callback(data);
-                var answerNum = resObj.answerNum + 1,
+                var answerNum = resObj.answerNum,
                     isAccept = resObj.isAccept;
                 if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
 
@@ -181,6 +181,8 @@ function queryUpdate(baseObj, callback) {
                             }
                             if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, formatHref(col.url,baseUrl));
                             else createNotify(siteName + ' 【采纳】', icon, col.title, formatHref(col.url,baseUrl));
+                            col.answerNum = answerNum;
+                            col.isAccept = isAccept;
                         }
                     })(icon, col,isAccept));
 
