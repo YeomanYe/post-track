@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7277e3c3-9d32-4b3f-b2d1-1e2feeb9caa2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.babel.js" afterPath="$PROJECT_DIR$/gulpfile.babel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
-              <caret line="100" column="89" lean-forward="false" selection-start-line="100" selection-start-column="89" selection-end-line="100" selection-end-column="89" />
+              <caret line="100" column="74" lean-forward="false" selection-start-line="100" selection-start-column="74" selection-end-line="100" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -145,6 +144,7 @@
       <find>build:comp</find>
       <find>popup.html</find>
       <find>*.html</find>
+      <find>App.js</find>
     </findStrings>
     <replaceStrings>
       <replace>STOR_KEY_COLS</replace>
@@ -176,8 +176,8 @@
         <option value="$PROJECT_DIR$/tmpl/popup.tmpl.html" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/js/App.js" />
-        <option value="$PROJECT_DIR$/gulpfile.babel.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/gulpfile.babel.js" />
       </list>
     </option>
   </component>
@@ -301,7 +301,7 @@
       <workItem from="1523274185029" duration="9423000" />
       <workItem from="1523322812896" duration="12000" />
       <workItem from="1523328434595" duration="3285000" />
-      <workItem from="1523361840027" duration="7131000" />
+      <workItem from="1523361840027" duration="7181000" />
     </task>
     <task id="LOCAL-00001" summary="update architecture">
       <created>1522078864419</created>
@@ -314,7 +314,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31561000" />
+    <option name="totallyTimeSpent" value="31611000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -755,7 +755,7 @@
     <entry file="file://$PROJECT_DIR$/gulpfile.babel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
-          <caret line="100" column="89" lean-forward="false" selection-start-line="100" selection-start-column="89" selection-end-line="100" selection-end-column="89" />
+          <caret line="100" column="74" lean-forward="false" selection-start-line="100" selection-start-column="74" selection-end-line="100" selection-end-column="74" />
           <folding />
         </state>
       </provider>

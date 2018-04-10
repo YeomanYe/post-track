@@ -44,7 +44,7 @@ gulp.task('uglify',()=>{
         minifyJS: true,//压缩页面里的JS
         minifyCSS: true//压缩页面里的CSS
     };
-    return gulp.src(['*.html','js/*.js','css/*.css','!js/popup.js','!popup.tmpl.html'])
+    return gulp.src(['*.html','js/*.js','css/*.css','!js/App.js','!popup.tmpl.html'])
         .pipe($.plumber())
         .pipe($.sourcemaps.init())
         .pipe($.useref({noAssets:true,/*searchPath: ['app', '.']*/}))  //将页面上 <!--endbuild--> 根据上下顺序合并
@@ -98,5 +98,5 @@ gulp.task('default',['b'],()=>{
     gulp.watch('js/bg/**' , ['build:bg']);
     gulp.watch('images/**' , ['images']);
     gulp.watch('./lib/**' , ['pipe']);
-    gulp.watch(['*.html','!popup.tmpl.html','js/*.js','css/*.css','!js/popup.js'],['uglify']);
+    gulp.watch(['*.html','!popup.tmpl.html','js/*.js','css/*.css','!js/App.js'],['uglify']);
 });
