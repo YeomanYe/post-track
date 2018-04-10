@@ -18,7 +18,7 @@
    },
    "manifest_version": 2,
    "name": "跟帖通知器",
-   "options_page": "popup.html",
+   "options_page": "build/popup.html",
    "permissions": ["http://*/*", "https://*/*", "notifications", "storage", "unlimitedStorage"],
    "version": "1.0.0",
    "web_accessible_resources": ["remote/*", "js/*","css/*","lib/*", "manifest.json", "images/*"]

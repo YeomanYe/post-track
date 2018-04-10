@@ -5,7 +5,7 @@ import del from 'del';
 
 //预编译js文件，将es6变成es2015
 gulp.task('pre-compile', ()=>{
-    return gulp.src(['js/bg/*.js','js/cnt/*.js','js/component/*.js'])
+    return gulp.src(['js/bg/*.js','js/cnt/*.js'])
         .pipe($.sourcemaps.init())
         .pipe($.plumber())
         .pipe($.babel())    //靠这个插件编译
@@ -32,16 +32,6 @@ gulp.task('build:bg',['pre-compile'],()=>{
         .pipe($.sourcemaps.write('.'))
         .pipe(gulp.dest('./build/js'));
 });
-//编译component文件夹下的js文件
-gulp.task('build:comp',['pre-compile'],()=>{
-    return gulp.src(['./dist/temp/*-comp.js','js/popup.js'])
-        .pipe($.sourcemaps.init())
-        .pipe($.concat('popup.js'))
-        .pipe($.rename('popup.min.js'))
-        .pipe($.uglify())
-        .pipe($.sourcemaps.write('.'))
-        .pipe(gulp.dest('./build/js'));
-});
 //压缩文件并重命名
 gulp.task('uglify',()=>{
     var options = {
@@ -54,7 +44,7 @@ gulp.task('uglify',()=>{
         minifyJS: true,//压缩页面里的JS
         minifyCSS: true//压缩页面里的CSS
     };
-    return gulp.src(['*.html','js/*.js','css/*.css','!js/popup.js'])
+    return gulp.src(['*.html','js/*.js','css/*.css','!js/popup.js','!popup.tmpl.html'])
         .pipe($.plumber())
         .pipe($.sourcemaps.init())
         .pipe($.useref({noAssets:true,/*searchPath: ['app', '.']*/}))  //将页面上 <!--endbuild--> 根据上下顺序合并
@@ -99,15 +89,14 @@ gulp.task('c' , function(){
 });
 //构建
 gulp.task('b',['clean'],()=>{
-    return gulp.start(['build:bg','build:cnt','build:comp','uglify','images','pipe']);
+    return gulp.start(['build:bg','build:cnt','uglify','images','pipe']);
 });
 
 gulp.task('default',['b'],()=>{
     //监测变化 自动编译
     gulp.watch('js/cnt/**' , ['build:cnt']);
     gulp.watch('js/bg/**' , ['build:bg']);
-    gulp.watch(['js/component/**','js/popup.js'], ['build:comp']);
     gulp.watch('images/**' , ['images']);
     gulp.watch('./lib/**' , ['pipe']);
-    gulp.watch(['*.html','js/*.js','css/*.css','!js/popup.js'],['uglify']);
+    gulp.watch(['*.html','!popup.tmpl.html','js/*.js','css/*.css','!js/popup.js'],['uglify']);
 });
