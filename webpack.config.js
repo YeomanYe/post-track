@@ -10,6 +10,11 @@ module.exports = {
         filename: 'popup-bundle.js'  // 打包后文件
     },
     devtool: 'source-map',
+    devServer: {
+        contentBase: "./build",//本地服务器所加载的页面所在的目录
+        historyApiFallback: true,//不跳转
+        inline: true//实时刷新
+    },
     module: {
         rules: [
             {
@@ -26,6 +31,7 @@ module.exports = {
             title:'跟帖通知器',
             inject:true,
             filename:'popup.html'
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 };
