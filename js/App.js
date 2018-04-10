@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './comp/App'
+import Root from './comp/Root'
 
 const renderDom = Component => {
     render(
@@ -8,4 +8,4 @@ const renderDom = Component => {
         document.getElementById('app')
     );
 }
-renderDom(App);
+renderDom(Root);
