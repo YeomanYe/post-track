@@ -32,6 +32,6 @@ module.exports = {
             inject:true,
             filename:'popup.html'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        // new webpack.HotModuleReplacementPlugin()
     ]
 };

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import ColList from './ColList';
 
-export default class App extends Component {
+export default class Root extends Component {
     render() {
         return (
-            <div>Hello r!</div>
+            <div id='content-wrap'>
+                <ColList/>
+            </div>
         );
     }
 }
