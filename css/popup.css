@@ -7,3 +7,38 @@ body{
     width: 430px;
     height: 500px;
 }
+
+#colList{
+    height: 450px;
+    overflow: auto;
+}
+
+.left div{
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin:5px 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.middle{
+    display: inline-block;
+    width:50%;
+}
+
+.right{
+    display: inline-block;
+    margin-top:0px;
+}
+
+.right div:first-child{
+    margin-top: 0px;
+}
+
+li{
+    width: 100%;
+    overflow: hidden;
+    margin-top:10px;
+}
