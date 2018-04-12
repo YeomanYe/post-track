@@ -3,7 +3,7 @@
     "es2015",
     "react"
   ],
-  "env": {
+  /*"env": {
     "development": {
       "plugins": [["react-transform", {
         "transforms": [{
@@ -13,6 +13,6 @@
         }]
       }]]
     }
-  },
+  },*/
   "retainLines": true
 }
