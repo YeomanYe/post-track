@@ -25,20 +25,74 @@ body{
 
 .middle{
     display: inline-block;
+    margin-top: 15px;
     width:50%;
 }
 
+.middle p{
+    font-size: 13px;
+    margin-top: 5px;
+}
+
 .right{
+    vertical-align: top;
     display: inline-block;
     margin-top:0px;
 }
 
-.right div:first-child{
-    margin-top: 0px;
+.right p{
+    font-size: 13px;
+    margin-bottom:8px;
+}
+
+.right p:first-child{
+    margin-top: 15px;
 }
 
 li{
     width: 100%;
     overflow: hidden;
-    margin-top:10px;
+}
+
+#colList li:hover{
+    background-color: rgb(241,241,241);
+}
+
+#colList li a{
+    text-decoration: none;
+    color: black;
+}
+
+#colList li a:active{
+    text-decoration: none;
+    color: black;
+}
+
+#colList li a:visited{
+    text-decoration: none;
+    color: black;
+}
+
+#colList li a:hover{
+    color: black;
+    text-decoration: none;
+}
+
+.del-col{
+    display: inline-block;
+    padding: 5px;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.badge{
+    padding: 5px;
+    background-color: brown;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+    margin-left: 10px;
 }
