@@ -4,8 +4,8 @@ var storLocal = chrome.storage.local;
 var _src = {
     collect:cGetUrl('images/collect.png'),
     collectGrey:cGetUrl('images/collect-grey.png'),
-    comicGrey:cGetUrl('images/comic-grey.png'),
-    comic:cGetUrl('images/comic.png')
+    questionGrey:cGetUrl('images/question-grey.png'),
+    questionBlue:cGetUrl('images/question-blue.png')
 };
 var _updateCurFavFun;
 //获取基本信息
@@ -28,7 +28,7 @@ function createBtn(){
     $ul.addClass('img-list');
     $ul.attr({draggable:true});
     _$imgToggle = addImgToUL($ul,_src.collectGrey,null,'收藏');
-    _$imgAss = addImgToUL($ul,_src.comic,toggleMenu,'切换菜单');
+    _$imgAss = addImgToUL($ul,_src.questionBlue,toggleMenu,'切换菜单');
     // setDraggable($ul);
     $('body').append($ul);
 }
@@ -74,10 +74,10 @@ function setDraggable($elm){
  */
 function toggleMenu(){
     var imgElm = _$imgAss.get(0);
-    if(imgElm.src === _src.comicGrey){
-        imgElm.src = _src.comic;
+    if(imgElm.src === _src.questionGrey){
+        imgElm.src = _src.questionBlue;
     }else{
-        imgElm.src = _src.comicGrey;
+        imgElm.src = _src.questionGrey;
     }
     _$imgToggle.toggle();
 }
