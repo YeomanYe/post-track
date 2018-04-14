@@ -172,19 +172,16 @@ function queryUpdate(baseObj, callback) {
                 if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
 
                     //生成提示
-                    getStoreLocal(STOR_KEY_IS_CLOSE_TIPS, (function (icon, col,isAccept) {
+                    getStoreLocal(STOR_KEY_IS_CLOSE_TIPS, (function (icon, col,isAccept,oldIsAccept) {
                         return function (isCloseTips) {
-                            if(isCloseTips) {
-                                col.answerNum = answerNum;
-                                col.isAccept = isAccept;
-                                return;
-                            }
-                            if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, formatHref(col.url,baseUrl));
+                            if(isCloseTips) return;
+                            if (oldIsAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, formatHref(col.url,baseUrl));
                             else createNotify(siteName + ' 【采纳】', icon, col.title, formatHref(col.url,baseUrl));
-                            col.answerNum = answerNum;
-                            col.isAccept = isAccept;
                         }
-                    })(icon, col,isAccept));
+                    })(icon, col,isAccept,col.isAccept));
+
+                    col.answerNum = answerNum;
+                    col.isAccept = isAccept;
 
                     isUpdate = true;
                     if (!col.isUpdate) {

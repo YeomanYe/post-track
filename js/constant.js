@@ -10,6 +10,8 @@ STOR_KEY_UPDATE_NUM = 'updateNum';
 STOR_KEY_IS_CLOSE_TIPS = 'isCloseTips';
 
 SITE_SEGMENT_FAULT = 'segmentfault';
+SITE_CSDN = 'segmentfault';
+
 
 TIME_SHORT = 1000;
 TIME_LONG = 5 * 1000;
