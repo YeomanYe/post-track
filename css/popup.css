@@ -42,11 +42,11 @@ body{
 
 .right p{
     font-size: 13px;
-    margin-bottom:8px;
+    margin-bottom:5px;
 }
 
 .right p:first-child{
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 li{
