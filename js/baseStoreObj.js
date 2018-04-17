@@ -26,3 +26,18 @@ _allBaseStoreObj[SITE_SEGMENT_FAULT] = function (origin,type) {
     };
     return storObj;
 };
+
+_allBaseStoreObj[SITE_GITHUB] = function (origin,type) {
+    origin = origin ? origin : 'https://github.com';
+    var baseUrl = origin;
+
+    storObj = {
+        baseUrl:baseUrl,
+        type:type,
+        origin: origin,
+        site: SITE_GITHUB,
+        siteName:'GitHub',
+        icon:cGetUrl('images/site-icon/github.png')
+    };
+    return storObj;
+};
