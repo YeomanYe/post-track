@@ -11,7 +11,7 @@ STOR_KEY_IS_CLOSE_TIPS = 'isCloseTips';
 
 SITE_SEGMENT_FAULT = 'segmentfault';
 SITE_GITHUB = 'github';
-SITE_CSDN = 'segmentfault';
+SITE_CSDN = 'csdn';
 
 
 TIME_SHORT = 1000;

@@ -41,3 +41,18 @@ _allBaseStoreObj[SITE_GITHUB] = function (origin,type) {
     };
     return storObj;
 };
+
+_allBaseStoreObj[SITE_CSDN] = function (origin,type) {
+    origin = origin ? origin : 'https://ask.csdn.net';
+    var baseUrl = origin + '/questions/';
+
+    storObj = {
+        baseUrl:baseUrl,
+        type:type,
+        origin: origin,
+        site: SITE_CSDN,
+        siteName:'CSDN',
+        icon:cGetUrl('images/site-icon/csdn.jpg')
+    };
+    return storObj;
+};
