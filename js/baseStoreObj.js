@@ -56,3 +56,18 @@ _allBaseStoreObj[SITE_CSDN] = function (origin,type) {
     };
     return storObj;
 };
+
+_allBaseStoreObj[SITE_STACK_OVERFLOW] = function (origin,type) {
+    origin = origin ? origin : 'https://stackoverflow.com';
+    var baseUrl = origin + '/questions/';
+
+    storObj = {
+        baseUrl:baseUrl,
+        type:type,
+        origin: origin,
+        site: SITE_STACK_OVERFLOW,
+        siteName:'Stack Overflow',
+        icon:cGetUrl('images/site-icon/stack-overflow.png')
+    };
+    return storObj;
+};

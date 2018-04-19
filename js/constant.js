@@ -12,6 +12,7 @@ STOR_KEY_IS_CLOSE_TIPS = 'isCloseTips';
 SITE_SEGMENT_FAULT = 'segmentfault';
 SITE_GITHUB = 'github';
 SITE_CSDN = 'csdn';
+SITE_STACK_OVERFLOW = 'stackoverflow';
 
 
 TIME_SHORT = 1000;
