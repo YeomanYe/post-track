@@ -10,7 +10,7 @@ _createQueryObj.createStackOverflowQuery = function () {
         return {
             title:title,
             isAccept:isAccept,
-            answerNum:len
+            answerNum:len + 1
         };
         return resObj;
     };

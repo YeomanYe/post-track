@@ -23,6 +23,7 @@ export default class ColList extends Component {
     }
     renderItem(datas){
         let retArr = [];
+        log('list datas',datas);
         datas.map((data)=>{
             retArr.push(
                 <li>
@@ -55,9 +56,9 @@ export default class ColList extends Component {
                 let {icon,origin,siteName,baseUrl,site,type} = item;
                 let iconStyle = {backgroundImage:`url('${icon}')`};
                 item.cols.map((col)=>{
-                    let {title,url,isAccept,answerNum} = col;
+                    let {title,url,isAccept,answerNum,isUpdate} = col;
                     datas.push({
-                        type,site,title,isAccept,answerNum,origin,iconStyle,siteName,
+                        type,site,title,isAccept,answerNum,isUpdate,origin,iconStyle,siteName,
                         url:formatHref(url,baseUrl)
                     })
                 });
