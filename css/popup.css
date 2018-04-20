@@ -6,7 +6,7 @@
 body{
     width: 430px;
     height: 500px;
-    background-color: gainsboro;
+    background-color: rgb(240,240,240);
 }
 
 #colList{
@@ -56,7 +56,7 @@ li{
 }
 
 #colList li:hover{
-    background-color: rgb(241,241,241);
+    background-color: rgb(150,150,150);
 }
 
 #colList li a{
