@@ -5,7 +5,6 @@
 
 body{
     width: 430px;
-    height: 500px;
     background-color: rgb(240,240,240);
 }
 
@@ -96,4 +95,23 @@ li{
     font-size: 12px;
     border-radius: 5px;
     margin-left: 10px;
+}
+
+nav{
+    font-size: 0px;
+}
+
+nav span{
+    display: inline-block;
+    margin: 0;
+    padding: 10px 89px;
+    font-size: 18px;
+    cursor: pointer;
+    color: black;
+    background: white;
+}
+
+.curTab{
+    background: rgb(78,144,232);
+    color: white;
 }
