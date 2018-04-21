@@ -2,14 +2,14 @@ let regtable = {};
 
 export default class Event{
     static register(event,callback){
-        var reciverlist = regtable[event]||[];
+        let reciverlist = regtable[event]||[];
         reciverlist.push(callback);
         regtable[event] = reciverlist;
     }
     static unregister(event,callback){
-        var reciverlist = regtable[event]||[];
-        var mark = -1;
-        for(var i=0;i<reciverlist;i++){
+        let reciverlist = regtable[event]||[];
+        let mark = -1;
+        for(let i=0;i<reciverlist;i++){
             if(reciverlist[i]==callback){
                 mark = i;
                 break;

@@ -9,7 +9,7 @@ _createQueryObj.createGithubQuery = function () {
         return {
             title:title,
             isAccept:isAccept,
-            answerNum:Math.min($answers.length - 1,0)
+            answerNum:Math.max($answers.length - 1,0)
         };
         return resObj;
     };

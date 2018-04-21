@@ -25,6 +25,6 @@ function getCurInfoGithub() {
         title:title,
         url:curHref,
         isAccept:isAccept,
-        answerNum:Math.min($answers.length - 1,0) //去掉一个为提问的备注
+        answerNum:Math.max($answers.length - 1,0) //去掉一个为提问的备注
     };
 }

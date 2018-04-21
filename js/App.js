@@ -7,5 +7,5 @@ const renderDom = Component => {
         <Component />,
         document.getElementById('app')
     );
-}
+};
 renderDom(Root);

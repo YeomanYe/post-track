@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import Event from './Event';
 
 export default class ColList extends Component {
+    cntChangeHandler(num){
+        let isShow = false;
+        if(num === SHOW_COL)
+            isShow = true;
+        this.setState({isShow})
+    }
+
+    componentWillUnmount() {
+        Event.unregister(EVENT_CHANGE_CNT,this.cntChangeHandler);
+    }
     createDelCol(colItem){
         let {type,site,title} =colItem;
         let self = this;
@@ -68,15 +79,18 @@ export default class ColList extends Component {
     }
     constructor(props){
         super(props);
+        bindInnerFun(this);
         this.state = {
-            datas:[]
+            datas:[],
+            isShow:true
         };
+        Event.register(EVENT_CHANGE_CNT,this.cntChangeHandler);
     }
     render() {
-        let {datas} = this.state;
+        let {datas,isShow} = this.state;
         return (
-          <div id='col-list-wrap'>
-              <ul id={"colList"}>
+          <div id='col-list-wrap' className={isShow ? 'list' : 'hidden'}>
+              <ul id="col-list">
                   {this.renderItem(datas)}
               </ul>
           </div>

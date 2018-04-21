@@ -14,6 +14,10 @@ SITE_GITHUB = 'github';
 SITE_CSDN = 'csdn';
 SITE_STACK_OVERFLOW = 'stackoverflow';
 
+EVENT_CHANGE_CNT = 'changeCnt';
 
 TIME_SHORT = 1000;
 TIME_LONG = 5 * 1000;
+
+SHOW_COL = 0;
+SHOW_SETTING = 1;
