@@ -76,7 +76,9 @@ gulp.task('clean' , function(){
     return del([
         'dist',
         'build/**/*',
-        '!build/manifest.json'
+        '!build/manifest.json',
+        '!build/popup.html',
+        '!build/popup-bundle.js'
     ])
 });
 //后置清理，清理无用文件
