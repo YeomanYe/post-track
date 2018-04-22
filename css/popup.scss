@@ -1,0 +1,147 @@
+@mixin link-single-colors($normal){
+    color: $normal;
+    text-decoration: none;
+    &:hover,&:active,&:visited{
+        color: $normal;
+        text-decoration: none;
+    }
+}
+$sum-height:500px;
+//页面样式开始
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 430px;
+    background-color: rgb(240,240,240);
+}
+
+.list{
+    height: $sum-height - 50;
+    overflow: auto;
+}
+
+.left div{
+    float: left;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    margin:5px 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.middle{
+    display: inline-block;
+    margin-top: 15px;
+    width:50%;
+    p{
+        font-size: 13px;
+        margin-top: 5px;
+    }
+}
+
+.right{
+    vertical-align: top;
+    display: inline-block;
+    margin-top:0px;
+    p{
+        font-size: 13px;
+        margin-bottom:5px;
+        &:first-child{
+            margin-top: 10px;
+        }
+    }
+}
+
+li{
+    width: 100%;
+    overflow: hidden;
+}
+
+
+
+#col-list{
+    li{
+        &:hover{background-color: rgb(150,150,150);}
+    }
+    a{
+        @include link-single-colors(black);
+    }
+}
+
+
+.del-col{
+    display: inline-block;
+    padding: 5px;
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.badge{
+    padding: 5px;
+    background-color: brown;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+nav{
+    font-size: 0px;
+    span{
+        display: inline-block;
+        margin: 0;
+        padding: 10px 89px;
+        font-size: 18px;
+        cursor: pointer;
+        color: black;
+        background: white;
+    }
+}
+
+
+.cur-tab{
+    background: rgb(78,144,232);
+    color: white;
+}
+
+#setting-list{
+    li{
+        text-align:center;
+        border-bottom: 1px solid #ccc;
+        padding: 10px 0;
+        span{
+            font-size: 18px;
+            cursor: pointer;
+            color: #999;
+            margin-right: 15px;
+        }
+        img{
+            width: 35px;
+            margin-bottom: -10px;
+            margin-right: 15px;
+        }
+    }
+    legend{
+        border-bottom: 2px solid #777;
+        font-size: 18px;
+        color: #123;
+        padding: 10px;
+        img{
+            width: 35px;
+            margin-bottom: -10px;
+            margin-right: 10px;
+        }
+    }
+}
+
+.hidden{
+    display: none;
+}

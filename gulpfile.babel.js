@@ -49,7 +49,7 @@ gulp.task('uglify',()=>{
         .pipe($.sourcemaps.init())
         .pipe($.useref({noAssets:true,/*searchPath: ['app', '.']*/}))  //将页面上 <!--endbuild--> 根据上下顺序合并
         .pipe($.if('*.js', $.uglify()))
-        .pipe($.if('*.css', $.cssnano()))
+        .pipe($.if('*.css',$.cssnano()))
         .pipe($.if('*.html', $.htmlmin(options)))
         .pipe($.rename(path=>{
             if(path.extname.indexOf('html') < 0)
@@ -58,9 +58,22 @@ gulp.task('uglify',()=>{
         .pipe($.sourcemaps.write('.'))
         .pipe(gulp.dest('./build'));
 });
+gulp.task('scss' , ()=>{
+    return gulp.src('css/*.scss') //指明源文件路径 读取其数据流
+        .pipe($.plumber()) //替换错误的pipe方法  使数据流正常运行
+        .pipe($.sourcemaps.init()) //压缩环境出现错误能找到未压缩的错误来源
+        .pipe($.sass.sync({        //预编译sass
+            outputStyle: 'expanded', //CSS编译后的方式
+            precision: 10,//保留小数点后几位
+            includePaths: ['.']
+        }).on('error', $.sass.logError))
+        .pipe($.cssnano())
+        .pipe($.sourcemaps.write('.'))  //map文件命名
+        .pipe(gulp.dest('build/css'))  //指定输出路径
+});
 //只需要移动的文件
 gulp.task('pipe',()=>{
-    gulp.src(['./lib/**','!./lib/vue.js']).pipe(gulp.dest('./build/lib'));
+    gulp.src(['./lib/**']).pipe(gulp.dest('./build/lib'));
 });
 //压缩图片
 gulp.task('images',()=>{
@@ -91,13 +104,14 @@ gulp.task('c' , function(){
 });
 //构建
 gulp.task('b',['clean'],()=>{
-    return gulp.start(['build:bg','build:cnt','uglify','images','pipe']);
+    return gulp.start(['build:bg','build:cnt','uglify','images','pipe','scss']);
 });
 
 gulp.task('default',['b'],()=>{
     //监测变化 自动编译
     gulp.watch('js/cnt/**' , ['build:cnt']);
     gulp.watch('js/bg/**' , ['build:bg']);
+    gulp.watch('css/*.scss',['scss']);
     gulp.watch('images/**' , ['images']);
     gulp.watch('./lib/**' , ['pipe']);
     gulp.watch(['*.html','!popup.tmpl.html','js/*.js','css/*.css','!js/App.js'],['uglify']);
