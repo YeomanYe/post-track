@@ -9,6 +9,7 @@ module.exports = {
         path: path.resolve(__dirname, './build'), // 输出的路径
         filename: 'popup-bundle.js'  // 打包后文件
     },
+    watch:true,
     devtool: 'source-map',
     devServer: {
         contentBase: "./build",//本地服务器所加载的页面所在的目录

@@ -1,7 +1,8 @@
 import gulp from 'gulp'; //引入gulp
 import gulpLoadPlugins from 'gulp-load-plugins'; //自动加载插件 省去一个一个require进来
-const $ = gulpLoadPlugins();
 import del from 'del';
+const webpack = require('webpack');
+const $ = gulpLoadPlugins();
 
 //预编译js文件，将es6变成es2015
 gulp.task('pre-compile', ()=>{
@@ -84,6 +85,12 @@ gulp.task('images',()=>{
             interlaced: true})
         )).pipe (gulp.dest ('build/images'));
 });
+//webpack任务
+gulp.task('webpack', function() {
+    return gulp.src('src/App.js')
+        .pipe($.webpack( require('./webpack.config.js') ,webpack))
+        .pipe(gulp.dest('dist/'));
+});
 //前置清理
 gulp.task('clean' , function(){
     return del([
@@ -108,6 +115,7 @@ gulp.task('b',['clean'],()=>{
 });
 
 gulp.task('default',['b'],()=>{
+    gulp.start(['webpack']);
     //监测变化 自动编译
     gulp.watch('js/cnt/**' , ['build:cnt']);
     gulp.watch('js/bg/**' , ['build:bg']);
