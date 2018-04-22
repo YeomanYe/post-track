@@ -30,8 +30,10 @@ body{
     height: 80px;
     border-radius: 8px;
     margin:5px 20px;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background:{
+        size:cover;
+        repeat: no-repeat;
+    };
 }
 
 .middle{
