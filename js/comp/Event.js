@@ -1,15 +1,20 @@
+//@flow
 let regtable = {};
 
+export let EventType = {
+    EVENT_CHANGE_CNT:'changeCnt'
+};
+
 export default class Event{
-    static register(event,callback){
+    static register(event: string,callback: Function){
         let reciverlist = regtable[event]||[];
         reciverlist.push(callback);
         regtable[event] = reciverlist;
     }
-    static unregister(event,callback){
+    static unregister(event: string,callback: Function){
         let reciverlist = regtable[event]||[];
         let mark = -1;
-        for(let i=0;i<reciverlist;i++){
+        for(let i=0,len=reciverlist.length;i<len;i++){
             if(reciverlist[i]==callback){
                 mark = i;
                 break;
@@ -19,10 +24,10 @@ export default class Event{
             reciverlist.splice(mark,1);
         }
     }
-    static clear(event){
+    static clear(event: string){
         regtable[event] = [];
     }
-    static emit(event,props){
+    static emit(event: string,props: ?any){
         let reciverlist = regtable[event];
         console.log("call this");
         if(reciverlist){

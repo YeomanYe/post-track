@@ -1,16 +1,23 @@
+//@flow
 import React, { Component } from 'react';
 import Event from './Event';
 
-export default class TogglePanel extends Component {
+type Props = {
 
-    constructor(props){
+}
+type State = {
+    datas: Object[],
+    curIndex: number;
+}
+export default class TogglePanel extends Component<Props,State> {
+    constructor(props: any){
         super(props);
         this.state = {
             datas:[],
             curIndex:0
         };
     }
-    toggleCnt(num){
+    toggleCnt(num: number){
         Event.emit(EVENT_CHANGE_CNT,num);
         this.setState({
             curIndex:num

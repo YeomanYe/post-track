@@ -1,14 +1,23 @@
+//@flow
 import React, {Component} from 'react';
 import Event from './Event';
 
-let switchTipsElm;
-export default class SettingList extends Component {
+let switchTipsElm: Object;
 
-    cntChangeHandler(num){
+type State = {
+    isShow: boolean
+}
+type Props = {
+
+}
+
+export default class SettingList extends Component<Props,State> {
+
+    cntChangeHandler(num: number){
         let isShow = false;
         if(num === SHOW_SETTING){
             if(!switchTipsElm)
-            getStoreLocal(STOR_KEY_IS_CLOSE_TIPS,function (status) {
+            getStoreLocal(STOR_KEY_IS_CLOSE_TIPS,function (status: ?boolean) {
                 status = !status;
                 switchTipsElm = new Switch(document.getElementById('switch-close-tip'), {size: 'middle',onChange:function (e) {
                     var checked = switchTipsElm.getChecked();
@@ -26,7 +35,7 @@ export default class SettingList extends Component {
         Event.unregister(EVENT_CHANGE_CNT,this.cntChangeHandler);
     }
 
-    constructor(props) {
+    constructor(props: any) {
         super(props);
         bindInnerFun(this);
         this.state = {

@@ -1,10 +1,12 @@
+//@flow
 import React, { Component } from 'react';
 import ColList from './ColList';
 import SettingList from './SettingList';
 import TogglePanel from './TogglePanel';
 
-export default class Root extends Component {
-    constructor(props){
+
+export default class Root extends Component<any,any> {
+    constructor(props: any){
         super(props);
 
     }

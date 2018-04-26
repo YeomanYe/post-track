@@ -1,8 +1,13 @@
+//@flow
 import React, { Component } from 'react';
 import Event from './Event';
 
-export default class ColList extends Component {
-    cntChangeHandler(num){
+type State = {
+    isShow: boolean,
+    datas: Object[]
+}
+export default class ColList extends Component<any,State> {
+    cntChangeHandler(num: number){
         let isShow = false;
         if(num === SHOW_COL)
             isShow = true;
@@ -12,7 +17,7 @@ export default class ColList extends Component {
     componentWillUnmount() {
         Event.unregister(EVENT_CHANGE_CNT,this.cntChangeHandler);
     }
-    createDelCol(colItem){
+    createDelCol(colItem: Object){
         let {type,site,title} =colItem;
         let self = this;
         return ()=>{
@@ -32,7 +37,7 @@ export default class ColList extends Component {
             });
         }
     }
-    renderItem(datas){
+    renderItem(datas: Object[]){
         let retArr = [];
         log('list datas',datas);
         datas.map((data)=>{
@@ -77,7 +82,7 @@ export default class ColList extends Component {
             self.setState({datas})
         });
     }
-    constructor(props){
+    constructor(props: any){
         super(props);
         bindInnerFun(this);
         this.state = {
