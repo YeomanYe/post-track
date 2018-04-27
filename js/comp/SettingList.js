@@ -10,7 +10,7 @@ type State = {
 type Props = {
 
 }
-
+let {SHOW_SETTING,getStoreLocal,Switch,storLocal,EVENT_CHANGE_CNT,bindInnerFun,STOR_KEY_IS_CLOSE_TIPS} = window;
 export default class SettingList extends Component<Props,State> {
 
     cntChangeHandler(num: number){

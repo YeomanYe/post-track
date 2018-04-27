@@ -1,9 +1,6 @@
 //@flow
 let regtable = {};
 
-export let EventType = {
-    EVENT_CHANGE_CNT:'changeCnt'
-};
 
 export default class Event{
     static register(event: string,callback: Function){
