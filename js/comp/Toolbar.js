@@ -11,7 +11,13 @@ export default class Toolbar extends Component<any, any> {
     render() {
         return (
             <header id='toolbar'>
-                <div><img src="../../images/icon/logo48.png" alt=""/></div>
+                <div className="hd">
+                    <img src="../../images/icon/logo-white32.png" alt=""/>
+                    <h1>PostTrack</h1>
+                </div>
+                <div className="bd">
+                    <img src="../../images/star-white.png" alt=""/>
+                </div>
             </header>
         );
     }

@@ -144,6 +144,28 @@ nav{
     }
 }
 
+#toolbar{
+    padding:10px;
+    background: rgb(78,144,232);
+    div{
+        display: inline-block;
+        color: white;
+        h1{
+            display: inline-block;
+            vertical-align: top;
+        }
+        img{
+            width: 32px;
+            margin-right: 10px;
+        }
+        &.bd{
+            float: right;
+            cursor: pointer;
+        }
+    }
+
+}
+
 .hidden{
     display: none;
 }

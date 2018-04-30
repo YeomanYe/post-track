@@ -1,0 +1,12 @@
+[ignore]
+
+[include]
+./js/comp/**
+
+[libs]
+
+[lints]
+
+[options]
+
+[strict]
