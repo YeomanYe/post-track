@@ -5,7 +5,7 @@
    "browser_action": {
        "default_icon": "images/icon/logo32.png",
       "default_popup": "build/popup.html",
-      "default_title": "跟帖通知器"
+      "default_title": "PostTrack"
    },
    "content_scripts": [{
       "js": ["build/lib/jquery.min.js","build/js/constant.js", "build/js/utils.js","build/js/baseStoreObj.js", "build/js/content.min.js"],
@@ -22,7 +22,7 @@
       "128": "images/icon/logo128.png"
    },
    "manifest_version": 2,
-   "name": "跟帖通知器",
+   "name": "PostTrack",
    "options_page": "build/popup.html",
    "permissions": ["http://*/*", "https://*/*", "notifications", "storage", "unlimitedStorage"],
    "version": "1.0.0",

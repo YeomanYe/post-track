@@ -4,19 +4,12 @@ import del from 'del';
 const webpack = require('webpack');
 const $ = gulpLoadPlugins();
 
-//预编译js文件，将es6变成es2015
-gulp.task('pre-compile', ()=>{
-    return gulp.src(['js/bg/*.js','js/cnt/*.js'])
+//编译cnt文件夹下的js文件
+gulp.task('build:cnt',()=>{
+    return gulp.src(['js/cnt/preprocess.js','js/cnt/*-cnt.js'])
         .pipe($.sourcemaps.init())
         .pipe($.plumber())
-        .pipe($.babel())    //靠这个插件编译
-        .pipe($.sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/temp'));
-});
-//编译cnt文件夹下的js文件
-gulp.task('build:cnt',['pre-compile'],()=>{
-    return gulp.src(['./dist/temp/preprocess.js','./dist/temp/*-cnt.js'])
-        .pipe($.sourcemaps.init())
+        .pipe($.babel())
         .pipe($.concat('content.js'))
         .pipe($.rename('content.min.js'))
         .pipe($.uglify())
@@ -24,9 +17,11 @@ gulp.task('build:cnt',['pre-compile'],()=>{
         .pipe(gulp.dest('./build/js'));
 });
 //编译bg文件夹下的js文件
-gulp.task('build:bg',['pre-compile'],()=>{
-    return gulp.src(['./dist/temp/*-bg.js','./dist/temp/background.js'])
+gulp.task('build:bg',()=>{
+    return gulp.src(['js/bg/*-bt.js','js/bg/background.js'])
         .pipe($.sourcemaps.init())
+        .pipe($.plumber())
+        .pipe($.babel())
         .pipe($.concat('bg.js'))
         .pipe($.rename('bg.min.js'))
         .pipe($.uglify())
@@ -87,18 +82,16 @@ gulp.task('images',()=>{
 });
 //webpack任务
 gulp.task('webpack', function() {
-    return gulp.src('src/App.js')
+    return gulp.src('js/App.js')
         .pipe($.webpack( require('./webpack.config.js') ,webpack))
-        .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('build/'));
 });
 //前置清理
 gulp.task('clean' , function(){
     return del([
         'dist',
         'build/**/*',
-        '!build/manifest.json',
-        '!build/popup.html',
-        '!build/popup-bundle.js'
+        '!build/manifest.json'
     ])
 });
 //后置清理，清理无用文件
