@@ -11,7 +11,6 @@ _createQueryObj.createSfQuery = function () {
             isAccept:isAccept,
             answerNum:$answers.length
         };
-        return resObj;
     };
 
     var sfQuery = function() {

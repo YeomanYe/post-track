@@ -12,7 +12,6 @@ _createQueryObj.createStackOverflowQuery = function () {
             isAccept:isAccept,
             answerNum:len + 1
         };
-        return resObj;
     };
 
     var stackOverflowQuery = function() {

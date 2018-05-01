@@ -11,7 +11,6 @@ _createQueryObj.createGithubQuery = function () {
             isAccept:isAccept,
             answerNum:Math.max($answers.length - 1,0)
         };
-        return resObj;
     };
 
     var githubQuery = function() {

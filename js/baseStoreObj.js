@@ -71,3 +71,18 @@ _allBaseStoreObj[SITE_STACK_OVERFLOW] = function (origin,type) {
     };
     return storObj;
 };
+
+_allBaseStoreObj[SITE_ZHIHU] = function (origin,type) {
+    origin = origin ? origin : 'https://www.zhihu.com';
+    var baseUrl = origin + '/question/';
+
+    storObj = {
+        baseUrl:baseUrl,
+        type:type,
+        origin: origin,
+        site: SITE_ZHIHU,
+        siteName:'知乎',
+        icon:cGetUrl('images/site-icon/zhihu.png')
+    };
+    return storObj;
+};

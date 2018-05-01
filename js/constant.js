@@ -17,6 +17,7 @@ SITE_SEGMENT_FAULT = 'segmentfault';
 SITE_GITHUB = 'github';
 SITE_CSDN = 'csdn';
 SITE_STACK_OVERFLOW = 'stackoverflow';
+SITE_ZHIHU = 'zhihu';
 
 EVENT_CHANGE_CNT = 'changeCnt';
 EVENT_RELOAD_COL = 'reloadCol';

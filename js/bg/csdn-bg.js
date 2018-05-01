@@ -11,7 +11,6 @@ _createQueryObj.createCSDNQuery = function () {
             isAccept:isAccept,
             answerNum:len
         };
-        return resObj;
     };
 
     var csdnQuery = function() {
