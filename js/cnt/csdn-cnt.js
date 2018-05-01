@@ -2,14 +2,15 @@
 $(function(){
     if(curHref.search(/https:\/\/ask.csdn.net\/questions\/[\d]+/) < 0)return;
     log(SITE_CSDN);
-    createBtn();
-    _$imgToggle.on('click',toggleColHandlerCSDN);
-    _updateCurFavFun = updateGithub;
-    updateGithub();
+    // createBtn();
+    // _$imgToggle.on('click',toggleColHandlerCSDN);
+    // _updateCurFavFun = updateGithub;
+    _toggleCurCol = toggleColHandlerCSDN;
+    // updateGithub();
 });
 
-function toggleColHandlerCSDN() {
-    getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN));
+function toggleColHandlerCSDN(resSend) {
+    getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN,resSend));
 }
 
 function updateGithub() {

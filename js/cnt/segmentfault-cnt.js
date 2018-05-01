@@ -2,14 +2,15 @@
 $(function(){
     if(curHref.indexOf('segmentfault.com/q/') < 0)return;
     log(SITE_SEGMENT_FAULT);
-    createBtn();
-    _$imgToggle.on('click',toggleFavHandlerSf);
-    _updateCurFavFun = updateSf;
-    updateSf();
+    // createBtn();
+    // _$imgToggle.on('click',toggleFavHandlerSf);
+    // _updateCurFavFun = updateSf;
+    _toggleCurCol = toggleFavHandlerSf;
+    // updateSf();
 });
 
-function toggleFavHandlerSf() {
-    getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,toggleCol(getCurInfoSf));
+function toggleFavHandlerSf(resSend) {
+    getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,toggleCol(getCurInfoSf,resSend));
 }
 
 function updateSf() {

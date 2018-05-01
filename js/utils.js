@@ -15,7 +15,8 @@ var _createQueryObj = Object.create(_createQueryObjProto);
 
 /**
  * 判断数组中是否有一个字符串在目标字符串中。并返回序列号。-1代表不存在
- * field代表数组中某个对象的某一字段
+ * @param arr
+ * @param strs string/object
  */
 function arrInStr(arr, strs) {
     var flag;
@@ -41,7 +42,8 @@ function arrInStr(arr, strs) {
 
 /**
  * 判断数组中是否有一个字符串等于目标字符串。并返回序列号。-1代表不存在
- * field代表数组中某个对象的某一字段
+ * @param arr
+ * @param strs string/object
  */
 function arrEqStr(arr, strs) {
     var flag;
@@ -139,10 +141,10 @@ function updatePageCol(getCurInfo) {
         var curInfo = getCurInfo();
         //解析当前页面并更新阅读记录
         var index = arrEqStr(cols, {title: curInfo.title});
-        _$imgToggle.get(0).src = _src.collectGrey;
+        if(_$imgToggle) _$imgToggle.get(0).src = _src.collectGrey;
         if (index < 0) return;
         //更新图标
-        _$imgToggle.get(0).src = _src.collect;
+        if(_$imgToggle) _$imgToggle.get(0).src = _src.collect;
         var curItem = cols[index];
         curItem.timestamp = Date.now();
         //更新，当前更新的数量
@@ -252,8 +254,9 @@ function showTips(msg, time) {
     $div.css({
         position: 'fixed',
         padding: '20px',
-        top: height / 2 - 40,
-        left: width / 2 - 40,
+        top: height / 2,
+        left: width / 2,
+        transform: 'translate(-50%,-50%)',
         'font-size': '18px',
         'z-index': 999,
         background: 'black',
@@ -306,18 +309,44 @@ var storeDebounce = function (obj, func) {
 /**
  * 发送通知到全部的tab页
  * @param data
+ * @param handler
  */
-function sendToAllTabs(data) {
+function sendToAllTabs(data,handler) {
     chrome.windows.getAll(null,function (wins) {
         for(var i=0,len=wins.length;i<len;i++){
             var win = wins[i];
             chrome.tabs.query({windowId:win.id},function (tabs) {
                 for(var i=0,len=tabs.length;i<len;i++){
                     var tab = tabs[i];
-                    chrome.tabs.sendMessage(tab.id,data);
+                    handler = handler || function(){};
+                    chrome.tabs.sendMessage(tab.id,data,null,handler);
                 }
             });
         }
+    });
+}
+
+/**
+ * 获取当前tab
+ * @param sucCall
+ */
+function getCurTab(sucCall){
+    chrome.tabs.query({active:true},function (tabs) {
+        var curTab = tabs[0];
+        sucCall(curTab);
+    });
+}
+
+/**
+ * 发送通知到当前tab页
+ * @param data
+ * @param handler
+ */
+function sendToCurTab(data,handler) {
+    chrome.tabs.query({active:true},function (tabs) {
+        var tab = tabs[0];
+        handler = handler || function(){};
+        chrome.tabs.sendMessage(tab.id,data,null,handler);
     });
 }
 

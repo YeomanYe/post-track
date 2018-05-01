@@ -3,11 +3,10 @@ import React, {Component} from 'react';
 import Event from './Event';
 
 type State = {
-    isShow: boolean,
-    datas: Object[]
+    isShow: boolean
 }
 
-let {SHOW_COL, EVENT_CHANGE_CNT, getCols, arrEqStr, STOR_KEY_COLS, storLocal, decUpdateNum, sendToAllTabs, CNT_CMD_UPDATE_CUR_FAV, log, formatHref, bindInnerFun, getStoreLocal} = window;
+let {SHOW_COL,EVENT_DEL_COL,EVENT_RELOAD_COL, EVENT_CHANGE_CNT, getCols, arrEqStr, STOR_KEY_COLS, storLocal, decUpdateNum, sendToAllTabs, CNT_CMD_UPDATE_CUR_FAV, log, formatHref, bindInnerFun, getStoreLocal} = window;
 
 export default class ColList extends Component<any, State> {
     cntChangeHandler(num: number) {
@@ -22,23 +21,9 @@ export default class ColList extends Component<any, State> {
     }
 
     createDelCol(colItem: Object) {
-        let {type, site, title} = colItem;
-        let self = this;
+        // let {type, site, title} = colItem;
         return () => {
-            getCols(site, type, (cols, allCols) => {
-                let index = arrEqStr(cols, {title: title});
-                let col;
-                if (index < 0) return;
-                col = cols.splice(index, 1);
-                storLocal.set({[STOR_KEY_COLS]: allCols});
-                decUpdateNum(col);
-                //从视图中删除
-                let {datas} = self.state;
-                index = datas.indexOf(colItem);
-                datas.splice(index, 1);
-                self.setState({datas});
-                sendToAllTabs([CNT_CMD_UPDATE_CUR_FAV]);
-            });
+            Event.emit(EVENT_DEL_COL,colItem);
         }
     }
 
@@ -69,43 +54,23 @@ export default class ColList extends Component<any, State> {
         return retArr;
     }
 
-    componentDidMount() {
-        let self = this;
-        getStoreLocal(STOR_KEY_COLS, (allCols) => {
-            let datas = [];
-            allCols = allCols ? allCols : [];
-            log('allCols', allCols);
-            allCols.map((item) => {
-                let {icon, origin, siteName, baseUrl, site, type} = item;
-                let iconStyle = {backgroundImage: `url('${icon}')`};
-                item.cols.map((col) => {
-                    let {title, url, isAccept, answerNum, isUpdate} = col;
-                    datas.push({
-                        type, site, title, isAccept, answerNum, isUpdate, origin, iconStyle, siteName,
-                        url: formatHref(url, baseUrl)
-                    })
-                });
-            });
-            self.setState({datas})
-        });
-    }
 
     constructor(props: any) {
         super(props);
         bindInnerFun(this);
         this.state = {
-            datas: [],
             isShow: true
         };
         Event.register(EVENT_CHANGE_CNT, this.cntChangeHandler);
     }
 
     render() {
-        let {datas, isShow} = this.state;
+        let { isShow} = this.state;
+        let {colListDatas} = this.props;
         return (
             <div id='col-list-wrap' className={isShow ? 'list' : 'hidden'}>
                 <ul id="col-list">
-                    {this.renderItem(datas)}
+                    {this.renderItem(colListDatas)}
                 </ul>
             </div>
         );

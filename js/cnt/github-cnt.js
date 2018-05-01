@@ -2,14 +2,15 @@
 $(function(){
     if(curHref.search(/https:\/\/github.com\/.*\/issues\/[\d]+/) < 0)return;
     log(SITE_GITHUB);
-    createBtn();
-    _$imgToggle.on('click',toggleColHandlerGithub);
-    _updateCurFavFun = updateGithub;
-    updateGithub();
+    // createBtn();
+    // _$imgToggle.on('click',toggleColHandlerGithub);
+    // _updateCurFavFun = updateGithub;
+    _toggleCurCol = toggleColHandlerGithub;
+    // updateGithub();
 });
 
-function toggleColHandlerGithub() {
-    getCols(SITE_GITHUB,TYPE_ISSUE,toggleCol(getCurInfoGithub));
+function toggleColHandlerGithub(resSend) {
+    getCols(SITE_GITHUB,TYPE_ISSUE,toggleCol(getCurInfoGithub,resSend));
 }
 
 function updateGithub() {

@@ -2,14 +2,15 @@
 $(function(){
     if(curHref.search(/https:\/\/stackoverflow.com\/questions\/[\d]+\/.+/) < 0)return;
     log(SITE_STACK_OVERFLOW);
-    createBtn();
-    _$imgToggle.on('click',toggleColHandlerStackOverflow);
-    _updateCurFavFun = updateStackOverflow;
-    updateStackOverflow();
+    // createBtn();
+    // _$imgToggle.on('click',toggleColHandlerStackOverflow);
+    // _updateCurFavFun = updateStackOverflow;
+    _toggleCurCol = toggleColHandlerStackOverflow;
+    // updateStackOverflow();
 });
 
-function toggleColHandlerStackOverflow() {
-    getCols(SITE_STACK_OVERFLOW,TYPE_ISSUE,toggleCol(getCurInfoStackOverflow));
+function toggleColHandlerStackOverflow(resSend) {
+    getCols(SITE_STACK_OVERFLOW,TYPE_ISSUE,toggleCol(getCurInfoStackOverflow,resSend));
 }
 
 function updateStackOverflow() {

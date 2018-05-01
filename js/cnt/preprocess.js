@@ -7,7 +7,7 @@ var _src = {
     questionGrey:cGetUrl('images/question-grey.png'),
     questionBlue:cGetUrl('images/question-blue.png')
 };
-var _updateCurFavFun;
+var _updateCurFavFun,_toggleCurCol;
 //获取基本信息
 var origin = location.origin,
     storObj = getBaseStoreObj(origin);
@@ -18,6 +18,10 @@ chrome.runtime.onMessage.addListener(function(msgArr,msgSenderObj,resSend) {
     switch (msgArr[0]) {
         case CNT_CMD_UPDATE_CUR_FAV:
             if(_updateCurFavFun) _updateCurFavFun();
+            break;
+        case CNT_CMD_TOGGLE_CUR_COL:
+            if(!_toggleCurCol) return showTips('不支持当前页面');
+            _toggleCurCol(resSend);
             break;
     }
     return true;
@@ -85,20 +89,22 @@ function toggleMenu(){
  * 收藏或取消收藏
  * accessIndex是否访问目录页获取信息
  */
-function toggleCol(getCurInfo) {
+function toggleCol(getCurInfo,resSend) {
     var obj = getCurInfo();
     var baseUrl = storObj.baseUrl;
     return function (cols,allCols) {
         var index = arrEqStr(cols,{title:obj.title});
         if(index >= 0) {
             cols.splice(index,1);
-            showTips('取消收藏成功');
-            _$imgToggle.attr('src',_src.collectGrey);
+            showTips(MSG_DEL_COL_SUC);
+            resSend({isCol:false});
+            if(_$imgToggle) _$imgToggle.attr('src',_src.collectGrey);
         }else{
             obj.url = obj.url.replace(baseUrl,'');
             cols.push(obj);
-            showTips('收藏成功');
-            _$imgToggle.attr('src',_src.collect);
+            showTips(MSG_ADD_COL_SUC);
+            resSend({isCol:true});
+            if(_$imgToggle) _$imgToggle.attr('src',_src.collect);
         }
         storLocal.set({[STOR_KEY_COLS]:allCols});
         log('allCols',allCols);

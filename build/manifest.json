@@ -24,7 +24,7 @@
    "manifest_version": 2,
    "name": "PostTrack",
    "options_page": "popup.html",
-   "permissions": ["http://*/*", "https://*/*", "notifications", "storage", "unlimitedStorage"],
+   "permissions": ["http://*/*", "https://*/*", "notifications", "storage", "unlimitedStorage","tabs"],
    "version": "1.0.0",
    "web_accessible_resources": ["remote/*", "js/*","css/*","lib/*", "manifest.json", "images/*"]
 }
