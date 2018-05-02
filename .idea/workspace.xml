@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7277e3c3-9d32-4b3f-b2d1-1e2feeb9caa2" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/images/site-icon/zhihu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bg/zhihu-bg.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/cnt/zhihu-cnt.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/baseStoreObj.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/baseStoreObj.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/bg/csdn-bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/bg/csdn-bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/bg/github-bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/bg/github-bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/bg/segmentfault-bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/bg/segmentfault-bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/bg/stackoverflow-bg.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/bg/stackoverflow-bg.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/constant.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/constant.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bg/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/bg/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -28,7 +21,7 @@
       <file leaf-file-name="Toolbar.js" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/comp/Toolbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
+            <state relative-caret-position="616">
               <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
               <folding>
                 <element signature="e#8#47#0" expanded="true" />
@@ -40,7 +33,7 @@
       <file leaf-file-name="constant.js" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/constant.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
+            <state relative-caret-position="532">
               <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
             </state>
           </provider>
@@ -50,7 +43,7 @@
         <entry file="file://$PROJECT_DIR$/css/popup.scss">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="4760">
-              <caret line="170" column="1" lean-forward="true" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
+              <caret line="170" column="1" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -58,62 +51,17 @@
       <file leaf-file-name="preprocess.js" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/cnt/preprocess.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-392">
+            <state relative-caret-position="28">
               <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="zhihu-bg.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/bg/zhihu-bg.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zhihu-cnt.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/js/cnt/zhihu-cnt.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="github-bg.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/bg/github-bg.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="csdn-bg.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/bg/csdn-bg.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stackoverflow-bg.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/bg/stackoverflow-bg.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="background.js" pinned="true" current-in-tab="false">
+      <file leaf-file-name="background.js" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/bg/background.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="296">
-              <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+            <state relative-caret-position="252">
+              <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
               <folding>
                 <element signature="e#0#18#0" />
                 <element signature="e#218#295#0" />
@@ -184,7 +132,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/cnt/segmentfault.js" />
-        <option value="$PROJECT_DIR$/js/bg/background.js" />
         <option value="$PROJECT_DIR$/js/popup.js" />
         <option value="$PROJECT_DIR$/popup.html" />
         <option value="$PROJECT_DIR$/tmpl/popup.tmpl.html" />
@@ -224,6 +171,7 @@
         <option value="$PROJECT_DIR$/js/bg/github-bg.js" />
         <option value="$PROJECT_DIR$/js/bg/csdn-bg.js" />
         <option value="$PROJECT_DIR$/js/bg/zhihu-bg.js" />
+        <option value="$PROJECT_DIR$/js/bg/background.js" />
       </list>
     </option>
   </component>
@@ -466,7 +414,8 @@
       <workItem from="1524912994917" duration="1827000" />
       <workItem from="1525086280592" duration="14099000" />
       <workItem from="1525142847479" duration="6002000" />
-      <workItem from="1525153987392" duration="1233000" />
+      <workItem from="1525153987392" duration="1876000" />
+      <workItem from="1525274333842" duration="291000" />
     </task>
     <task id="LOCAL-00001" summary="update architecture">
       <created>1522078864419</created>
@@ -573,11 +522,18 @@
       <option name="project" value="LOCAL" />
       <updated>1525148064051</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add zhihu support">
+      <created>1525155244829</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1525155244829</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136668000" />
+    <option name="totallyTimeSpent" value="137602000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -594,13 +550,13 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4993395" weight="0.32637855" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.501321" side_tool="true" weight="0.32786885" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49788582" weight="0.3248503" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49788582" weight="0.3233979" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49788582" visible="true" weight="0.3219076" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49788582" weight="0.3219076" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4953765" weight="0.3292683" />
       <window_info anchor="bottom" id="Flow" order="10" sideWeight="0.49867898" weight="0.3246951" />
       <window_info id="Gulp" order="4" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Tail" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -632,7 +588,8 @@
     <MESSAGE value="update gulpfile" />
     <MESSAGE value="add toolbar" />
     <MESSAGE value="update toolbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="update toolbar" />
+    <MESSAGE value="add zhihu support" />
+    <option name="LAST_COMMIT_MESSAGE" value="add zhihu support" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -789,16 +746,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -816,7 +763,7 @@
     <entry file="file://$PROJECT_DIR$/css/popup.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4760">
-          <caret line="170" column="1" lean-forward="true" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
+          <caret line="170" column="1" selection-start-line="170" selection-start-column="1" selection-end-line="170" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -838,9 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
           <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-          <folding>
-            <element signature="e#8#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -856,7 +800,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/comp/Toolbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
+        <state relative-caret-position="616">
           <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
             <element signature="e#8#47#0" expanded="true" />
@@ -878,16 +822,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/preprocess.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-392">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/constant.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="532">
           <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
         </state>
       </provider>
@@ -916,7 +853,7 @@
     <entry file="file://$PROJECT_DIR$/js/bg/github-bg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
-          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -927,10 +864,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/bg/stackoverflow-bg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bg/zhihu-bg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/zhihu-cnt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/preprocess.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/bg/background.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="54" column="29" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
+        <state relative-caret-position="252">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
           <folding>
             <element signature="e#0#18#0" />
             <element signature="e#218#295#0" />
@@ -945,27 +920,6 @@
             <element signature="e#1559#1589#0" />
             <element signature="e#1641#1669#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bg/stackoverflow-bg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="14" column="6" lean-forward="true" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bg/zhihu-bg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/zhihu-cnt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
         </state>
       </provider>
     </entry>

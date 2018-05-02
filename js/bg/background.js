@@ -11,7 +11,7 @@ var allQuery = function() {
     allQuery = function(){
         setBadge('....','blue'); //提示正在查询中
         firstQuery();
-        setTimeout(allQuery, 1000 * 60 * 45);
+        setTimeout(allQuery, 1000 * 60 * 10);
     };
     allQuery();
 };
