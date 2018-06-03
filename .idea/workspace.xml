@@ -3,7 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="7277e3c3-9d32-4b3f-b2d1-1e2feeb9caa2" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/popup.scss" beforeDir="false" afterPath="$PROJECT_DIR$/css/popup.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/notification-buttons/ic_exposure_plus_1_black_18dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/notification-buttons/ic_exposure_plus_1_black_24dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/notification-buttons/ic_exposure_plus_1_black_36dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/notification-buttons/ic_flash_auto_black_18dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/notification-buttons/ic_flash_auto_black_24dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/notification-buttons/ic_flash_auto_black_36dp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/bg/background.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/bg/background.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cnt/csdn-cnt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cnt/csdn-cnt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cnt/github-cnt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cnt/github-cnt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cnt/segmentfault-cnt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cnt/segmentfault-cnt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/cnt/zhihu-cnt.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/cnt/zhihu-cnt.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/utils.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,7 +32,7 @@
       <file leaf-file-name="Toolbar.js" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/comp/Toolbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="1064">
               <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="47" selection-end-column="21" />
               <folding>
                 <element signature="e#8#47#0" expanded="true" />
@@ -38,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="popup.scss" pinned="true" current-in-tab="true">
+      <file leaf-file-name="popup.scss" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/popup.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
+            <state relative-caret-position="359">
+              <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -50,114 +62,62 @@
       <file leaf-file-name="preprocess.js" pinned="true" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/cnt/preprocess.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3105">
-              <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+            <state relative-caret-position="2752">
+              <caret line="111" column="1" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/utils.js">
+      <file leaf-file-name="segmentfault-cnt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/cnt/segmentfault-cnt.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1596">
-              <caret line="347" column="14" selection-start-line="347" selection-start-column="14" selection-end-line="347" selection-end-column="14" />
-              <folding>
-                <element signature="e#167#362#0" />
-                <element signature="e#217#360#0" />
-                <element signature="e#269#353#0" />
-                <element signature="n#!!doc;n#arrInStr#0" />
-                <element signature="n#!!block;n#arrInStr#0" />
-                <element signature="e#612#1099#0" />
-                <element signature="e#699#1026#0" />
-                <element signature="e#827#984#0" />
-                <element signature="e#890#970#0" />
-                <element signature="e#1060#1093#0" />
-                <element signature="n#!!doc;n#arrEqStr#0" />
-                <element signature="n#!!block;n#arrEqStr#0" />
-                <element signature="e#1305#1773#0" />
-                <element signature="e#1392#1710#0" />
-                <element signature="e#1520#1668#0" />
-                <element signature="e#1574#1654#0" />
-                <element signature="e#1734#1767#0" />
-                <element signature="n#!!doc;n#getStoreLocal#0" />
-                <element signature="n#!!block;n#getStoreLocal#0" />
-                <element signature="e#1909#2226#0" />
-                <element signature="e#1970#2017#0" />
-                <element signature="e#2023#2220#0" />
-                <element signature="e#2113#2172#0" />
-                <element signature="n#!!doc;n#getCols#0" />
-                <element signature="n#!!block;n#getCols#0" />
-                <element signature="e#2450#2895#0" />
-                <element signature="e#2696#2788#0" />
-                <element signature="e#2794#2845#0" />
-                <element signature="n#!!doc;n#addArr#0" />
-                <element signature="n#!!block;n#addArr#0" />
-                <element signature="e#3021#3056#0" />
-                <element signature="n#!!doc;n#decUpdateNum#0" />
-                <element signature="n#!!block;n#decUpdateNum#0" />
-                <element signature="e#3149#3471#0" />
-                <element signature="e#3246#3463#0" />
-                <element signature="e#3299#3351#0" />
-                <element signature="e#3365#3451#0" />
-                <element signature="n#!!doc;n#updatePageCol#0" />
-                <element signature="n#!!block;n#updatePageCol#0" />
-                <element signature="e#3566#4061#0" />
-                <element signature="e#4013#4053#0" />
-                <element signature="n#!!doc;n#queryUpdate#0" />
-                <element signature="n#!!block;n#queryUpdate#0" />
-                <element signature="e#4435#6253#0" />
-                <element signature="e#4475#5824#0" />
-                <element signature="e#4493#5763#0" />
-                <element signature="e#4716#5749#0" />
-                <element signature="e#4847#5255#0" />
-                <element signature="e#4903#5233#0" />
-                <element signature="e#5462#5567#0" />
-                <element signature="e#5603#5713#0" />
-                <element signature="e#5774#5813#0" />
-                <element signature="e#5883#6081#0" />
-                <element signature="e#5991#6069#0" />
-                <element signature="e#6203#6247#0" />
-                <element signature="n#!!doc;n#replaceOrigin#0" />
-                <element signature="n#!!block;n#replaceOrigin#0" />
-                <element signature="n#!!doc;n#createNotify#0" />
-                <element signature="n#!!block;n#createNotify#0" />
-                <element signature="e#6582#6744#0" />
-                <element signature="n#!!doc;n#showTips#0" />
-                <element signature="n#!!block;n#showTips#0" />
-                <element signature="e#7020#7277#0" />
-                <element signature="e#7335#7365#0" />
-                <element signature="n#!!doc;n#formatHref#0" />
-                <element signature="n#!!block;n#formatHref#0" />
-                <element signature="e#7528#7831#0" />
-                <element signature="e#7645#7825#0" />
-                <element signature="e#7837#7868#0" />
-                <element signature="e#7892#7909#0" />
-                <element signature="e#7951#8280#0" />
-                <element signature="e#8024#8247#0" />
-                <element signature="e#8060#8119#0" />
-                <element signature="e#8174#8234#0" />
-                <element signature="n#!!doc;n#sendToAllTabs#0" />
-                <element signature="n#!!block;n#sendToAllTabs#0" />
-                <element signature="e#8426#8843#0" />
-                <element signature="e#8474#8837#0" />
-                <element signature="e#8571#8825#0" />
-                <element signature="e#8627#8811#0" />
-                <element signature="n#!!doc;n#getCurTab#0" />
-                <element signature="n#!!block;n#getCurTab#0" />
-                <element signature="e#8967#9029#0" />
-                <element signature="n#!!doc;n#sendToCurTab#0" />
-                <element signature="n#!!block;n#bindInnerFun#0" />
-                <element signature="e#9583#9743#0" />
-              </folding>
+            <state relative-caret-position="252">
+              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="background.js" pinned="true" current-in-tab="false">
+      <file leaf-file-name="stackoverflow-cnt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="15" selection-start-line="15" selection-end-line="17" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zhihu-cnt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/cnt/zhihu-cnt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="csdn-cnt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/cnt/csdn-cnt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="56">
+              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="github-cnt.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/cnt/github-cnt.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="background.js" pinned="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/bg/background.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            <state relative-caret-position="96">
+              <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
               <folding>
                 <element signature="e#0#18#0" />
                 <element signature="e#218#295#0" />
@@ -214,6 +174,7 @@
       <find>showT</find>
       <find>你好啊</find>
       <find>favT</find>
+      <find>notif</find>
     </findStrings>
     <replaceStrings>
       <replace>STOR_KEY_COLS</replace>
@@ -250,27 +211,27 @@
         <option value="$PROJECT_DIR$/js/comp/Event.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/gulpfile.babel.js" />
-        <option value="$PROJECT_DIR$/js/cnt/segmentfault-cnt.js" />
-        <option value="$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/build/manifest.json" />
-        <option value="$PROJECT_DIR$/js/utils.js" />
         <option value="$PROJECT_DIR$/js/comp/ColList.js" />
         <option value="$PROJECT_DIR$/js/comp/Root.js" />
         <option value="$PROJECT_DIR$/js/comp/Toolbar.js" />
-        <option value="$PROJECT_DIR$/js/cnt/github-cnt.js" />
-        <option value="$PROJECT_DIR$/js/cnt/csdn-cnt.js" />
         <option value="$PROJECT_DIR$/js/constant.js" />
         <option value="$PROJECT_DIR$/js/baseStoreObj.js" />
-        <option value="$PROJECT_DIR$/js/cnt/zhihu-cnt.js" />
         <option value="$PROJECT_DIR$/js/bg/segmentfault-bg.js" />
         <option value="$PROJECT_DIR$/js/bg/stackoverflow-bg.js" />
         <option value="$PROJECT_DIR$/js/bg/github-bg.js" />
         <option value="$PROJECT_DIR$/js/bg/csdn-bg.js" />
         <option value="$PROJECT_DIR$/js/bg/zhihu-bg.js" />
-        <option value="$PROJECT_DIR$/js/bg/background.js" />
         <option value="$PROJECT_DIR$/js/cnt/preprocess.js" />
         <option value="$PROJECT_DIR$/css/popup.scss" />
+        <option value="$PROJECT_DIR$/js/utils.js" />
+        <option value="$PROJECT_DIR$/js/cnt/github-cnt.js" />
+        <option value="$PROJECT_DIR$/js/cnt/csdn-cnt.js" />
+        <option value="$PROJECT_DIR$/js/cnt/segmentfault-cnt.js" />
+        <option value="$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js" />
+        <option value="$PROJECT_DIR$/js/cnt/zhihu-cnt.js" />
+        <option value="$PROJECT_DIR$/js/bg/background.js" />
       </list>
     </option>
   </component>
@@ -359,7 +320,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -376,6 +336,11 @@
               <item name="answer-notification-extension" type="b2602c69:ProjectViewProjectNode" />
               <item name="answer-notification-extension" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="answer-notification-extension" type="b2602c69:ProjectViewProjectNode" />
+              <item name="answer-notification-extension" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="answer-notification-extension" type="b2602c69:ProjectViewProjectNode" />
@@ -404,12 +369,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="util&#9;FILE&#9;file://G:/Workspace/Github/answer-notification-extension/js/utils.js&#10;base&#9;FILE&#9;file://G:/Workspace/Github/answer-notification-extension/js/baseStoreObj.js" />
+    <property name="SearchEverywhereHistoryKey" value="utils&#9;FILE&#9;file://G:/Workspace/Github/answer-notification-extension/js/utils.js&#10;util&#9;FILE&#9;file://G:/Workspace/Github/answer-notification-extension/js/utils.js&#10;base&#9;FILE&#9;file://G:/Workspace/Github/answer-notification-extension/js/baseStoreObj.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/node_modules/gulp" />
@@ -419,15 +385,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\Workspace\Github\answer-notification-extension" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\Workspace\Github\answer-notification-extension\images\notification-buttons" />
       <recent name="G:\Workspace\Github\answer-notification-extension\js\bg" />
       <recent name="G:\Workspace\Github\answer-notification-extension\js\cnt" />
       <recent name="G:\Workspace\Github\answer-notification-extension\images\site-icon" />
       <recent name="G:\Workspace\Github\answer-notification-extension\js\comp" />
-      <recent name="G:\Workspace\Github\answer-notification-extension\tmpl" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\Workspace\Github\answer-notification-extension" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -507,6 +473,7 @@
       <workItem from="1525445572913" duration="1643000" />
       <workItem from="1525873598887" duration="657000" />
       <workItem from="1525957031023" duration="2102000" />
+      <workItem from="1528036757968" duration="1053000" />
     </task>
     <task id="LOCAL-00001" summary="update architecture">
       <created>1522078864419</created>
@@ -631,7 +598,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142225000" />
+    <option name="totallyTimeSpent" value="143278000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -651,8 +618,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49788582" weight="0.3233979" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49788582" weight="0.3219076" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4953765" weight="0.3292683" />
-      <window_info anchor="bottom" id="Flow" order="10" sideWeight="0.49867898" visible="true" weight="0.32411674" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4953765" visible="true" weight="0.32872504" />
+      <window_info anchor="bottom" id="Flow" order="10" sideWeight="0.49867898" weight="0.32411674" />
       <window_info id="Gulp" order="4" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966975" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
@@ -831,20 +798,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/segmentfault-cnt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -866,13 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/comp/ColList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/comp/Root.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1344">
@@ -880,13 +826,6 @@
           <folding>
             <element signature="e#8#47#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/github-cnt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -904,13 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/csdn-cnt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/bg/segmentfault-bg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -919,13 +851,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/bg/github-bg.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/bg/csdn-bg.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
@@ -946,23 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/zhihu-cnt.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor>
-            <js_state />
-          </second_editor>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/constant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -970,10 +878,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/comp/Toolbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1064">
+          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="47" selection-end-column="21" />
+          <folding>
+            <element signature="e#8#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/popup.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="50" column="26" lean-forward="true" selection-start-line="50" selection-start-column="26" selection-end-line="50" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="364">
+            <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+          </first_editor>
+          <second_editor>
+            <js_state />
+          </second_editor>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/bg/csdn-bg.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/comp/ColList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-863">
+          <caret line="25" column="16" lean-forward="true" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/utils.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1596">
-          <caret line="347" column="14" selection-start-line="347" selection-start-column="14" selection-end-line="347" selection-end-column="14" />
+        <state relative-caret-position="28">
+          <caret line="139" column="36" lean-forward="true" selection-start-line="139" selection-start-column="36" selection-end-line="139" selection-end-column="36" />
           <folding>
             <element signature="e#167#362#0" />
             <element signature="e#217#360#0" />
@@ -1013,9 +964,6 @@
             <element signature="e#3299#3351#0" />
             <element signature="e#3365#3451#0" />
             <element signature="n#!!doc;n#updatePageCol#0" />
-            <element signature="n#!!block;n#updatePageCol#0" />
-            <element signature="e#3566#4061#0" />
-            <element signature="e#4013#4053#0" />
             <element signature="n#!!doc;n#queryUpdate#0" />
             <element signature="n#!!block;n#queryUpdate#0" />
             <element signature="e#4435#6253#0" />
@@ -1033,8 +981,6 @@
             <element signature="n#!!doc;n#replaceOrigin#0" />
             <element signature="n#!!block;n#replaceOrigin#0" />
             <element signature="n#!!doc;n#createNotify#0" />
-            <element signature="n#!!block;n#createNotify#0" />
-            <element signature="e#6582#6744#0" />
             <element signature="n#!!doc;n#showTips#0" />
             <element signature="n#!!block;n#showTips#0" />
             <element signature="e#7020#7277#0" />
@@ -1065,10 +1011,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/github-cnt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/preprocess.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2752">
+          <caret line="111" column="1" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/zhihu-cnt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/stackoverflow-cnt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="15" selection-start-line="15" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/segmentfault-cnt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/cnt/csdn-cnt.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="9" column="3" lean-forward="true" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/bg/background.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="12" column="19" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        <state relative-caret-position="96">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
           <folding>
             <element signature="e#0#18#0" />
             <element signature="e#218#295#0" />
@@ -1083,30 +1071,6 @@
             <element signature="e#1559#1589#0" />
             <element signature="e#1641#1669#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/cnt/preprocess.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3105">
-          <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/comp/Toolbar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="39" column="12" selection-start-line="39" selection-start-column="12" selection-end-line="47" selection-end-column="21" />
-          <folding>
-            <element signature="e#8#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/popup.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
         </state>
       </provider>
     </entry>

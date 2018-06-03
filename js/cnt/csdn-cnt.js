@@ -6,14 +6,14 @@ $(function(){
     // _$imgToggle.on('click',toggleColHandlerCSDN);
     // _updateCurFavFun = updateGithub;
     _toggleCurCol = toggleColHandlerCSDN;
-    // updateGithub();
+    updateCSDN();
 });
 
 function toggleColHandlerCSDN(resSend) {
     getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN,resSend));
 }
 
-function updateGithub() {
+function updateCSDN() {
     getCols(SITE_CSDN,TYPE_ISSUE,updatePageCol(getCurInfoCSDN));
 }
 

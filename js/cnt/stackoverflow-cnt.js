@@ -6,7 +6,7 @@ $(function(){
     // _$imgToggle.on('click',toggleColHandlerStackOverflow);
     // _updateCurFavFun = updateStackOverflow;
     _toggleCurCol = toggleColHandlerStackOverflow;
-    // updateStackOverflow();
+    updateStackOverflow();
 });
 
 function toggleColHandlerStackOverflow(resSend) {

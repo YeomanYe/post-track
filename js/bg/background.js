@@ -37,6 +37,17 @@ chrome.notifications.onClicked.addListener(function(url) {
     window.open(url);
 });
 
+chrome.notifications.onButtonClicked.addListener(function(url,btnIndex){
+    var updateToNews = function(){
+
+    };
+    switch(btnIndex){
+        case 0:window.open(url);break;
+        case 1:updateToNews();break;
+    }
+    chrome.notifications.clear(url);
+});
+
 /**
  * 更新徽章数
  */

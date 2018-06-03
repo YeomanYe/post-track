@@ -6,7 +6,7 @@ $(function(){
     // _$imgToggle.on('click',toggleFavHandlerSf);
     // _updateCurFavFun = updateSf;
     _toggleCurCol = toggleFavHandlerSf;
-    // updateSf();
+    updateSf();
 });
 
 function toggleFavHandlerSf(resSend) {

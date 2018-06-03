@@ -6,7 +6,7 @@ $(function(){
     // _$imgToggle.on('click',toggleColHandlerGithub);
     // _updateCurFavFun = updateGithub;
     _toggleCurCol = toggleColHandlerGithub;
-    // updateGithub();
+    updateGithub();
 });
 
 function toggleColHandlerGithub(resSend) {
