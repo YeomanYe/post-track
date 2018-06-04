@@ -5,6 +5,7 @@ package-lock.json
 *.pem
 dist/
 .idea
+*.zip
 
 build/*
 !build/manifest.json
