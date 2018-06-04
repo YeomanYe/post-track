@@ -12,3 +12,8 @@ PostTrack是一个用于追综帖子有新的消息时发出提醒的插件，�
 * [ ] 设为已读
 * [X] 更好的通知
 * [ ] 批量操作
+
+## 支持
+
+- github地址:[https://github.com/YeomanYe/post-track](https://github.com/YeomanYe/post-track)
+- 作者邮箱:ming1549957235@foxmail.com
