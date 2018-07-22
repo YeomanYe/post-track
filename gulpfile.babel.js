@@ -18,7 +18,7 @@ gulp.task('build:cnt',()=>{
 });
 //编译bg文件夹下的js文件
 gulp.task('build:bg',()=>{
-    return gulp.src(['js/bg/*-bt.js','js/bg/background.js'])
+    return gulp.src(['js/bg/*-bg.js','js/bg/background.js'])
         .pipe($.sourcemaps.init())
         .pipe($.plumber())
         .pipe($.babel())
