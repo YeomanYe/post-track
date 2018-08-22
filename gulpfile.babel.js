@@ -70,6 +70,7 @@ gulp.task('scss' , ()=>{
 //只需要移动的文件
 gulp.task('pipe',()=>{
     gulp.src(['./lib/**']).pipe(gulp.dest('./build/lib'));
+    gulp.src(['./fonts/**']).pipe(gulp.dest('./build/fonts'));
 });
 //压缩图片
 gulp.task('images',()=>{

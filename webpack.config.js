@@ -29,7 +29,7 @@ module.exports = {
         new webpack.BannerPlugin('版权所有，翻版必究'),
         new HtmlWebpackPlugin({
             template: __dirname + "/popup.tmpl.html",
-            title:'跟帖通知器',
+            title:'PostTrack',
             inject:true,
             filename:'popup.html'
         }),
