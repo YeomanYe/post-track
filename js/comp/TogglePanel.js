@@ -19,7 +19,7 @@ export default class TogglePanel extends Component<Props,State> {
         };
     }
     toggleCnt(num: number){
-        Event.emit(EVENT_CHANGE_CNT,num);
+        Event.emit(Event.TYPE.CHANGE_CNT,num);
         this.setState({
             curIndex:num
         });

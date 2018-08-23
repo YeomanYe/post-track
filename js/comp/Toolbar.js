@@ -31,7 +31,7 @@ export default class Toolbar extends Component<any, State> {
 
     handlerResData(data: any){
         if(data) this.setState(data);
-        Event.emit(EVENT_RELOAD_COL);
+        Event.emit(Event.TYPE.RELOAD_COL);
     }
 
     render() {

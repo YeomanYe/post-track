@@ -62,8 +62,8 @@ export default class Root extends Component<any,State> {
 
     componentDidMount(){
         this.reloadCol();
-        Event.register(EVENT_RELOAD_COL,this.reloadCol);
-        Event.register(EVENT_DEL_COL,this.delCol);
+        Event.register(Event.TYPE.RELOAD_COL,this.reloadCol);
+        Event.register(Event.TYPE.DEL_COL,this.delCol);
     }
 
 /*    getChildContext() {

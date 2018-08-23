@@ -2,7 +2,8 @@
 let regtable = {};
 
 
-export default class Event{
+class Event{
+    static TYPE:Object;
     static register(event: string,callback: Function){
         let reciverlist = regtable[event]||[];
         reciverlist.push(callback);
@@ -34,3 +35,11 @@ export default class Event{
         }
     }
 }
+
+Event.TYPE = {
+    RELOAD_COL:'reloadCol',
+    CHANGE_CNT:'changeCnt',
+    DEL_COL:'delCol'
+};
+
+export default Event;

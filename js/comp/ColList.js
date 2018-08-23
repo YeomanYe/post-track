@@ -1,4 +1,4 @@
-//@flow
+
 import React, {Component} from 'react';
 import Event from './Event';
 
@@ -17,22 +17,20 @@ export default class ColList extends Component<any, State> {
     }
 
     componentWillUnmount() {
-        Event.unregister(EVENT_CHANGE_CNT, this.cntChangeHandler);
+        Event.unregister(Event.TYPE.CHANGE_CNT, this.cntChangeHandler);
     }
 
     createDelCol(colItem: Object) {
         // let {type, site, title} = colItem;
         return () => {
-            Event.emit(EVENT_DEL_COL,colItem);
+            Event.emit(Event.TYPE.DEL_COL,colItem);
         }
     }
 
     renderItem(datas: Object[]) {
-        let retArr = [];
         log('list datas', datas);
-        datas.map((data) => {
-            retArr.push(
-                <li>
+        let retArr = datas.map((data,index) => (
+                <li key={data+index}>
                     <a href={data.origin} target="_blank" className="left">
                         <div style={data.iconStyle}></div>
                     </a>
@@ -49,8 +47,7 @@ export default class ColList extends Component<any, State> {
                         <p><span onClick={this.createDelCol(data)} className="del-col">删除</span></p>
                     </div>
                 </li>
-            );
-        });
+            ));
         return retArr;
     }
 
@@ -61,7 +58,7 @@ export default class ColList extends Component<any, State> {
         this.state = {
             isShow: true
         };
-        Event.register(EVENT_CHANGE_CNT, this.cntChangeHandler);
+        Event.register(Event.TYPE.CHANGE_CNT, this.cntChangeHandler);
     }
 
     render() {

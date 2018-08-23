@@ -10,7 +10,7 @@ type State = {
 type Props = {
 
 }
-let {SHOW_SETTING,getStoreLocal,Switch,storLocal,EVENT_CHANGE_CNT,bindInnerFun,STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS,STOR_KEY_UPDATE_NUM} = window;
+let {SHOW_SETTING,getStoreLocal,Switch,storLocal,EVENT_CHANGE_CNT,bindInnerFun,STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS,STOR_KEY_UPDATE_NUM,EVENT_RELOAD_COL} = window;
 export default class SettingList extends Component<Props,State> {
 
     cntChangeHandler(num: number){
@@ -32,7 +32,7 @@ export default class SettingList extends Component<Props,State> {
     }
 
     componentWillUnmount() {
-        Event.unregister(EVENT_CHANGE_CNT,this.cntChangeHandler);
+        Event.unregister(Event.TYPE.CHANGE_CNT,this.cntChangeHandler);
     }
 
     constructor(props: any) {
@@ -41,7 +41,7 @@ export default class SettingList extends Component<Props,State> {
         this.state = {
           isShow:false
         };
-        Event.register(EVENT_CHANGE_CNT,this.cntChangeHandler);
+        Event.register(Event.TYPE.CHANGE_CNT,this.cntChangeHandler);
     }
 
     exportFile(){
@@ -54,7 +54,23 @@ export default class SettingList extends Component<Props,State> {
     }
 
     importFile(){
+        document.getElementById('fileInput').click();
+    }
 
+    onFileChange(e){
+        var files = e.currentTarget.files;
+        if (files.length) {
+            var file = files[0],
+                reader = new FileReader(); //new一个FileReader实例
+            reader.onload = function () {
+                var data = JSON.parse(this.result);
+                storLocal.set(data,function () {
+                    Event.emit(Event.TYPE.RELOAD_COL);
+                });
+            };
+            reader.readAsText(file);
+        }
+        e.currentTarget.value = '';
     }
 
     render() {
@@ -66,6 +82,7 @@ export default class SettingList extends Component<Props,State> {
                     <li onClick={this.exportFile}><i class="fa fa-cloud-download font-icon"/><span id="export">导出收藏</span></li>
                 <li onClick={this.importFile}><i class="fa fa-cloud-download font-icon"/><span title="注意：导入收藏会覆盖当前所有的收藏" id="import">导入收藏</span></li>
                     <li><span>桌面提醒</span><input className="checkbox-switch" type="checkbox" id="switch-close-tip"/></li>
+                    <input onChange={this.onFileChange} type='file' hidden id='fileInput' />
                 </ul>
 
             </div>
