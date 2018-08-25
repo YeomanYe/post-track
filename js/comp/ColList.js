@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import Event from './Event';
 
@@ -6,7 +5,7 @@ type State = {
     isShow: boolean
 }
 
-let {SHOW_COL,EVENT_DEL_COL,EVENT_RELOAD_COL, EVENT_CHANGE_CNT, getCols, arrEqStr, STOR_KEY_COLS, storLocal, decUpdateNum, sendToAllTabs, CNT_CMD_UPDATE_CUR_FAV, log, formatHref, bindInnerFun, getStoreLocal} = window;
+let {SHOW_COL, bindInnerFun} = window;
 
 export default class ColList extends Component<any, State> {
     cntChangeHandler(num: number) {
@@ -28,7 +27,7 @@ export default class ColList extends Component<any, State> {
     }
 
     renderItem(datas: Object[]) {
-        log('list datas', datas);
+        console.log('list datas', datas);
         let retArr = datas.map((data,index) => (
                 <li key={data+index}>
                     <a href={data.origin} target="_blank" className="left">

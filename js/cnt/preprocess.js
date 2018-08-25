@@ -1,3 +1,5 @@
+import {getBaseStoreObj} from '../utils/baseStoreObj';
+
 var _$imgAss,_$imgToggle;
 var curHref = location.origin + location.pathname;
 var storLocal = chrome.storage.local;

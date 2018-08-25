@@ -1,5 +1,5 @@
 var _allBaseStoreObj = {};
-function getBaseStoreObj(name,type){
+export function getBaseStruct(name,type){
     var keys = Object.keys(_allBaseStoreObj);
     var origin;
     //说明name是origin

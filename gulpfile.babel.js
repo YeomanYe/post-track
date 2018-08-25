@@ -5,6 +5,18 @@ const webpack = require('webpack');
 const $ = gulpLoadPlugins();
 
 //编译cnt文件夹下的js文件
+gulp.task('build:utils',()=>{
+    return gulp.src(['js/utils/*.js'])
+        .pipe($.sourcemaps.init())
+        .pipe($.plumber())
+        .pipe($.babel())
+        .pipe($.concat('about.js'))
+        .pipe($.rename('about.min.js'))
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write('.'))
+        .pipe(gulp.dest('./build/js'));
+});
+//编译cnt文件夹下的js文件
 gulp.task('build:cnt',()=>{
     return gulp.src(['js/cnt/preprocess.js','js/cnt/*-cnt.js'])
         .pipe($.sourcemaps.init())
@@ -105,7 +117,7 @@ gulp.task('c' , function(){
 });
 //构建
 gulp.task('b',['clean'],()=>{
-    return gulp.start(['build:bg','build:cnt','uglify','images','pipe','scss']);
+    return gulp.start(['build:bg','build:cnt','build:utils','uglify','images','pipe','scss']);
 });
 
 gulp.task('default',['b'],()=>{
@@ -113,6 +125,7 @@ gulp.task('default',['b'],()=>{
     //监测变化 自动编译
     gulp.watch('js/cnt/**' , ['build:cnt']);
     gulp.watch('js/bg/**' , ['build:bg']);
+    gulp.watch('js/utils/**' , ['build:utils']);
     gulp.watch('css/*.scss',['scss']);
     gulp.watch('images/**' , ['images']);
     gulp.watch('./lib/**' , ['pipe']);
