@@ -154,31 +154,6 @@ function createNotify(title, iconUrl, message, newUrl) {
     chrome.notifications.create(newUrl, options);
 }
 
-/**
- * 创建toast提醒
- */
-function showTips(msg, time) {
-    var $div = $('<div>');
-    time = time ? time : TIME_SHORT;
-    $div.text(msg);
-    var width = $(window).width(),
-        height = $(window).height();
-    $div.css({
-        position: 'fixed',
-        padding: '20px',
-        top: height / 2,
-        left: width / 2,
-        transform: 'translate(-50%,-50%)',
-        'font-size': '18px',
-        'z-index': 999,
-        background: 'black',
-        color: 'white'
-    });
-    $('body').append($div);
-    setTimeout(function () {
-        $div.remove();
-    }, time);
-}
 
 /**
  * 格式化href
@@ -218,49 +193,6 @@ var storeDebounce = function (obj, func) {
     storeDebounce(obj, func);
 };
 
-/**
- * 发送通知到全部的tab页
- * @param data
- * @param handler
- */
-function sendToAllTabs(data,handler) {
-    chrome.windows.getAll(null,function (wins) {
-        for(var i=0,len=wins.length;i<len;i++){
-            var win = wins[i];
-            chrome.tabs.query({windowId:win.id},function (tabs) {
-                for(var i=0,len=tabs.length;i<len;i++){
-                    var tab = tabs[i];
-                    handler = handler || function(){};
-                    chrome.tabs.sendMessage(tab.id,data,null,handler);
-                }
-            });
-        }
-    });
-}
-
-/**
- * 获取当前tab
- * @param sucCall
- */
-function getCurTab(sucCall){
-    chrome.tabs.query({active:true},function (tabs) {
-        var curTab = tabs[0];
-        sucCall(curTab);
-    });
-}
-
-/**
- * 发送通知到当前tab页
- * @param data
- * @param handler
- */
-function sendToCurTab(data,handler) {
-    chrome.tabs.query({active:true},function (tabs) {
-        var tab = tabs[0];
-        handler = handler || function(){};
-        chrome.tabs.sendMessage(tab.id,data,null,handler);
-    });
-}
 
 function bindInnerFun(self) {
     var proto = self.constructor.prototype,

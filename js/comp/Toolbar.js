@@ -1,11 +1,12 @@
 //@flow
 import React, {Component} from 'react';
 import Event from './Event';
+import TabUtil from '../utils/TabUtil';
 
 type State = {
     isCol: boolean
 }
-let {bindInnerFun,arrEqStr,getCurTab,sendToCurTab,CNT_CMD_TOGGLE_CUR_COL,EVENT_RELOAD_COL} = window;
+let {bindInnerFun,arrEqStr,CNT_CMD_TOGGLE_CUR_COL,EVENT_RELOAD_COL} = window;
 export default class Toolbar extends Component<any, State> {
     constructor(props: any) {
         super(props);
@@ -17,7 +18,7 @@ export default class Toolbar extends Component<any, State> {
 
     componentWillReceiveProps(nextProps: Object) {
         let self = this;
-        getCurTab(tab => {
+        TabUtil.getCurTab(tab => {
             let index = arrEqStr(nextProps.colListDatas,{url:tab.url});
             let isCol = true;
             if(index < 0) isCol = false;
@@ -26,7 +27,7 @@ export default class Toolbar extends Component<any, State> {
     }
 
     toggleCol(){
-        sendToCurTab([CNT_CMD_TOGGLE_CUR_COL],this.handlerResData);
+        TabUtil.sendToCurTab([CNT_CMD_TOGGLE_CUR_COL],this.handlerResData);
     }
 
     handlerResData(data: any){

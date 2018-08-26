@@ -1,13 +1,14 @@
+import Constant from '../../config/Constant';
+import {toggleCol} from '../helper';
 
-$(function(){
+const {SITE_STACK_OVERFLOW,TYPE_ISSUE} = Constant;
+
+export default function(curHref){
     if(curHref.search(/https:\/\/stackoverflow.com\/questions\/[\d]+\/.+/) < 0)return;
-    log(SITE_STACK_OVERFLOW);
-    // createBtn();
-    // _$imgToggle.on('click',toggleColHandlerStackOverflow);
-    // _updateCurFavFun = updateStackOverflow;
-    _toggleCurCol = toggleColHandlerStackOverflow;
+    console.log(SITE_STACK_OVERFLOW);
+    window._toggleCurCol = toggleColHandlerStackOverflow;
     updateStackOverflow();
-});
+}
 
 function toggleColHandlerStackOverflow(resSend) {
     getCols(SITE_STACK_OVERFLOW,TYPE_ISSUE,toggleCol(getCurInfoStackOverflow,resSend));

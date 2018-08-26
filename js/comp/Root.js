@@ -5,11 +5,15 @@ import SettingList from './SettingList';
 import TogglePanel from './TogglePanel';
 import Toolbar from './Toolbar';
 import Event from './Event';
+import TabUtil from '../utils/TabUtil';
+import Constant from '../config/Constant';
 
 type State = {
     datas: Object[]
 }
-let {EVENT_RELOAD_COL,EVENT_DEL_COL, getCols,  arrEqStr, STOR_KEY_COLS, storLocal, decUpdateNum, sendToAllTabs, CNT_CMD_UPDATE_CUR_FAV, log, formatHref, bindInnerFun, getStoreLocal} = window;
+let {EVENT_RELOAD_COL,EVENT_DEL_COL, getCols,  arrEqStr, STOR_KEY_COLS, storLocal, decUpdateNum, log, formatHref, bindInnerFun, getStoreLocal} = window;
+
+const {CNT_CMD_UPDATE_CUR_FAV} = Constant;
 
 export default class Root extends Component<any,State> {
     reloadCol(){
@@ -48,7 +52,7 @@ export default class Root extends Component<any,State> {
             index = datas.indexOf(colItem);
             datas.splice(index, 1);
             this.setState({datas});
-            sendToAllTabs([CNT_CMD_UPDATE_CUR_FAV]);
+            TabUtil.sendToAllTabs([CNT_CMD_UPDATE_CUR_FAV]);
         });
     }
 

@@ -1,10 +1,14 @@
+import Constant from '../../config/Constant';
+import {toggleCol} from '../helper';
 
-$(function(){
+const {SITE_ZHIHU,TYPE_ISSUE} = Constant;
+
+export default function(curHref){
     if(curHref.search(/zhihu.com\/question\/[\d]+/) < 0)return;
-    log(SITE_ZHIHU);
-    _toggleCurCol = toggleFavHandlerZhihu;
+    console.log(SITE_ZHIHU);
+    window._toggleCurCol = toggleFavHandlerZhihu;
     updateZhihu();
-});
+}
 
 function toggleFavHandlerZhihu(resSend) {
     getCols(SITE_ZHIHU,TYPE_ISSUE,toggleCol(getCurInfoZhihu,resSend));

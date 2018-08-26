@@ -1,13 +1,13 @@
+import Constant from '../../config/Constant';
+import {toggleCol} from '../helper';
+const {SITE_GITHUB,TYPE_ISSUE} = Constant;
 
-$(function(){
+export default function(curHref){
     if(curHref.search(/https:\/\/github.com\/.*\/issues\/[\d]+/) < 0)return;
-    log(SITE_GITHUB);
-    // createBtn();
-    // _$imgToggle.on('click',toggleColHandlerGithub);
-    // _updateCurFavFun = updateGithub;
-    _toggleCurCol = toggleColHandlerGithub;
+    console.log(SITE_GITHUB);
+    window._toggleCurCol = toggleColHandlerGithub;
     updateGithub();
-});
+}
 
 function toggleColHandlerGithub(resSend) {
     getCols(SITE_GITHUB,TYPE_ISSUE,toggleCol(getCurInfoGithub,resSend));
@@ -18,10 +18,10 @@ function updateGithub() {
 }
 
 function getCurInfoGithub() {
-    var title = $('.js-issue-title').text().trim();
+    let title = $('.js-issue-title').text().trim();
     if(!title) return ;
-    var $answers = $('.js-discussion .js-timeline-item');
-    var isAccept = !!$answers.find('.discussion-item-closed').length;
+    let $answers = $('.js-discussion .js-timeline-item');
+    let isAccept = !!$answers.find('.discussion-item-closed').length;
     return {
         title:title,
         url:curHref,

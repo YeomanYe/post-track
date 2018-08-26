@@ -1,13 +1,14 @@
+import Constant from '../../config/Constant';
+import {toggleCol} from '../helper';
 
-$(function(){
+const {SITE_CSDN,TYPE_ISSUE} = Constant;
+
+export default function(curHref){
     if(curHref.search(/https:\/\/ask.csdn.net\/questions\/[\d]+/) < 0)return;
-    log(SITE_CSDN);
-    // createBtn();
-    // _$imgToggle.on('click',toggleColHandlerCSDN);
-    // _updateCurFavFun = updateGithub;
-    _toggleCurCol = toggleColHandlerCSDN;
+    console.log(SITE_CSDN);
+    window._toggleCurCol = toggleColHandlerCSDN;
     updateCSDN();
-});
+}
 
 function toggleColHandlerCSDN(resSend) {
     getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN,resSend));

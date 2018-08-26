@@ -1,14 +1,15 @@
+import Constant from '../../config/Constant';
+import {toggleCol} from '../helper';
 
-$(function(){
+const {SITE_SEGMENT_FAULT,TYPE_ISSUE} = Constant;
+
+
+export default function (curHref) {
     if(curHref.indexOf('segmentfault.com/q/') < 0)return;
-    log(SITE_SEGMENT_FAULT);
-    // createBtn();
-    // _$imgToggle.on('click',toggleFavHandlerSf);
-    // _updateCurFavFun = updateSf;
-    _toggleCurCol = toggleFavHandlerSf;
+    console.log(SITE_SEGMENT_FAULT);
+    window._toggleCurCol = toggleFavHandlerSf;
     updateSf();
-});
-
+}
 function toggleFavHandlerSf(resSend) {
     getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,toggleCol(getCurInfoSf,resSend));
 }
