@@ -6,4 +6,3 @@ dist/
 *.zip
 
 build/*
-!build/manifest.json

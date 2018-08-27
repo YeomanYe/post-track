@@ -1,38 +1,116 @@
-const path = require('path');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const fs = require('fs');
+
 
 module.exports = {
-    entry: path.resolve(__dirname, './js/App.js'), //指定入口文件，程序从这里开始编译,__dirname当前所在目录, ../表示上一级目录, ./同级目录
-    output: {
-        path: path.resolve(__dirname, './build'), // 输出的路径
-        filename: 'popup-bundle.js'  // 打包后文件
-    },
-    watch:true,
-    devtool: 'source-map',
-    devServer: {
-        contentBase: "./build",//本地服务器所加载的页面所在的目录
-        historyApiFallback: true,//不跳转
-        inline: true//实时刷新
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/
-            }
-        ]
-    },
-    plugins: [
-        new webpack.BannerPlugin('版权所有，翻版必究'),
-        new HtmlWebpackPlugin({
-            template: __dirname + "/popup.tmpl.html",
-            title:'PostTrack',
-            inject:true,
-            filename:'popup.html'
-        }),
-        // new webpack.HotModuleReplacementPlugin()
+  entry: {
+    popup: './js/App.js',
+      background:'./js/bg/background',
+      cnt:'./js/cnt/content.js',
+  },
+  output: {
+    path: path.resolve(__dirname, './build'),
+    publicPath: '/build/',
+    filename: '[name].js'
+  },
+  module: {
+    rules: [
+      {
+          test: /\.(scss|css)$/,
+          use: [MiniCssExtractPlugin.loader,'css-loader', 'sass-loader'],
+          exclude: /node_modules/
+      },
+      {
+        test: /\.(js|jsx)$/,
+          use:{
+              loader: 'babel-loader',
+              options: {
+                  presets: ['es2015', 'react'],
+              }
+          },
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      }
     ]
+  },
+  devServer: {
+    historyApiFallback: true,
+    noInfo: true,
+    overlay: true
+  },
+  performance: {
+    hints: false
+  },
+    mode:'none',
+  devtool: '#eval-source-map',
+  plugins: [
+      new MiniCssExtractPlugin({
+          filename: "[name].css",
+          chunkFilename: "[id].css"
+      }),
+  ]
 };
+
+if (process.env.NODE_ENV === 'production') {
+  // module.exports.devtool = '#source-map'
+  module.exports.devtool = false
+  // http://vue-loader.vuejs.org/en/workflow/production.html
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
+    }),
+    new UglifyJSPlugin({
+      sourceMap: false
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, './images'),
+        to: path.resolve(__dirname, 'build/images'),
+        ignore: ['.*']
+      },
+        {
+            from: path.resolve(__dirname, './fonts'),
+            to: path.resolve(__dirname, 'build/fonts'),
+            ignore: ['.*']
+        },
+        {
+            from: path.resolve(__dirname, './css'),
+            to: path.resolve(__dirname, 'build/css'),
+            ignore: ['popup.scss']
+        },
+        {
+            from: path.resolve(__dirname, './lib'),
+            to: path.resolve(__dirname, 'build/lib'),
+            ignore: ['.*']
+        },
+      {
+        from: path.resolve(__dirname, './popup.html'),
+        to: path.resolve(__dirname, 'build/popup.html'),
+        ignore: ['.*']
+      },
+        {
+            from: path.resolve(__dirname, './manifest.json'),
+            to: path.resolve(__dirname, 'build/manifest.json'),
+            ignore: ['.*']
+        },
+    ])
+  ])
+} else {
+  let popup = 'build/popup.html'
+  fs.writeFileSync(popup, fs.readFileSync(popup).toString().replace('"popup.js"', '"http://localhost:8080/build/popup.js"'))
+}
