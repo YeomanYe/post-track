@@ -1,12 +1,17 @@
-var _allBaseStoreObj = {};
+import Constant from '../config/Constant';
+import ArrayUtil from './ArrayUtil';
+
+let _allBaseStoreObj = {};
+let cGetUrl = chrome.runtime.getURL;
+const {TYPE_ISSUE,SITE_SEGMENT_FAULT,SITE_STACK_OVERFLOW,SITE_GITHUB,SITE_CSDN,SITE_ZHIHU} = Constant;
 export function getBaseStruct(name,type){
-    var keys = Object.keys(_allBaseStoreObj);
-    var origin;
+    let keys = Object.keys(_allBaseStoreObj);
+    let origin;
     //说明name是origin
     if(name.search('http')>=0){
         origin = name;
     }
-    var index = arrInStr(keys,name);
+    let index = ArrayUtil.arrInStr(keys,name);
     type = type ? type : TYPE_ISSUE;
     if(index >= 0)
         return _allBaseStoreObj[keys[index]](origin,type);
@@ -14,9 +19,9 @@ export function getBaseStruct(name,type){
 
 _allBaseStoreObj[SITE_SEGMENT_FAULT] = function (origin,type) {
     origin = origin ? origin : 'https://segmentfault.com';
-    var baseUrl = origin + '/q/';
+    let baseUrl = origin + '/q/';
 
-    storObj = {
+    let storObj = {
         baseUrl:baseUrl,
         type:type,
         origin: origin,
@@ -29,9 +34,9 @@ _allBaseStoreObj[SITE_SEGMENT_FAULT] = function (origin,type) {
 
 _allBaseStoreObj[SITE_GITHUB] = function (origin,type) {
     origin = origin ? origin : 'https://github.com';
-    var baseUrl = origin;
+    let baseUrl = origin;
 
-    storObj = {
+    let storObj = {
         baseUrl:baseUrl,
         type:type,
         origin: origin,
@@ -44,9 +49,9 @@ _allBaseStoreObj[SITE_GITHUB] = function (origin,type) {
 
 _allBaseStoreObj[SITE_CSDN] = function (origin,type) {
     origin = origin ? origin : 'https://ask.csdn.net';
-    var baseUrl = origin + '/questions/';
+    let baseUrl = origin + '/questions/';
 
-    storObj = {
+    let storObj = {
         baseUrl:baseUrl,
         type:type,
         origin: origin,
@@ -59,9 +64,9 @@ _allBaseStoreObj[SITE_CSDN] = function (origin,type) {
 
 _allBaseStoreObj[SITE_STACK_OVERFLOW] = function (origin,type) {
     origin = origin ? origin : 'https://stackoverflow.com';
-    var baseUrl = origin + '/questions/';
+    let baseUrl = origin + '/questions/';
 
-    storObj = {
+    let storObj = {
         baseUrl:baseUrl,
         type:type,
         origin: origin,
@@ -74,9 +79,9 @@ _allBaseStoreObj[SITE_STACK_OVERFLOW] = function (origin,type) {
 
 _allBaseStoreObj[SITE_ZHIHU] = function (origin,type) {
     origin = origin ? origin : 'https://www.zhihu.com';
-    var baseUrl = origin + '/question/';
+    let baseUrl = origin + '/question/';
 
-    storObj = {
+    let storObj = {
         baseUrl:baseUrl,
         type:type,
         origin: origin,

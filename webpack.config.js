@@ -9,7 +9,7 @@ const fs = require('fs');
 module.exports = {
   entry: {
     popup: './js/App.js',
-      background:'./js/bg/background',
+      background:'./js/bg/background.js',
       cnt:'./js/cnt/content.js',
   },
   output: {
@@ -55,8 +55,8 @@ module.exports = {
   devtool: '#eval-source-map',
   plugins: [
       new MiniCssExtractPlugin({
-          filename: "[name].css",
-          chunkFilename: "[id].css"
+          filename: '[name].css',
+          chunkFilename: '[id].css'
       }),
   ]
 };

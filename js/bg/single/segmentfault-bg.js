@@ -1,11 +1,16 @@
+import {getBaseStruct} from '../../utils/DataStructUtil';
+import ColUtil from '../../utils/ColUtil';
+import Constant from '../../config/Constant';
+
+const {SITE_SEGMENT_FAULT,TYPE_ISSUE} = Constant;
 export default function createSfQuery() {
-    var baseObj = getBaseStoreObj(SITE_SEGMENT_FAULT,TYPE_ISSUE);
-    var ajaxCall = function(data) {
-        var $html = $(data);
-        var title = $html.find('#questionTitle').text().trim();
+    let baseObj = getBaseStruct(SITE_SEGMENT_FAULT,TYPE_ISSUE);
+    let ajaxCall = function(data) {
+        let $html = $(data);
+        let title = $html.find('#questionTitle').text().trim();
         if(!title) return ;
-        var $answers = $html.find('#goToReplyArea article');
-        var isAccept = !!$answers.find('.accepted-check').length;
+        let $answers = $html.find('#goToReplyArea article');
+        let isAccept = !!$answers.find('.accepted-check').length;
         return {
             title:title,
             isAccept:isAccept,
@@ -13,10 +18,10 @@ export default function createSfQuery() {
         };
     };
 
-    var sfQuery = function() {
-        getCols(SITE_SEGMENT_FAULT, TYPE_ISSUE, queryUpdate(baseObj, ajaxCall));
+    let sfQuery = function() {
+        ColUtil.getCols(SITE_SEGMENT_FAULT, TYPE_ISSUE, ColUtil.queryUpdate(baseObj, ajaxCall));
     };
 
-    this.addAfterStore(sfQuery, ajaxCall);
+    ColUtil.addAfterStore(sfQuery, ajaxCall);
     return sfQuery;
 }

@@ -1,12 +1,17 @@
+import {getBaseStruct} from '../../utils/DataStructUtil';
+import ColUtil from '../../utils/ColUtil';
+import Constant from '../../config/Constant';
+
+const {SITE_STACK_OVERFLOW,TYPE_ISSUE} = Constant;
 export default function createStackOverflowQuery() {
-    var baseObj = getBaseStoreObj(SITE_STACK_OVERFLOW,TYPE_ISSUE);
-    var ajaxCall = function(data) {
-        var $html = $(data);
-        var title = $html.find('#question-header h1').text().trim();
+    let baseObj = getBaseStruct(SITE_STACK_OVERFLOW,TYPE_ISSUE);
+    let ajaxCall = function(data) {
+        let $html = $(data);
+        let title = $html.find('#question-header h1').text().trim();
         if(!title) return ;
-        var matcher = $('#answers-header  h2').text().match(/[\d]+/);
-        var len = matcher ? matcher[0] : 0;
-        var isAccept = !!$html.find('.load-accepted-answer-date').length;
+        let matcher = $('#answers-header  h2').text().match(/[\d]+/);
+        let len = matcher ? matcher[0] : 0;
+        let isAccept = !!$html.find('.load-accepted-answer-date').length;
         return {
             title:title,
             isAccept:isAccept,
@@ -14,10 +19,10 @@ export default function createStackOverflowQuery() {
         };
     };
 
-    var stackOverflowQuery = function() {
-        getCols(SITE_STACK_OVERFLOW, TYPE_ISSUE, queryUpdate(baseObj, ajaxCall));
+    let stackOverflowQuery = function() {
+        ColUtil.getCols(SITE_STACK_OVERFLOW, TYPE_ISSUE, ColUtil.queryUpdate(baseObj, ajaxCall));
     };
 
-    this.addAfterStore(stackOverflowQuery, ajaxCall);
+    ColUtil.addAfterStore(stackOverflowQuery, ajaxCall);
     return stackOverflowQuery;
 }

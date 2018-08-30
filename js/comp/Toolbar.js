@@ -2,15 +2,18 @@
 import React, {Component} from 'react';
 import Event from './Event';
 import TabUtil from '../utils/TabUtil';
+import PageUtil from '../utils/PageUtil';
+import Constant from '../config/Constant';
+import ArrayUtil from '../utils/ArrayUtil';
 
 type State = {
     isCol: boolean
 }
-let {bindInnerFun,arrEqStr,CNT_CMD_TOGGLE_CUR_COL,EVENT_RELOAD_COL} = window;
+const {CNT_CMD_TOGGLE_CUR_COL} = Constant;
 export default class Toolbar extends Component<any, State> {
     constructor(props: any) {
         super(props);
-        bindInnerFun(this);
+        PageUtil.bindFun(this);
         this.state = {
             isCol:false
         }
@@ -19,7 +22,7 @@ export default class Toolbar extends Component<any, State> {
     componentWillReceiveProps(nextProps: Object) {
         let self = this;
         TabUtil.getCurTab(tab => {
-            let index = arrEqStr(nextProps.colListDatas,{url:tab.url});
+            let index = ArrayUtil.arrEqStr(nextProps.colListDatas,{url:tab.url});
             let isCol = true;
             if(index < 0) isCol = false;
             self.setState({isCol});

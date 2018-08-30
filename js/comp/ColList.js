@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Event from './Event';
+import PageUtil from '../utils/PageUtil';
+import Constant from '../config/Constant';
 
 type State = {
     isShow: boolean
 }
 
-let {SHOW_COL, bindInnerFun} = window;
-
+let {SHOW_COL} = Constant;
 export default class ColList extends Component<any, State> {
     cntChangeHandler(num: number) {
         let isShow = false;
@@ -53,7 +54,7 @@ export default class ColList extends Component<any, State> {
 
     constructor(props: any) {
         super(props);
-        bindInnerFun(this);
+        PageUtil.bindFun(this);
         this.state = {
             isShow: true
         };

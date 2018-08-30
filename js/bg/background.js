@@ -2,6 +2,7 @@ import _createQueryObj from './single';
 import Constant from '../config/Constant';
 import StoreUtil from '../utils/StoreUtil';
 import TabUtil from '../utils/TabUtil';
+import ColUtil from '../utils/ColUtil';
 
 const {BG_CMD_UPDATE_NUM, BG_CMD_UPDATE_FAV_BTN, CNT_CMD_UPDATE_CUR_FAV, STOR_KEY_COLS, STOR_KEY_UPDATE_NUM} = Constant;
 /**
@@ -15,7 +16,7 @@ let allQuery = function () {
         nextQuery = nextQuery.afterStore(_createQueryObj[keys[i]]());
     }
     allQuery = function () {
-        setBadge('....', 'blue'); //提示正在查询中
+        ColUtil.setBadge('....', 'blue'); //提示正在查询中
         firstQuery();
         setTimeout(allQuery, 1000 * 60 * 10);
     };
@@ -39,7 +40,7 @@ chrome.runtime.onMessage.addListener(function (msgArr, msgSenderObj, resSend) {
 
 //点击提醒打开链接
 chrome.notifications.onClicked.addListener(function (url) {
-    log('url', url);
+    console.log('url', url);
     window.open(url);
 });
 
@@ -77,32 +78,6 @@ chrome.notifications.onButtonClicked.addListener(function (url, btnIndex) {
 async function updateBadge(callback) {
     let updateNum = await StoreUtil.load(STOR_KEY_UPDATE_NUM);
     updateNum = updateNum ? updateNum : 0;
-    setBadge(updateNum);
+    ColUtil.setBadge(updateNum);
     if (callback) callback();
-}
-
-
-/**
- * 设置徽章
- */
-function setBadge(num, color) {
-    color = color ? color : 'red';
-    if (num <= 0) {
-        chrome.browserAction.setBadgeText({
-            text: ''
-        });
-        chrome.browserAction.setBadgeBackgroundColor({
-            color: color
-        });
-        storLocal.set({
-            [STOR_KEY_UPDATE_NUM]: 0
-        });
-        return;
-    }
-    chrome.browserAction.setBadgeText({
-        text: '' + num
-    });
-    chrome.browserAction.setBadgeBackgroundColor({
-        color: color
-    })
 }

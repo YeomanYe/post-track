@@ -13,128 +13,8 @@ var _createQueryObjProto = {
 var _createQueryObj = Object.create(_createQueryObjProto);
 
 
-/**
- * 获取某站点下所有的采集，以及更新的数目
- */
-function getCols(siteName, type, callback) {
-    var defaultStore = getBaseStoreObj(siteName, type);
-    getStoreLocal([STOR_KEY_COLS, STOR_KEY_UPDATE_NUM], function (allCols, updateNum) {
-        allCols = allCols ? allCols : [];
-        updateNum = updateNum ? updateNum : 0;
-        var index = -1;
-        if (allCols.length) index = arrEqStr(allCols, {site: siteName, type: type});
-        var cols = [];
-        if (index < 0) {
-            defaultStore.cols = cols;
-            allCols.unshift(defaultStore);
-        } else {
-            cols = allCols[index].cols;
-        }
-        callback(cols, allCols, updateNum);
-    });
-}
 
 
-/**
- * 减少更新的数量
- */
-function decUpdateNum(item) {
-    if (item.isUpdate) {
-        item.isUpdate = false;
-        getStoreLocal(STOR_KEY_UPDATE_NUM, function (updateNum) {
-            --updateNum;
-            storLocal.set({
-                updateNum: updateNum
-            }, function () {
-                chrome.runtime.sendMessage(null, [BG_CMD_UPDATE_NUM]);
-            });
-        });
-    }
-}
-
-/**
- * 更新阅读记录
- */
-function updatePageCol(getCurInfo) {
-    return function (cols, allCols) {
-        var curInfo = getCurInfo();
-        //解析当前页面并更新阅读记录
-        var index = arrEqStr(cols, {title: curInfo.title});
-        if(_$imgToggle) _$imgToggle.get(0).src = _src.collectGrey;
-        if (index < 0) return;
-        //更新图标
-        if(_$imgToggle) _$imgToggle.get(0).src = _src.collect;
-        var curItem = cols[index];
-        curItem.timestamp = Date.now();
-        //更新，当前更新的数量
-        decUpdateNum(curItem);
-        storLocal.set({
-            allCols: allCols
-        });
-    }
-}
-
-/**
- * 查询是否有更新的通用函数
- */
-function queryUpdate(baseObj, callback) {
-    var baseUrl = baseObj.baseUrl;
-    var siteName = baseObj.siteName;
-    var icon = baseObj.icon;
-    var emptyFun = function () {};
-    var afterStoreCall = callback._afterStore ? callback._afterStore : emptyFun; //存储成功之后的回调函数
-    var isUpdate = false;
-    return function (favs, allCols, updateNum) {
-        var sucCall = function (data) {
-            try {
-                var resObj = callback(data);
-                var answerNum = resObj.answerNum,
-                    isAccept = resObj.isAccept;
-                if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
-
-                    //生成提示
-                    getStoreLocal(STOR_KEY_IS_CLOSE_TIPS, (function (icon, col,isAccept,oldIsAccept) {
-                        return function (isCloseTips) {
-                            if(isCloseTips) return;
-                            if (oldIsAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, formatHref(col.url,baseUrl));
-                            else createNotify(siteName + ' 【采纳】', icon, col.title, formatHref(col.url,baseUrl));
-                        }
-                    })(icon, col,isAccept,col.isAccept));
-
-                    col.answerNum = answerNum;
-                    col.isAccept = isAccept;
-
-                    isUpdate = true;
-                    if (!col.isUpdate) {
-                        col.isUpdate = true;
-                        ++updateNum;
-                    }
-
-                    storLocal.set({
-                        updateNum: updateNum,
-                        allCols: allCols
-                    }, afterStoreCall);
-                }
-            } catch (e) {
-                log(e);
-            }
-
-        };
-        for (var i = 0, len = favs.length; i < len; i++) {
-            var col = favs[i];
-            var url = col.url;
-            $.ajax(formatHref(url,baseUrl), {
-                success: sucCall,
-                async: false
-            });
-        }
-        if (!isUpdate) afterStoreCall();
-        //更新查询完毕，替换掉正在查询标志“....”  改为更新的数量
-        if(afterStoreCall == emptyFun){
-            setBadge(updateNum);
-        }
-    }
-}
 
 
 /**
@@ -156,28 +36,6 @@ function createNotify(title, iconUrl, message, newUrl) {
 
 
 /**
- * 格式化href
- * @param href
- */
-function formatHref(href, baseHref) {
-    var retHref;
-    var index = href.search('^https?://');
-    if (index < 0) {
-        //如果href不是http打头，那么应该为 //www.xx.com/dd 这样的形式
-        if (!baseHref) retHref = 'http:' + href;
-        else {
-            href = baseHref + href;
-            index = href.search('^https?://');
-            if (index < 0) retHref = 'http:' + href;
-            else retHref = href;
-        }
-    } else {
-        retHref = href;
-    }
-    return retHref;
-}
-
-/**
  * 存储消抖函数
  */
 var storeDebounce = function (obj, func) {
@@ -193,14 +51,3 @@ var storeDebounce = function (obj, func) {
     storeDebounce(obj, func);
 };
 
-
-function bindInnerFun(self) {
-    var proto = self.constructor.prototype,
-        arr = Object.getOwnPropertyNames(proto),
-        excludeFunArr = ['constructor','componentWillUnmount','componentDidMount','render',];
-    for (var i=0,len=arr.length;i<len;i++) {
-        var key = arr[i];
-        if (excludeFunArr.indexOf(key) < 0 && (proto[key] instanceof Function))
-            self[key] = proto[key].bind(self);
-    }
-}

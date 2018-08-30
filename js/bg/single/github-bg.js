@@ -1,11 +1,16 @@
+import {getBaseStruct} from '../../utils/DataStructUtil';
+import ColUtil from '../../utils/ColUtil';
+import Constant from '../../config/Constant';
+
+const {SITE_GITHUB,TYPE_ISSUE} = Constant;
 export default function createGithubQuery() {
-    var baseObj = getBaseStoreObj(SITE_GITHUB,TYPE_ISSUE);
-    var ajaxCall = function(data) {
-        var $html = $(data);
-        var title = $html.find('.js-issue-title').text().trim();
+    let baseObj = getBaseStruct(SITE_GITHUB,TYPE_ISSUE);
+    let ajaxCall = function(data) {
+        let $html = $(data);
+        let title = $html.find('.js-issue-title').text().trim();
         if(!title) return ;
-        var $answers = $html.find('.js-discussion .js-timeline-item');
-        var isAccept = !!$answers.find('.discussion-item-closed').length;
+        let $answers = $html.find('.js-discussion .js-timeline-item');
+        let isAccept = !!$answers.find('.discussion-item-closed').length;
         return {
             title:title,
             isAccept:isAccept,
@@ -13,10 +18,10 @@ export default function createGithubQuery() {
         };
     };
 
-    var githubQuery = function() {
-        getCols(SITE_GITHUB, TYPE_ISSUE, queryUpdate(baseObj, ajaxCall));
+    let githubQuery = function() {
+        ColUtil.getCols(SITE_GITHUB, TYPE_ISSUE, ColUtil.queryUpdate(baseObj, ajaxCall));
     };
 
-    this.addAfterStore(githubQuery, ajaxCall);
+    ColUtil.addAfterStore(githubQuery, ajaxCall);
     return githubQuery;
 }

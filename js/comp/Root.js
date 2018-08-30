@@ -1,4 +1,3 @@
-//@flow
 import React, {Component} from 'react';
 import ColList from './ColList';
 import SettingList from './SettingList';
@@ -7,45 +6,48 @@ import Toolbar from './Toolbar';
 import Event from './Event';
 import TabUtil from '../utils/TabUtil';
 import Constant from '../config/Constant';
+import PageUtil from '../utils/PageUtil';
+import StoreUtil from '../utils/StoreUtil';
+import ArrayUtil from '../utils/ArrayUtil';
+import ColUtil from '../utils/ColUtil';
 
 type State = {
     datas: Object[]
 }
-let {EVENT_RELOAD_COL,EVENT_DEL_COL, getCols,  arrEqStr, STOR_KEY_COLS, storLocal, decUpdateNum, log, formatHref, bindInnerFun, getStoreLocal} = window;
+let {getCols, decUpdateNum, formatHref} = window;
 
-const {CNT_CMD_UPDATE_CUR_FAV} = Constant;
+const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS} = Constant;
 
 export default class Root extends Component<any,State> {
-    reloadCol(){
+    async reloadCol(){
         let self = this;
-        getStoreLocal(STOR_KEY_COLS, (allCols) => {
-            let datas = [];
-            allCols = allCols ? allCols : [];
-            log('allCols', allCols);
-            allCols.map((item) => {
-                let {icon, origin, siteName, baseUrl, site, type} = item;
-                let iconStyle = {backgroundImage: `url('${icon}')`};
-                item.cols.map((col) => {
-                    let {title, url, isAccept, answerNum, isUpdate} = col;
-                    datas.push({
-                        type, site, title, isAccept, answerNum, isUpdate, origin, iconStyle, siteName,
-                        url: formatHref(url, baseUrl)
-                    })
-                });
+        let allCols = await StoreUtil.load(STOR_KEY_COLS);
+        let datas = [];
+        allCols = allCols ? allCols : [];
+        console.log('allCols', allCols);
+        allCols.map((item) => {
+            let {icon, origin, siteName, baseUrl, site, type} = item;
+            let iconStyle = {backgroundImage: `url('${icon}')`};
+            datas = item.cols.map((col) => {
+                let {title, url, isAccept, answerNum, isUpdate} = col;
+                return {
+                    type, site, title, isAccept, answerNum, isUpdate, origin, iconStyle, siteName,
+                    url: ColUtil.formatHref(url, baseUrl)
+                };
             });
-            self.setState({datas})
         });
+        self.setState({datas});
     }
 
     delCol(colItem: Object){
         let self = this;
         let {site,type,title} = colItem;
         getCols(site, type, (cols, allCols) => {
-            let index = arrEqStr(cols, {title: title});
+            let index = ArrayUtil.arrEqStr(cols, {title});
             let col;
             if (index < 0) return;
             col = cols.splice(index, 1);
-            storLocal.set({[STOR_KEY_COLS]: allCols});
+            StoreUtil.save(STOR_KEY_COLS,allCols);
             decUpdateNum(col);
             //从视图中删除
             let {datas} = self.state;
@@ -58,7 +60,7 @@ export default class Root extends Component<any,State> {
 
     constructor(props: any){
         super(props);
-        bindInnerFun(this);
+        PageUtil.bindFun(this);
         this.state = {
             datas:[]
         }

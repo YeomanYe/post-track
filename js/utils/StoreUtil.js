@@ -1,4 +1,4 @@
-import * as Promise from 'bluebird';
+const Promise = require('bluebird');
 let storLocal = chrome.storage.local;
 
 export default class LocalStore{

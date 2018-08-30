@@ -9,7 +9,6 @@ type State = {
     datas: Object[],
     curIndex: number;
 }
-let {EVENT_CHANGE_CNT} = window;
 export default class TogglePanel extends Component<Props,State> {
     constructor(props: any){
         super(props);

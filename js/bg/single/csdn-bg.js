@@ -1,11 +1,16 @@
+import ColUtil from '../../utils/ColUtil';
+import {getBaseStruct} from '../../utils/DataStructUtil';
+import Constant from '../../config/Constant';
+
+const {SITE_CSDN,TYPE_ISSUE} = Constant;
 export default function createCSDNQuery() {
-    var baseObj = getBaseStoreObj(SITE_CSDN,TYPE_ISSUE);
-    var ajaxCall = function(data) {
-        var $html = $(data);
-        var title = $html.find('.questions_detail_con dt').text().trim();
+    let baseObj = getBaseStruct(SITE_CSDN,TYPE_ISSUE);
+    let ajaxCall = function(data) {
+        let $html = $(data);
+        let title = $html.find('.questions_detail_con dt').text().trim();
         if(!title) return ;
-        var len = $html.find('.answer_sort_con  p').text().match(/[\d]+/)[0];
-        var isAccept = !!$html.find('.answer_accept').length;
+        let len = $html.find('.answer_sort_con p').text().match(/[\d]+/)[0];
+        let isAccept = !!$html.find('.answer_accept').length;
         return {
             title:title,
             isAccept:isAccept,
@@ -13,10 +18,10 @@ export default function createCSDNQuery() {
         };
     };
 
-    var csdnQuery = function() {
-        getCols(SITE_CSDN, TYPE_ISSUE, queryUpdate(baseObj, ajaxCall));
+    let csdnQuery = function() {
+        ColUtil.getCols(SITE_CSDN, TYPE_ISSUE, ColUtil.queryUpdate(baseObj, ajaxCall));
     };
 
-    this.addAfterStore(csdnQuery, ajaxCall);
+    ColUtil.addAfterStore(csdnQuery, ajaxCall);
     return csdnQuery;
 }
