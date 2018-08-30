@@ -52,7 +52,7 @@ chrome.notifications.onButtonClicked.addListener(function (url, btnIndex) {
             let cols = favItem.cols;
             for (let len2 = cols.length; len2--;) {
                 let colItem = cols[len2];
-                let url2 = formatHref(colItem.url, favItem.baseUrl);
+                let url2 = ColUtil.formatHref(colItem.url, favItem.baseUrl);
                 if (url === url2) {
                     colItem.isUpdate = false;
                     StoreUtil.save({[STOR_KEY_COLS]: allCols, [STOR_KEY_UPDATE_NUM]: --updateNum});
