@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack-watch": "webpack --watch",
     "gulp": "gulp",
-    "start": "rm -rf build && npm run build && cross-env NODE_ENV=development webpack-dev-server --hot",
+    "start": "rm -rf build && npm run build && cross-env NODE_ENV=development webpack --progress --colors --watch",
     "build": "rm -rf build && rm -rf build.zip && cross-env NODE_ENV=production webpack --progress --hide-modules && zip -r build.zip build"
   },
   "repository": {
