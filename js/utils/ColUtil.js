@@ -110,9 +110,9 @@ export default class ColUtil {
                             StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
                             if (!isCloseTips) {
                                 //生成提示
-                                if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
+                                if (col.isAccept === isAccept) ColUtil.createNotify(siteName + ' 【更新】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
                                 else {
-                                    createNotify(siteName + ' 【采纳】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
+                                    ColUtil.createNotify(siteName + ' 【采纳】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
                                 }
                             }
 
@@ -131,21 +131,20 @@ export default class ColUtil {
                     } catch (e) {
                         console.log(e);
                     }
-
                 };
-                for (let i = 0, len = favs.length; i < len; i++) {
-                    let col = favs[i];
-                    let url = col.url;
-                    $.ajax(ColUtil.formatHref(url, baseUrl), {
-                        success: createSucCall(col),
-                        async: false
-                    });
-                }
-                if (!isUpdate) afterStoreCall();
-                //更新查询完毕，替换掉正在查询标志“....”  改为更新的数量
-                if (afterStoreCall === emptyFun) {
-                    ColUtil.setBadge(updateNum);
-                }
+            };
+            for (let i = 0, len = favs.length; i < len; i++) {
+                let col = favs[i];
+                let url = col.url;
+                $.ajax(ColUtil.formatHref(url, baseUrl), {
+                    success: createSucCall(col),
+                    async: false
+                });
+            }
+            if (!isUpdate) afterStoreCall();
+            //更新查询完毕，替换掉正在查询标志“....”  改为更新的数量
+            if (afterStoreCall === emptyFun) {
+                ColUtil.setBadge(updateNum);
             }
         }
     }
