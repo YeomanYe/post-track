@@ -2,9 +2,11 @@ import StoreUtil from './StoreUtil';
 import ArrayUtil from './ArrayUtil';
 import {getBaseStruct} from './DataStructUtil';
 import Constant from '../config/Constant';
+
 let {chrome} = window;
-const {STOR_KEY_UPDATE_NUM,BG_CMD_UPDATE_NUM,STOR_KEY_COLS,STOR_KEY_IS_CLOSE_TIPS} = Constant;
-export default class ColUtil{
+let cGetUrl = chrome.runtime.getURL;
+const {STOR_KEY_UPDATE_NUM, BG_CMD_UPDATE_NUM, STOR_KEY_COLS, STOR_KEY_IS_CLOSE_TIPS} = Constant;
+export default class ColUtil {
     /**
      * 获取某站点下所有的采集，以及更新的数目
      */
@@ -33,16 +35,18 @@ export default class ColUtil{
             item.isUpdate = false;
             let updateNum = await StoreUtil.load(STOR_KEY_UPDATE_NUM);
             --updateNum;
-            await StoreUtil.save('updateNum',updateNum);
+            await StoreUtil.save('updateNum', updateNum);
             chrome.runtime.sendMessage(null, [BG_CMD_UPDATE_NUM]);
         }
     }
+
     static addAfterStore(queryFun, hangFun) {
         queryFun.afterStore = function (callback) {
             hangFun._afterStore = callback;
             return callback;
         };
     }
+
     /**
      * 更新阅读记录
      */
@@ -57,7 +61,7 @@ export default class ColUtil{
             curItem.timestamp = Date.now();
             //更新，当前更新的数量
             await this.decUpdateNum(curItem);
-            StoreUtil.save('allCols',allCols);
+            StoreUtil.save('allCols', allCols);
         }
     }
 
@@ -90,56 +94,62 @@ export default class ColUtil{
         let baseUrl = baseObj.baseUrl;
         let siteName = baseObj.siteName;
         let icon = baseObj.icon;
-        let emptyFun = () => {};
+        let emptyFun = () => {
+        };
         let afterStoreCall = callback._afterStore ? callback._afterStore : emptyFun; //存储成功之后的回调函数
         let isUpdate = false;
         return function (favs, allCols, updateNum) {
-            let sucCall = async function (data) {
-                try {
-                    let resObj = callback(data);
-                    let answerNum = resObj.answerNum,
-                        isAccept = resObj.isAccept;
-                    if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
-                        let isCloseTips = await StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
-                        if(!isCloseTips){
-                            //生成提示
-                            if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, formatHref(col.url,baseUrl));
-                            else {
-                                createNotify(siteName + ' 【采纳】', icon, col.title, formatHref(col.url,baseUrl));
+            let createSucCall = function (col) {
+                return async function (data) {
+                    try {
+                        let resObj = callback(data);
+                        let answerNum = resObj.answerNum,
+                            isAccept = resObj.isAccept;
+                        if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
+                            let isCloseTips = await
+                            StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
+                            if (!isCloseTips) {
+                                //生成提示
+                                if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
+                                else {
+                                    createNotify(siteName + ' 【采纳】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
+                                }
                             }
-                        }
 
-                        col.answerNum = answerNum;
-                        col.isAccept = isAccept;
+                            col.answerNum = answerNum;
+                            col.isAccept = isAccept;
 
-                        isUpdate = true;
-                        if (!col.isUpdate) {
-                            col.isUpdate = true;
-                            ++updateNum;
+                            isUpdate = true;
+                            if (!col.isUpdate) {
+                                col.isUpdate = true;
+                                ++updateNum;
+                            }
+                            await
+                            StoreUtil.save({updateNum, allCols});
+                            afterStoreCall();
                         }
-                        await StoreUtil.save({updateNum,allCols});
-                        afterStoreCall();
+                    } catch (e) {
+                        console.log(e);
                     }
-                } catch (e) {
-                    console.log(e);
-                }
 
-            };
-            for (let i = 0, len = favs.length; i < len; i++) {
-                let col = favs[i];
-                let url = col.url;
-                $.ajax(this.formatHref(url,baseUrl), {
-                    success: sucCall,
-                    async: false
-                });
-            }
-            if (!isUpdate) afterStoreCall();
-            //更新查询完毕，替换掉正在查询标志“....”  改为更新的数量
-            if(afterStoreCall === emptyFun){
-                this.setBadge(updateNum);
+                };
+                for (let i = 0, len = favs.length; i < len; i++) {
+                    let col = favs[i];
+                    let url = col.url;
+                    $.ajax(ColUtil.formatHref(url, baseUrl), {
+                        success: createSucCall(col),
+                        async: false
+                    });
+                }
+                if (!isUpdate) afterStoreCall();
+                //更新查询完毕，替换掉正在查询标志“....”  改为更新的数量
+                if (afterStoreCall === emptyFun) {
+                    ColUtil.setBadge(updateNum);
+                }
             }
         }
     }
+
     /**
      * 设置徽章
      */
@@ -151,7 +161,7 @@ export default class ColUtil{
             chrome.browserAction.setBadgeBackgroundColor({
                 color: color
             });
-            StoreUtil.save(STOR_KEY_UPDATE_NUM,0);
+            StoreUtil.save(STOR_KEY_UPDATE_NUM, 0);
             return;
         }
         chrome.browserAction.setBadgeText({
@@ -160,5 +170,22 @@ export default class ColUtil{
         chrome.browserAction.setBadgeBackgroundColor({
             color: color
         })
+    }
+
+    /**
+     * 创建提醒
+     */
+    static createNotify(title, iconUrl, message, newUrl) {
+        var options = {
+            type: chrome.notifications.TemplateType.BASIC,
+            title: title,
+            iconUrl: iconUrl,
+            isClickable: true,
+            message: message,
+            buttons: [
+                {title: '打开', iconUrl: cGetUrl('images/notification-buttons/ic_flash_auto_black_48dp.png')},
+                {title: '已读', iconUrl: cGetUrl('images/notification-buttons/ic_exposure_plus_1_black_48dp.png')}],
+        };
+        chrome.notifications.create(newUrl, options);
     }
 }
