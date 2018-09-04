@@ -17,21 +17,24 @@ let {Switch} = window;
 let {SHOW_SETTING,STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS,STOR_KEY_UPDATE_NUM} = Constant;
 export default class SettingList extends Component<Props,State> {
 
-    cntChangeHandler(num: number){
+    async cntChangeHandler(num: number){
         let isShow = false;
-        if(num === SHOW_SETTING){
-            if(!switchTipsElm){
-                let status = StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
-                status = !status;
-                switchTipsElm = new Switch(document.getElementById('switch-close-tip'), {size: 'middle',onChange:function (e) {
-                        let checked = switchTipsElm.getChecked();
-                        StoreUtil.save(STOR_KEY_IS_CLOSE_TIPS,!checked);
-                    }});
-                if(status) switchTipsElm.on();
+        if(num === SHOW_SETTING) isShow = true;
+        let initSwitch = async function(){
+            if(num === SHOW_SETTING){
+                if(!switchTipsElm){
+                    let status = await StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
+                    status = !status;
+                    switchTipsElm = new Switch(document.getElementById('switch-close-tip'), {size: 'middle',onChange:function (e) {
+                            let checked = switchTipsElm.getChecked();
+                            StoreUtil.save(STOR_KEY_IS_CLOSE_TIPS,!checked);
+                        }});
+                    if(status) switchTipsElm.on();
+                }
             }
-            isShow = true;
-        }
-        this.setState({isShow})
+        };
+        //switch必须在内容显示出来之后才能进行初始化。
+        this.setState({isShow},initSwitch);
     }
 
     componentWillUnmount() {
@@ -85,7 +88,6 @@ export default class SettingList extends Component<Props,State> {
                     <li><span>桌面提醒</span><input className="checkbox-switch" type="checkbox" id="switch-close-tip"/></li>
                     <input onChange={this.onFileChange} type='file' hidden id='fileInput' />
                 </ul>
-
             </div>
         );
     }
