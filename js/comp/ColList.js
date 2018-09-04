@@ -32,7 +32,9 @@ export default class ColList extends Component<any, State> {
         let retArr = datas.map((data,index) => (
                 <li key={data+index}>
                     <a href={data.origin} target="_blank" className="left">
-                        <div style={data.iconStyle}></div>
+                        <div>
+                            <img src={data.icon}/>
+                        </div>
                     </a>
                     <div className="middle">
                         <a href={data.url} target="_blank">

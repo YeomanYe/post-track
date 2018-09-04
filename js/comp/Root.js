@@ -31,7 +31,7 @@ export default class Root extends Component<any,State> {
             datas = item.cols.map((col) => {
                 let {title, url, isAccept, answerNum, isUpdate} = col;
                 return {
-                    type, site, title, isAccept, answerNum, isUpdate, origin, iconStyle, siteName,
+                    type, site, title, isAccept,icon, answerNum, isUpdate, origin, iconStyle, siteName,
                     url: ColUtil.formatHref(url, baseUrl)
                 };
             });

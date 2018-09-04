@@ -110,7 +110,4 @@ if (process.env.NODE_ENV === 'production') {
         },
     ])
   ])
-} else {
-  let popup = 'build/popup.html';
-  fs.writeFileSync(popup, fs.readFileSync(popup).toString().replace('"popup.js"', '"http://localhost:8080/build/popup.js"'));
 }

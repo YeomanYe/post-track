@@ -34,11 +34,15 @@ body{
         size:cover;
         repeat: no-repeat;
     };
+    img{
+        object-fit: contain;
+        width: 80px;
+    }
 }
 
 .middle{
     display: inline-block;
-    margin-top: 15px;
+    margin-top: 5px;
     width:50%;
     p{
         font-size: 13px;
