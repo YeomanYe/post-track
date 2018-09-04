@@ -51,7 +51,7 @@ export default class SettingList extends Component<Props,State> {
     }
 
     async exportFile(){
-        let [allCols,updateNum] = await StoreUtil.load(STOR_KEY_COLS,STOR_KEY_UPDATE_NUM);
+        let [allCols,updateNum] = await StoreUtil.load([STOR_KEY_COLS,STOR_KEY_UPDATE_NUM]);
         let blob = new Blob([JSON.stringify({allCols,updateNum})], {
             type: 'text/plain;charset=utf-8'
         });
