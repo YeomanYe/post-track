@@ -1,11 +1,14 @@
+import Constant from '../config/Constant';
+
+let {TIME_SHORT} = Constant;
 /**
  * 创建toast提醒
  */
 export function showTips(msg, time) {
-    var $div = $('<div>');
+    let $div = $('<div>');
     time = time ? time : TIME_SHORT;
     $div.text(msg);
-    var width = $(window).width(),
+    let width = $(window).width(),
         height = $(window).height();
     $div.css({
         position: 'fixed',

@@ -1,7 +1,8 @@
 import Constant from '../../config/Constant';
 import {toggleCol} from '../helper';
+import ColUtil from '../../utils/ColUtil';
 
-const {SITE_ZHIHU,TYPE_ISSUE} = Constant;
+const {SITE_ZHIHU,TYPE_ISSUE,CUR_HREF} = Constant;
 
 export default function(curHref){
     if(curHref.search(/zhihu.com\/question\/[\d]+/) < 0)return;
@@ -11,21 +12,21 @@ export default function(curHref){
 }
 
 function toggleFavHandlerZhihu(resSend) {
-    getCols(SITE_ZHIHU,TYPE_ISSUE,toggleCol(getCurInfoZhihu,resSend));
+    ColUtil.getCols(SITE_ZHIHU,TYPE_ISSUE,toggleCol(getCurInfoZhihu,resSend));
 }
 
 function updateZhihu() {
-    getCols(SITE_ZHIHU,TYPE_ISSUE,updatePageCol(getCurInfoZhihu));
+    ColUtil.getCols(SITE_ZHIHU,TYPE_ISSUE,ColUtil.updatePageCol(getCurInfoZhihu));
 }
 
 function getCurInfoZhihu() {
-    var title = $('.QuestionHeader-title').text().trim();
+    let title = $('.QuestionHeader-title').text().trim();
     if(!title) return ;
-    var answerNum = parseInt($('.List-headerText').text());
-    var isAccept = false;
+    let answerNum = parseInt($('.List-headerText').text());
+    let isAccept = false;
     return {
         title:title,
-        url:curHref,
+        url:CUR_HREF,
         isAccept:isAccept,
         answerNum:answerNum
     };

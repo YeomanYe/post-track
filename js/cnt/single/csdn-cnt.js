@@ -1,7 +1,8 @@
 import Constant from '../../config/Constant';
 import {toggleCol} from '../helper';
+import ColUtil from '../../utils/ColUtil';
 
-const {SITE_CSDN,TYPE_ISSUE} = Constant;
+const {SITE_CSDN,TYPE_ISSUE,CUR_HREF} = Constant;
 
 export default function(curHref){
     if(curHref.search(/https:\/\/ask.csdn.net\/questions\/[\d]+/) < 0)return;
@@ -11,21 +12,21 @@ export default function(curHref){
 }
 
 function toggleColHandlerCSDN(resSend) {
-    getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN,resSend));
+    ColUtil.getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN,resSend));
 }
 
 function updateCSDN() {
-    getCols(SITE_CSDN,TYPE_ISSUE,updatePageCol(getCurInfoCSDN));
+    ColUtil.getCols(SITE_CSDN,TYPE_ISSUE,ColUtil.updatePageCol(getCurInfoCSDN));
 }
 
 function getCurInfoCSDN() {
-    var title = $('.questions_detail_con dt').text().trim();
+    let title = $('.questions_detail_con dt').text().trim();
     if(!title) return ;
-    var len = $('.answer_sort_con  p').text().match(/[\d]+/)[0];
-    var isAccept = !!$('.answer_accept').length;
+    let len = $('.answer_sort_con  p').text().match(/[\d]+/)[0];
+    let isAccept = !!$('.answer_accept').length;
     return {
         title:title,
-        url:curHref,
+        url:CUR_HREF,
         isAccept:isAccept,
         answerNum:len
     };

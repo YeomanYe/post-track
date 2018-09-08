@@ -2,6 +2,7 @@ import StoreUtil from '../utils/StoreUtil';
 import ArrayUtil from '../utils/ArrayUtil';
 import Constant from '../config/Constant';
 import {showTips} from '../utils/UIUtil';
+import {getBaseStruct} from '../utils/DataStructUtil';
 
 const {STOR_KEY_COLS,MSG_ADD_COL_SUC,MSG_DEL_COL_SUC} = Constant;
 /**
@@ -10,7 +11,7 @@ const {STOR_KEY_COLS,MSG_ADD_COL_SUC,MSG_DEL_COL_SUC} = Constant;
  */
 export function toggleCol(getCurInfo,resSend) {
     let obj = getCurInfo();
-    let baseUrl = storObj.baseUrl;
+    let baseUrl = getBaseStruct(window.location.origin);
     return function (cols,allCols) {
         let index = ArrayUtil.arrEqStr(cols,{title:obj.title});
         let showMsg,sendObj;

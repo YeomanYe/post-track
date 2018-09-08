@@ -1,4 +1,6 @@
+let CUR_HREF = location.origin + location.pathname;
 export default {
+    CUR_HREF,
     TYPE_ISSUE: 'issue', //问题
 
     BG_CMD_UPDATE_NUM: 'updateNumChange',

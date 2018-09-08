@@ -1,7 +1,8 @@
 import Constant from '../../config/Constant';
 import {toggleCol} from '../helper';
+import ColUtil from '../../utils/ColUtil';
 
-const {SITE_SEGMENT_FAULT,TYPE_ISSUE} = Constant;
+const {SITE_SEGMENT_FAULT,TYPE_ISSUE,CUR_HREF} = Constant;
 
 
 export default function (curHref) {
@@ -11,21 +12,21 @@ export default function (curHref) {
     updateSf();
 }
 function toggleFavHandlerSf(resSend) {
-    getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,toggleCol(getCurInfoSf,resSend));
+    ColUtil.getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,toggleCol(getCurInfoSf,resSend));
 }
 
 function updateSf() {
-    getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,updatePageCol(getCurInfoSf));
+    ColUtil.getCols(SITE_SEGMENT_FAULT,TYPE_ISSUE,ColUtil.updatePageCol(getCurInfoSf));
 }
 
 function getCurInfoSf() {
-    var title = $('#questionTitle').text().trim();
+    let title = $('#questionTitle').text().trim();
     if(!title) return ;
-    var answers = $('#goToReplyArea article');
-    var isAccept = !!answers.find('.accepted-check').length;
+    let answers = $('#goToReplyArea article');
+    let isAccept = !!answers.find('.accepted-check').length;
     return {
         title:title,
-        url:curHref,
+        url:CUR_HREF,
         isAccept:isAccept,
         answerNum:answers.length
     };
