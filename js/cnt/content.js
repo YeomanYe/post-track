@@ -6,14 +6,13 @@ import zhihuCntResolve from './single/zhihu-cnt';
 import Constant from '../config/Constant';
 import {showTips} from '../utils/UIUtil';
 
-const {CNT_CMD_TOGGLE_CUR_COL,CNT_CMD_UPDATE_CUR_FAV} = Constant;
+const {CNT_CMD_TOGGLE_CUR_COL,CNT_CMD_UPDATE_CUR_FAV,CUR_HREF} = Constant;
 $(function () {
-    let curHref = window.href;
-    csdnCntResolve(curHref);
-    githubCntResolve(curHref);
-    segmentfaultCntResolve(curHref);
-    stackoverflowCntResolve(curHref);
-    zhihuCntResolve(curHref);
+    csdnCntResolve(CUR_HREF);
+    githubCntResolve(CUR_HREF);
+    segmentfaultCntResolve(CUR_HREF);
+    stackoverflowCntResolve(CUR_HREF);
+    zhihuCntResolve(CUR_HREF);
 });
 
 chrome.runtime.onMessage.addListener(function (msgArr, msgSenderObj, resSend) {

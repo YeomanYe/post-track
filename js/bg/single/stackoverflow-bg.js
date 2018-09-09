@@ -9,14 +9,10 @@ export default function createStackOverflowQuery() {
         let $html = $(data);
         let title = $html.find('#question-header h1').text().trim();
         if(!title) return ;
-        let matcher = $('#answers-header  h2').text().match(/[\d]+/);
-        let len = matcher ? matcher[0] : 0;
+        let matcher = $html.find('#answers-header  h2').text().match(/[\d]+/);
+        let answerNum = matcher ? parseInt(matcher[0]) : 0;
         let isAccept = !!$html.find('.load-accepted-answer-date').length;
-        return {
-            title:title,
-            isAccept:isAccept,
-            answerNum:len + 1
-        };
+        return {title,isAccept,answerNum};
     };
 
     let stackOverflowQuery = function() {

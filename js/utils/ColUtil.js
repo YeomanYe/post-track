@@ -60,7 +60,7 @@ export default class ColUtil {
             let curItem = cols[index];
             curItem.timestamp = Date.now();
             //更新，当前更新的数量
-            await this.decUpdateNum(curItem);
+            await ColUtil.decUpdateNum(curItem);
             StoreUtil.save('allCols', allCols);
         }
     }

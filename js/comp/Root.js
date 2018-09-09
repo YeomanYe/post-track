@@ -14,7 +14,6 @@ import ColUtil from '../utils/ColUtil';
 type State = {
     datas: Object[]
 }
-let {getCols, decUpdateNum, formatHref} = window;
 
 const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS} = Constant;
 
@@ -28,13 +27,13 @@ export default class Root extends Component<any,State> {
         allCols.map((item) => {
             let {icon, origin, siteName, baseUrl, site, type} = item;
             let iconStyle = {backgroundImage: `url('${icon}')`};
-            datas = item.cols.map((col) => {
+            datas = [...datas,...item.cols.map((col) => {
                 let {title, url, isAccept, answerNum, isUpdate} = col;
                 return {
                     type, site, title, isAccept,icon, answerNum, isUpdate, origin, iconStyle, siteName,
                     url: ColUtil.formatHref(url, baseUrl)
                 };
-            });
+            })];
         });
         self.setState({datas});
     }
@@ -42,13 +41,13 @@ export default class Root extends Component<any,State> {
     delCol(colItem: Object){
         let self = this;
         let {site,type,title} = colItem;
-        getCols(site, type, (cols, allCols) => {
+        ColUtil.getCols(site, type, async (cols, allCols) => {
             let index = ArrayUtil.arrEqStr(cols, {title});
             let col;
             if (index < 0) return;
-            col = cols.splice(index, 1);
-            StoreUtil.save(STOR_KEY_COLS,allCols);
-            decUpdateNum(col);
+            col = cols.splice(index, 1)[0];
+            await StoreUtil.save(STOR_KEY_COLS,allCols);
+            await ColUtil.decUpdateNum(col);
             //从视图中删除
             let {datas} = self.state;
             index = datas.indexOf(colItem);
