@@ -106,8 +106,7 @@ export default class ColUtil {
                         let answerNum = resObj.answerNum,
                             isAccept = resObj.isAccept;
                         if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
-                            let isCloseTips = await
-                            StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
+                            let isCloseTips = await StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
                             if (!isCloseTips) {
                                 //生成提示
                                 if (col.isAccept === isAccept) ColUtil.createNotify(siteName + ' 【更新】', icon, col.title, ColUtil.formatHref(col.url, baseUrl));
@@ -124,8 +123,7 @@ export default class ColUtil {
                                 col.isUpdate = true;
                                 ++updateNum;
                             }
-                            await
-                            StoreUtil.save({updateNum, allCols});
+                            await StoreUtil.save({updateNum, allCols});
                             afterStoreCall();
                         }
                     } catch (e) {
