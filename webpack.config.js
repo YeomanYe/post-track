@@ -52,6 +52,9 @@ module.exports = {
     hints: false
   },
     mode:'none',
+    resolve:{
+        extensions: ['.js','.jsx']
+    },
   devtool: '#eval-source-map',
   plugins: [
       new MiniCssExtractPlugin({

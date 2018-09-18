@@ -3,7 +3,7 @@ import ColList from './ColList';
 import SettingList from './SettingList';
 import TogglePanel from './TogglePanel';
 import Toolbar from './Toolbar';
-import Event from './Event';
+import Event from '../utils/Event';
 import TabUtil from '../utils/TabUtil';
 import Constant from '../config/Constant';
 import PageUtil from '../utils/PageUtil';

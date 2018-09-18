@@ -1,6 +1,6 @@
 //@flow
 import React, { Component } from 'react';
-import Event from './Event';
+import Event from '../utils/Event';
 
 type Props = {
 

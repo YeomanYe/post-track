@@ -1,6 +1,6 @@
 //@flow
 import React, {Component} from 'react';
-import Event from './Event';
+import Event from '../utils/Event';
 import TabUtil from '../utils/TabUtil';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
