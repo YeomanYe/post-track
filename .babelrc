@@ -4,7 +4,8 @@
     "react"
   ],
   "plugins": [
-    "transform-flow-strip-types"
+    "transform-flow-strip-types",
+    "transform-decorators-legacy"
   ],
   "retainLines": true
 }

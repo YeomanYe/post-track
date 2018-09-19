@@ -71,9 +71,6 @@ export default class Root extends Component<any,State> {
         Event.register(Event.TYPE.DEL_COL,this.delCol);
     }
 
-/*    getChildContext() {
-        return {Event};
-    }*/
     render() {
         let {datas} = this.state;
         return (
