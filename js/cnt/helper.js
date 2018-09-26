@@ -13,7 +13,7 @@ export function toggleCol(getCurInfo,resSend) {
     let obj = getCurInfo();
     let baseUrl = getBaseStruct(window.location.origin);
     return function (cols,allCols) {
-        let index = ArrayUtil.arrEqStr(cols,{title:obj.title});
+        let index = ArrayUtil.getIndexEqStr(cols,{title:obj.title});
         let showMsg,sendObj;
         if(index >= 0) {
             cols.splice(index,1);

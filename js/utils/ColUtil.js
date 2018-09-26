@@ -16,7 +16,7 @@ export default class ColUtil {
         allCols = allCols ? allCols : [];
         updateNum = updateNum ? updateNum : 0;
         let index = -1;
-        if (allCols.length) index = ArrayUtil.arrEqStr(allCols, {site: siteName, type: type});
+        if (allCols.length) index = ArrayUtil.getIndexEqStr(allCols, {site: siteName, type: type});
         let cols = [];
         if (index < 0) {
             defaultStore.cols = cols;
@@ -54,7 +54,7 @@ export default class ColUtil {
         return async function (cols, allCols) {
             let curInfo = getCurInfo();
             //解析当前页面并更新阅读记录
-            let index = ArrayUtil.arrEqStr(cols, {title: curInfo.title});
+            let index = ArrayUtil.getIndexEqStr(cols, {title: curInfo.title});
             if (index < 0) return;
             //更新图标
             let curItem = cols[index];

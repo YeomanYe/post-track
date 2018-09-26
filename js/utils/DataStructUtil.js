@@ -10,7 +10,7 @@ export function getBaseStruct(name,type){
     if(name.search('http')>=0){
         origin = name;
     }
-    let index = ArrayUtil.arrInStr(keys,name);
+    let index = ArrayUtil.getIndexInStr(keys,name);
     type = type ? type : TYPE_ISSUE;
     if(index >= 0)
         return _allBaseStoreObj[keys[index]](origin,type);

@@ -1,35 +1,22 @@
 //@flow
-import React, { Component } from 'react';
-import Event from '../utils/Event';
+import React, {Component} from 'react';
+import {observer} from 'mobx-react';
+import Constant from '../config/Constant';
 
-type Props = {
+const {SHOW_COL, SHOW_SETTING} = Constant;
 
-}
-type State = {
-    datas: Object[],
-    curIndex: number;
-}
-export default class TogglePanel extends Component<Props,State> {
-    constructor(props: any){
-        super(props);
-        this.state = {
-            datas:[],
-            curIndex:0
-        };
-    }
-    toggleCnt(num: number){
-        Event.emit(Event.TYPE.CHANGE_CNT,num);
-        this.setState({
-            curIndex:num
-        });
-    }
+@observer
+export default class TogglePanel extends Component{
     render() {
-        let {datas,curIndex} = this.state;
+        let {showStore:{showContent, setShowContent}} = this.props;
         return (
             <nav id="nav">
-                <span onClick={()=>this.toggleCnt(0)} className={curIndex === 0 ? 'cur-tab' : ''}>收藏</span>
-                <span onClick={()=>this.toggleCnt(1)} className={curIndex === 1 ? 'cur-tab' : ''}>设置</span>
+                <span onClick={() => setShowContent(SHOW_COL)}
+                      className={showContent === SHOW_COL ? 'cur-tab' : ''}>收藏</span>
+                <span onClick={() => setShowContent(SHOW_SETTING)}
+                      className={showContent === SHOW_SETTING ? 'cur-tab' : ''}>设置</span>
             </nav>
-        );
+        )
     }
 }
+

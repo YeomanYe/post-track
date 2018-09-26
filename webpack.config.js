@@ -8,7 +8,7 @@ const fs = require('fs');
 
 module.exports = {
   entry: {
-    popup: './js/App.js',
+    popup: ['babel-polyfill','./js/App.js'],
       background:'./js/bg/background.js',
       cnt:'./js/cnt/content.js',
   },
@@ -28,9 +28,6 @@ module.exports = {
         test: /\.(js|jsx)$/,
           use:{
               loader: 'babel-loader',
-              options: {
-                  presets: ['es2015', 'react'],
-              }
           },
         exclude: /node_modules/
       },

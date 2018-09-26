@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ColList from './ColList';
-import SettingList from './SettingList';
-import TogglePanel from './TogglePanel';
-import Toolbar from './Toolbar';
+import ColList from '../containers/ColListContainer';
+import SettingList from '../containers/SettingListContainer';
+import TogglePanel from '../containers/TogglePanelContainer';
+import Toolbar from '../containers/ToolbarContainer';
 import Event from '../utils/Event';
 import TabUtil from '../utils/TabUtil';
 import Constant from '../config/Constant';
@@ -17,7 +17,7 @@ type State = {
 
 const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS} = Constant;
 
-export default class Root extends Component<any,State> {
+/*export default class Root extends Component<any,State> {
     async reloadCol(){
         let self = this;
         let allCols = await StoreUtil.load(STOR_KEY_COLS);
@@ -42,7 +42,7 @@ export default class Root extends Component<any,State> {
         let self = this;
         let {site,type,title} = colItem;
         ColUtil.getCols(site, type, async (cols, allCols) => {
-            let index = ArrayUtil.arrEqStr(cols, {title});
+            let index = ArrayUtil.getIndexEqStr(cols, {title});
             let col;
             if (index < 0) return;
             col = cols.splice(index, 1)[0];
@@ -82,4 +82,13 @@ export default class Root extends Component<any,State> {
             </div>
         );
     }
-}
+}*/
+const Root = () => (
+    <div id='content-wrap'>
+        <Toolbar />
+        <ColList />
+        <SettingList/>
+        <TogglePanel/>
+    </div>
+);
+export default Root;
