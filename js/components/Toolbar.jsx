@@ -1,6 +1,5 @@
 //@flow
 import React, {Component} from 'react';
-import Event from '../utils/Event';
 import TabUtil from '../utils/TabUtil';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
@@ -21,17 +20,21 @@ export default class Toolbar extends Component<any, State> {
         }
     }
 
-    componentWillReceiveProps(nextProps: Object) {
-        let self = this;
+    setIcon(props){
         TabUtil.getCurTab(tab => {
-            let index = ArrayUtil.getIndexEqStr(nextProps.colDataStore.allCols,{url:tab.url});
+            let index = ArrayUtil.getIndexEqStr(props.colDataStore.displayCols,{url:tab.url});
             let isCol = true;
             if(index < 0) isCol = false;
-            self.setState({isCol});
+            this.setState({isCol});
         });
     }
 
+    componentWillMount() {
+        this.setIcon(this.props);
+    }
+
     toggleCol(){
+        //发送消息给tab页用于取消收藏或收藏
         TabUtil.sendToCurTab([CNT_CMD_TOGGLE_CUR_COL],this.handlerResData);
     }
 

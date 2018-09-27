@@ -14,19 +14,18 @@ export function toggleCol(getCurInfo,resSend) {
     let baseUrl = getBaseStruct(window.location.origin);
     return function (cols,allCols) {
         let index = ArrayUtil.getIndexEqStr(cols,{title:obj.title});
-        let showMsg,sendObj;
+        let showMsg,isCol = false;
         if(index >= 0) {
             cols.splice(index,1);
             showMsg = MSG_DEL_COL_SUC;
-            sendObj = {isCols:false};
         }else{
             obj.url = obj.url.replace(baseUrl,'');
             showMsg = MSG_ADD_COL_SUC;
             cols.push(obj);
-            sendObj = {isCol:true};
+            isCol = true;
         }
         showTips(showMsg);
-        resSend(sendObj);
+        resSend({isCol});
         StoreUtil.save(STOR_KEY_COLS,allCols);
         console.log('allCols',allCols);
     }

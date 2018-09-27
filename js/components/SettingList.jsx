@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import Event from '../utils/Event';
 import * as FileSaver from 'file-saver';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
 import StoreUtil from '../utils/StoreUtil';
 import {observer} from 'mobx-react';
-import colDataStore from '../store/ColData';
-
-let switchTipsElm: Object;
 
 type State = {
     isShow: boolean
@@ -15,9 +11,8 @@ type State = {
 type Props = {
 
 }
-let {Switch} = window;
 
-let {SHOW_SETTING,STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS,STOR_KEY_UPDATE_NUM} = Constant;
+let {SHOW_SETTING,STOR_KEY_COLS,STOR_KEY_UPDATE_NUM} = Constant;
 @observer
 export default class SettingList extends Component<Props,State> {
 
@@ -28,7 +23,7 @@ export default class SettingList extends Component<Props,State> {
     }
 
     render() {
-        let {showStore:{showContent},colDataStore:{loadCols}} = this.props;
+        let {showStore:{showContent},colDataStore:{setAllCols}} = this.props;
         return (
             <div id="content-setting-wrap" className={ showContent === SHOW_SETTING ? 'list' : 'hidden'}>
                 <ul id="setting-list" className="list">
@@ -36,7 +31,7 @@ export default class SettingList extends Component<Props,State> {
                     <li onClick={exportFile}><i className="fa fa-cloud-download font-icon"/><span id="export">导出收藏</span></li>
                 <li onClick={importFile}><i className="fa fa-cloud-download font-icon"/><span title="注意：导入收藏会覆盖当前所有的收藏" id="import">导入收藏</span></li>
                     <li><span>桌面提醒</span><input className="checkbox-switch" type="checkbox" id="switch-close-tip"/></li>
-                    <input onChange={(e) => onFileChange(e,loadCols)} type='file' hidden id='fileInput' />
+                    <input onChange={(e) => onFileChange(e,setAllCols)} type='file' hidden id='fileInput' />
                 </ul>
             </div>
         );
@@ -53,8 +48,8 @@ function onFileChange(e,callback){
             reader = new FileReader(); //new一个FileReader实例
         reader.onload = async function () {
             let data = JSON.parse(this.result);
-            await StoreUtil.save(data);
-            if(callback) callback();
+            // await StoreUtil.save(data);
+            if(callback) callback(data.allCols);
             // Event.emit(Event.TYPE.RELOAD_COL);
         };
         reader.readAsText(file);

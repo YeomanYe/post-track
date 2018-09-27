@@ -1,4 +1,4 @@
-import {action, computed, observable} from 'mobx';
+import {action,toJS,reaction, computed, observable} from 'mobx';
 import ColUtil from '../utils/ColUtil';
 import ArrayUtil from '../utils/ArrayUtil';
 import StoreUtil from '../utils/StoreUtil';
@@ -6,9 +6,15 @@ import TabUtil from '../utils/TabUtil';
 import Constant from '../config/Constant';
 
 const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS} = Constant;
-let storeCols = [];
 class ColData {
-    @observable allCols = storeCols;
+    @observable allCols = [];
+
+    subscribeCols(){
+        reaction(() => toJS(this.allCols),
+            allCols => {
+                StoreUtil.save(STOR_KEY_COLS,allCols);
+            });
+    }
 
     @action.bound
     setAllCols(allCols){
@@ -17,10 +23,8 @@ class ColData {
 
     @action.bound
     async loadCols(){
-        storeCols = await StoreUtil.load(STOR_KEY_COLS) || [];
-        this.allCols = storeCols;
-        console.log('allCols',this.allCols);
-        console.log('storeCols',storeCols);
+        this.allCols = await StoreUtil.load(STOR_KEY_COLS) || [];
+        console.log('loadCols allCols',toJS(this.allCols));
     }
 
     @action.bound
@@ -32,8 +36,6 @@ class ColData {
         if (index < 0) return;
         let col = cols.splice(index, 1)[0];
         console.log('allCols',this.allCols);
-        console.log('storeCols',storeCols);
-        await StoreUtil.save(STOR_KEY_COLS,storeCols);
         await ColUtil.decUpdateNum(col);
         //从视图中删除
         TabUtil.sendToAllTabs([CNT_CMD_UPDATE_CUR_FAV]);
@@ -61,4 +63,5 @@ class ColData {
 }
 const store = new ColData();
 store.loadCols();
+store.subscribeCols();
 export default store;

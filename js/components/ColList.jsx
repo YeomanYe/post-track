@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import Event from '../utils/Event';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
 import {observer} from 'mobx-react';
-import showStore from '../store/ShowContent';
 
 type State = {
     isShow: boolean
