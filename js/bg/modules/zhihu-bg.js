@@ -1,4 +1,4 @@
-import {getBaseStruct} from '../../utils/DataStructUtil';
+import {getBaseStruct} from '../../config/data-struct';
 import ColUtil from '../../utils/ColUtil';
 import Constant from '../../config/Constant';
 

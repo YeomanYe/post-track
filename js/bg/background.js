@@ -1,4 +1,4 @@
-import _createQueryObj from './single';
+import _createQueryObj from './modules';
 import Constant from '../config/Constant';
 import StoreUtil from '../utils/StoreUtil';
 import TabUtil from '../utils/TabUtil';

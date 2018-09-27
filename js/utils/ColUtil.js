@@ -1,6 +1,6 @@
 import StoreUtil from './StoreUtil';
 import ArrayUtil from './ArrayUtil';
-import {getBaseStruct} from './DataStructUtil';
+import {getBaseStruct, getBaseStructByHref} from '../config/data-struct';
 import Constant from '../config/Constant';
 
 let {chrome} = window;
@@ -25,6 +25,23 @@ export default class ColUtil {
             cols = allCols[index].cols;
         }
         callback(cols, allCols, updateNum);
+    }
+
+    static async getColsByHref(){
+        let defaultStore = getBaseStructByHref();
+        let {site,type} = defaultStore;
+        let allCols = await StoreUtil.load(STOR_KEY_COLS);
+        allCols = allCols ? allCols : [];
+        let index = -1;
+        if (allCols.length) index = ArrayUtil.getIndexEqStr(allCols, {site,type});
+        let cols = [];
+        if (index < 0) {
+            defaultStore.cols = cols;
+            allCols.unshift(defaultStore);
+        } else {
+            cols = allCols[index].cols;
+        }
+        return {cols,allCols};
     }
 
     /**

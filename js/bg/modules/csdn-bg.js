@@ -1,5 +1,5 @@
 import ColUtil from '../../utils/ColUtil';
-import {getBaseStruct} from '../../utils/DataStructUtil';
+import {getBaseStruct} from '../../config/data-struct';
 import Constant from '../../config/Constant';
 
 const {SITE_CSDN,TYPE_ISSUE} = Constant;
