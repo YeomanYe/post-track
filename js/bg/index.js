@@ -1,35 +1,37 @@
-import _createQueryObj from './single';
+import queryObjArr from './modules';
 import Constant from '../config/Constant';
-import StoreUtil from '../utils/StoreUtil';
 import TabUtil from '../utils/TabUtil';
-import ColUtil from '../utils/ColUtil';
+import colDataStore from '../store/ColData';
+import {queryUpdateOfBg, setBadge} from './helper';
+import PageUtil from '../utils/PageUtil';
 
-const {BG_CMD_UPDATE_NUM, BG_CMD_UPDATE_FAV_BTN, CNT_CMD_UPDATE_CUR_FAV, STOR_KEY_COLS, STOR_KEY_UPDATE_NUM} = Constant;
+const {BG_CMD_UPDATE_NUM, BG_CMD_UPDATE_FAV_BTN, CNT_CMD_UPDATE_CUR_FAV} = Constant;
 /**
  * 查询是否有更新
  */
+let isQuery = false;
 let allQuery = function () {
-    let keys = Object.keys(_createQueryObj);
-    let firstQuery = _createQueryObj[keys[0]](), nextQuery = firstQuery;
-    //创建查询链
-    for (let i = 1, len = keys.length; i < len; i++) {
-        nextQuery = nextQuery.afterStore(_createQueryObj[keys[i]]());
-    }
-    allQuery = function () {
-        ColUtil.setBadge('....', 'blue'); //提示正在查询中
-        firstQuery();
+    allQuery = async function () {
+        setBadge('....', 'blue'); //提示正在查询中
+        isQuery = true;
+        for(let queryObj of queryObjArr){
+            const {site,type,resolve} = queryObj;
+            await queryUpdateOfBg(site,type,resolve);
+        }
+        isQuery = false;
+        setBadge(colDataStore.updateNum);
         setTimeout(allQuery, 1000 * 60 * 10);
     };
-    allQuery();
+    setTimeout(allQuery,1000 * 10);
 };
 
-updateBadge(allQuery);
+allQuery();
 
 //监听消息
 chrome.runtime.onMessage.addListener(function (msgArr, msgSenderObj, resSend) {
     switch (msgArr[0]) {
         case BG_CMD_UPDATE_NUM:
-            updateBadge();
+            colDataStore.loadCols();
             break;
         case BG_CMD_UPDATE_FAV_BTN:
             TabUtil.sendToAllTabs([CNT_CMD_UPDATE_CUR_FAV]);
@@ -46,17 +48,16 @@ chrome.notifications.onClicked.addListener(function (url) {
 
 chrome.notifications.onButtonClicked.addListener(function (url, btnIndex) {
     let updateToNews = async function () {
-        let [allCols, updateNum] = await StoreUtil.load([STOR_KEY_COLS, STOR_KEY_UPDATE_NUM]);
+        let allCols  = colDataStore.allCols;
         for (let len = allCols.length; --len;) {
             let favItem = allCols[len];
             let cols = favItem.cols;
             for (let len2 = cols.length; len2--;) {
                 let colItem = cols[len2];
-                let url2 = ColUtil.formatHref(colItem.url, favItem.baseUrl);
+                let url2 = PageUtil.formatHref(colItem.url, favItem.baseUrl);
                 if (url === url2) {
                     colItem.isUpdate = false;
-                    await StoreUtil.save({[STOR_KEY_COLS]: allCols, [STOR_KEY_UPDATE_NUM]: --updateNum});
-                    await updateBadge();
+                    colDataStore.setAllCols(allCols);
                     return;
                 }
             }
@@ -76,9 +77,6 @@ chrome.notifications.onButtonClicked.addListener(function (url, btnIndex) {
 /**
  * 更新徽章数
  */
-async function updateBadge(callback) {
-    let updateNum = await StoreUtil.load(STOR_KEY_UPDATE_NUM);
-    updateNum = updateNum ? updateNum : 0;
-    ColUtil.setBadge(updateNum);
-    if (callback) callback();
-}
+colDataStore.subUpdateNum(updateNum => {
+    if(!isQuery) setBadge(updateNum)
+});

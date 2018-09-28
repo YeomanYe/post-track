@@ -4,7 +4,7 @@ export default class ArrayUtil{
      * @param arr
      * @param strs string/object
      */
-    static arrInStr(arr, strs) {
+    static getIndexInStr(arr, strs) {
         let flag;
         for (let i = 0, len = arr.length; i < len; i++) {
             let obj = arr[i];
@@ -31,7 +31,7 @@ export default class ArrayUtil{
      * @param arr
      * @param strs string/object
      */
-    static arrEqStr(arr, strs) {
+    static getIndexEqStr(arr, strs) {
         let flag;
         for (let i = 0, len = arr.length; i < len; i++) {
             let obj = arr[i];
@@ -51,5 +51,32 @@ export default class ArrayUtil{
             }
         }
         return -1;
+    }
+
+    /**
+     * 通过对象获取数组中值相同的对象
+     * @param arr
+     * @param strs
+     * @returns {*}
+     */
+    static getItemEqStr(arr,strs){
+        let flag;
+        for (let i = 0, len = arr.length; i < len; i++) {
+            let obj = arr[i];
+            flag = true;
+            if (typeof strs === 'object') {
+                let keys = Object.keys(strs);
+                //为数组的情况
+                for (let j = 0, len2 = keys.length; j < len2; j++) {
+                    if (strs[keys[j]] !== obj[keys[j]]) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) return arr[i];
+            } else if (strs === obj) {
+                return arr[i];
+            }
+        }
     }
 }

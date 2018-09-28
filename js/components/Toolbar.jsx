@@ -1,15 +1,16 @@
 //@flow
 import React, {Component} from 'react';
-import Event from './Event';
 import TabUtil from '../utils/TabUtil';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
 import ArrayUtil from '../utils/ArrayUtil';
+import {observer,inject} from 'mobx-react';
 
 type State = {
     isCol: boolean
 }
 const {CNT_CMD_TOGGLE_CUR_COL} = Constant;
+@observer
 export default class Toolbar extends Component<any, State> {
     constructor(props: any) {
         super(props);
@@ -19,23 +20,28 @@ export default class Toolbar extends Component<any, State> {
         }
     }
 
-    componentWillReceiveProps(nextProps: Object) {
-        let self = this;
+    setIcon(props){
         TabUtil.getCurTab(tab => {
-            let index = ArrayUtil.arrEqStr(nextProps.colListDatas,{url:tab.url});
+            let index = ArrayUtil.getIndexEqStr(props.colDataStore.displayCols,{url:tab.url});
             let isCol = true;
             if(index < 0) isCol = false;
-            self.setState({isCol});
+            this.setState({isCol});
         });
     }
 
+    componentWillMount() {
+        this.setIcon(this.props);
+    }
+
     toggleCol(){
+        //发送消息给tab页用于取消收藏或收藏
         TabUtil.sendToCurTab([CNT_CMD_TOGGLE_CUR_COL],this.handlerResData);
     }
 
     handlerResData(data: any){
         if(data) this.setState(data);
-        Event.emit(Event.TYPE.RELOAD_COL);
+        this.props.colDataStore.loadCols();
+        // Event.emit(Event.TYPE.RELOAD_COL);
     }
 
     render() {

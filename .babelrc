@@ -1,10 +1,13 @@
 {
   "presets": [
+    "react",
     "es2015",
-    "react"
+    "stage-0"
   ],
   "plugins": [
-    "transform-flow-strip-types"
+    "transform-decorators-legacy",
+    "transform-flow-strip-types",
+    "transform-regenerator"
   ],
   "retainLines": true
 }

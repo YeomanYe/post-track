@@ -1,22 +1,10 @@
 import Constant from '../../config/Constant';
-import {toggleCol} from '../helper';
-import ColUtil from '../../utils/ColUtil';
 
-const {SITE_CSDN,TYPE_ISSUE,CUR_HREF} = Constant;
+const {CUR_HREF} = Constant;
 
 export default function(curHref){
     if(curHref.search(/https:\/\/ask.csdn.net\/questions\/[\d]+/) < 0)return;
-    console.log(SITE_CSDN);
-    window._toggleCurCol = toggleColHandlerCSDN;
-    updateCSDN();
-}
-
-function toggleColHandlerCSDN(resSend) {
-    ColUtil.getCols(SITE_CSDN,TYPE_ISSUE,toggleCol(getCurInfoCSDN,resSend));
-}
-
-function updateCSDN() {
-    ColUtil.getCols(SITE_CSDN,TYPE_ISSUE,ColUtil.updatePageCol(getCurInfoCSDN));
+    window.getCurInfo = getCurInfoCSDN;
 }
 
 function getCurInfoCSDN() {

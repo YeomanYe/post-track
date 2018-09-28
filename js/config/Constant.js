@@ -10,7 +10,6 @@ export default {
     CNT_CMD_TOGGLE_CUR_COL: 'toggleCurCol',//切换收藏
 
     STOR_KEY_COLS: 'allCols',
-    STOR_KEY_UPDATE_NUM: 'updateNum',
     STOR_KEY_IS_CLOSE_TIPS: 'isCloseTips',
 
     MSG_ADD_COL_SUC: '收藏成功',

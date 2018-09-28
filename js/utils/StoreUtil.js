@@ -2,7 +2,7 @@ const Promise = require('bluebird');
 let storLocal = chrome.storage.local;
 
 export default class LocalStore{
-    static async save(key,val){
+    static save(key,val){
         return new Promise((resolve,reject) => {
             let storObj;
             if(typeof key === 'string'){
@@ -15,7 +15,7 @@ export default class LocalStore{
             });
         });
     }
-    static async load(keys) {
+    static load(keys) {
         return new Promise((resolve,reject) => {
             storLocal.get(keys,(resObj) => {
                 let ret;

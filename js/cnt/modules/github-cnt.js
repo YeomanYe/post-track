@@ -1,21 +1,10 @@
 import Constant from '../../config/Constant';
-import {toggleCol} from '../helper';
-import ColUtil from '../../utils/ColUtil';
-const {SITE_GITHUB,TYPE_ISSUE,CUR_HREF} = Constant;
+
+const {CUR_HREF} = Constant;
 
 export default function(curHref){
     if(curHref.search(/https:\/\/github.com\/.*\/issues\/[\d]+/) < 0)return;
-    console.log(SITE_GITHUB);
-    window._toggleCurCol = toggleColHandlerGithub;
-    updateGithub();
-}
-
-function toggleColHandlerGithub(resSend) {
-    ColUtil.getCols(SITE_GITHUB,TYPE_ISSUE,toggleCol(getCurInfoGithub,resSend));
-}
-
-function updateGithub() {
-    ColUtil.getCols(SITE_GITHUB,TYPE_ISSUE,ColUtil.updatePageCol(getCurInfoGithub));
+    window.getCurInfo = getCurInfoGithub;
 }
 
 function getCurInfoGithub() {
