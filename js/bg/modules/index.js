@@ -1,13 +1,13 @@
-import createCSDNQuery from './csdn-bg';
-import createGithubQuery from './github-bg';
-import createSegmentfaultQuery from './segmentfault-bg';
-import createStackoverflowQuery from './stackoverflow-bg';
-import createZhihuQuery from './zhihu-bg';
+import csdnArr from './csdn-bg';
+import githubArr from './github-bg';
+import segmentFaultArr from './segmentfault-bg';
+import stackOverflowArr from './stackoverflow-bg';
+import zhihuArr from './zhihu-bg';
 
-export default {
-    createCSDNQuery,
-    createGithubQuery,
-    createSegmentfaultQuery,
-    createStackoverflowQuery,
-    createZhihuQuery
-}
+export default [].concat(
+    csdnArr,
+    githubArr,
+    segmentFaultArr,
+    stackOverflowArr,
+    zhihuArr
+);

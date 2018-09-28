@@ -9,8 +9,8 @@ const fs = require('fs');
 module.exports = {
     entry: {
         popup: ['babel-polyfill', './js/App.js'],
-        background: ['babel-polyfill', './js/bg/background.js'],
-        cnt: ['babel-polyfill', './js/cnt/content.js'],
+        background: ['babel-polyfill', './js/bg/index.js'],
+        cnt: ['babel-polyfill', './js/cnt/index.js'],
     },
     output: {
         path: path.resolve(__dirname, './build'),

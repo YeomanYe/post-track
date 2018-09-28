@@ -12,7 +12,7 @@ type Props = {
 
 }
 
-let {SHOW_SETTING,STOR_KEY_COLS,STOR_KEY_UPDATE_NUM} = Constant;
+let {SHOW_SETTING,STOR_KEY_COLS} = Constant;
 @observer
 export default class SettingList extends Component<Props,State> {
 
@@ -48,9 +48,7 @@ function onFileChange(e,callback){
             reader = new FileReader(); //new一个FileReader实例
         reader.onload = async function () {
             let data = JSON.parse(this.result);
-            // await StoreUtil.save(data);
             if(callback) callback(data.allCols);
-            // Event.emit(Event.TYPE.RELOAD_COL);
         };
         reader.readAsText(file);
     }
@@ -58,8 +56,8 @@ function onFileChange(e,callback){
 }
 
 async function exportFile(){
-    let [allCols,updateNum] = await StoreUtil.load([STOR_KEY_COLS,STOR_KEY_UPDATE_NUM]);
-    let blob = new Blob([JSON.stringify({allCols,updateNum})], {
+    let allCols = await StoreUtil.load(STOR_KEY_COLS);
+    let blob = new Blob([JSON.stringify({allCols})], {
         type: 'text/plain;charset=utf-8'
     });
     FileSaver.saveAs(blob, 'PostTrack.json');

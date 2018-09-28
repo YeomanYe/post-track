@@ -4,7 +4,7 @@ import TabUtil from '../utils/TabUtil';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
 import ArrayUtil from '../utils/ArrayUtil';
-import {observer} from 'mobx-react';
+import {observer,inject} from 'mobx-react';
 
 type State = {
     isCol: boolean

@@ -1,18 +1,25 @@
-import {action,toJS,reaction, computed, observable} from 'mobx';
-import ColUtil from '../utils/ColUtil';
+import {action, computed, observable, reaction, toJS} from 'mobx';
 import ArrayUtil from '../utils/ArrayUtil';
 import StoreUtil from '../utils/StoreUtil';
 import TabUtil from '../utils/TabUtil';
 import Constant from '../config/Constant';
+import PageUtil from '../utils/PageUtil';
 
-const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS} = Constant;
+const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS,BG_CMD_UPDATE_NUM} = Constant;
 class ColData {
     @observable allCols = [];
 
-    subscribeCols(){
+    subCols(callback){
         reaction(() => toJS(this.allCols),
             allCols => {
-                StoreUtil.save(STOR_KEY_COLS,allCols);
+                if(callback) callback(allCols);
+            });
+    }
+
+    subUpdateNum(callback){
+        reaction(() => toJS(this.updateNum),
+            updateNum => {
+                if(callback) callback(updateNum);
             });
     }
 
@@ -34,9 +41,8 @@ class ColData {
         let cols = ArrayUtil.getItemEqStr(this.allCols,{site,type}).cols;
         let index = ArrayUtil.getIndexEqStr(cols, {title});
         if (index < 0) return;
-        let col = cols.splice(index, 1)[0];
+        cols.splice(index, 1)[0];
         console.log('allCols',this.allCols);
-        await ColUtil.decUpdateNum(col);
         //从视图中删除
         TabUtil.sendToAllTabs([CNT_CMD_UPDATE_CUR_FAV]);
     }
@@ -54,14 +60,31 @@ class ColData {
                 let {title, url, isAccept, answerNum, isUpdate} = col;
                 return {
                     type, site, title, isAccept,icon, answerNum, isUpdate, origin, iconStyle, siteName,
-                    url: ColUtil.formatHref(url, baseUrl)
+                    url: PageUtil.formatHref(url, baseUrl)
                 };
             })];
         });
         return datas;
     }
+    @computed
+    get updateNum(){
+        let allCols = this.allCols;
+        let updateNum = 0;
+        allCols.forEach((item) => {
+            let {cols} = item;
+            updateNum += cols.filter((col) => col.isUpdate === true).length;
+        });
+        return updateNum;
+    }
 }
 const store = new ColData();
 store.loadCols();
-store.subscribeCols();
+store.subCols(allCols => StoreUtil.save(STOR_KEY_COLS,allCols));
+store.subUpdateNum(updateNum => {
+    try {
+        chrome.runtime.sendMessage(null, [BG_CMD_UPDATE_NUM]);
+    }catch (e) {
+        console.log('subUpdateNum',e);
+    }
+});
 export default store;

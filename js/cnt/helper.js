@@ -3,7 +3,7 @@ import ArrayUtil from '../utils/ArrayUtil';
 import Constant from '../config/Constant';
 import {showTips} from '../utils/UIUtil';
 import {getBaseStructByHref} from '../config/data-struct';
-import ColUtil from '../utils/ColUtil';
+import colDataStore from '../store/ColData';
 
 const {STOR_KEY_COLS,MSG_ADD_COL_SUC,MSG_DEL_COL_SUC} = Constant;
 /**
@@ -14,7 +14,7 @@ export async function toggleCol(resSend) {
     let obj = window.getCurInfo();
     let {baseUrl} = getBaseStructByHref();
     if(!baseUrl) return showTips('不支持当前页面');
-    let {cols,allCols} = await ColUtil.getColsByHref();
+    let {cols,allCols} = await getColsByHref();
     let index = ArrayUtil.getIndexEqStr(cols,{title:obj.title});
     let showMsg,isCol = false;
     if(index >= 0) {
@@ -28,16 +28,16 @@ export async function toggleCol(resSend) {
     }
     showTips(showMsg);
     resSend({isCol});
-    StoreUtil.save(STOR_KEY_COLS,allCols);
+    await StoreUtil.save(STOR_KEY_COLS,allCols);
     console.log('allCols',allCols);
 }
 
 /**
- * 更新阅读记录
+ * 更新浏览记录
  */
 export async function updatePageCol() {
     let curInfo = window.getCurInfo();
-    let {cols,allCols} = await ColUtil.getColsByHref();
+    let {cols,allCols} = await getColsByHref();
     if(!cols) return;
     //解析当前页面并更新阅读记录
     let index = ArrayUtil.getIndexEqStr(cols, {title: curInfo.title});
@@ -45,7 +45,24 @@ export async function updatePageCol() {
     //更新图标
     let curItem = cols[index];
     curItem.timestamp = Date.now();
+    curItem.isUpdate = false;
     //更新，当前更新的数量
-    await ColUtil.decUpdateNum(curItem);
-    StoreUtil.save('allCols', allCols);
+    colDataStore.setAllCols(allCols);
+}
+
+async function getColsByHref(){
+    let defaultStore = getBaseStructByHref();
+    let {site,type} = defaultStore;
+    let allCols = await StoreUtil.load(STOR_KEY_COLS);
+    allCols = allCols ? allCols : [];
+    let index = -1;
+    if (allCols.length) index = ArrayUtil.getIndexEqStr(allCols, {site,type});
+    let cols = [];
+    if (index < 0) {
+        defaultStore.cols = cols;
+        allCols.unshift(defaultStore);
+    } else {
+        cols = allCols[index].cols;
+    }
+    return {cols,allCols};
 }

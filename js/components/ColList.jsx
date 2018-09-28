@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
-import {observer} from 'mobx-react';
+import {observer,inject} from 'mobx-react';
 
 type State = {
     isShow: boolean
@@ -31,7 +31,7 @@ export default class ColList extends Component<any, State> {
                     </div>
                     <div className="right">
                         <p>是否解决:{data.isAccept ? '是' : '否'}</p>
-                        <p>回答数量:{data.answerNum}</p>
+                        <p>跟帖数量:{data.answerNum}</p>
                         <p><span onClick={()=>colDataStore.delCol(data)} className="del-col">删除</span></p>
                     </div>
                 </li>
