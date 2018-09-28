@@ -1,10 +1,11 @@
 //@flow
 import React, {Component} from 'react';
-import {observer} from 'mobx-react';
+import {observer,inject} from 'mobx-react';
 import Constant from '../config/Constant';
 
 const {SHOW_COL, SHOW_SETTING} = Constant;
 
+@inject('showStore')
 @observer
 export default class TogglePanel extends Component{
     render() {

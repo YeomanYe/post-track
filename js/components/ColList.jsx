@@ -8,7 +8,7 @@ type State = {
 }
 
 let {SHOW_COL} = Constant;
-
+@inject('colDataStore', 'showStore')
 @observer
 export default class ColList extends Component<any, State> {
 

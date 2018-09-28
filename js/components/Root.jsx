@@ -1,8 +1,8 @@
 import React from 'react';
-import ColList from '../containers/ColListContainer';
-import SettingList from '../containers/SettingListContainer';
-import TogglePanel from '../containers/TogglePanelContainer';
-import Toolbar from '../containers/ToolbarContainer';
+import ColList from './ColList';
+import SettingList from './SettingList';
+import TogglePanel from './TogglePanel';
+import Toolbar from './Toolbar';
 import DevTools from 'mobx-react-devtools';
 
 const Root = () => (

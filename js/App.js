@@ -1,12 +1,15 @@
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
+import {Provider} from 'mobx-react';
 import Root from './components/Root';
-import 'babel-polyfill';
+import store from './store';
 import scss from '../css/popup.scss';
 
 const renderDom = Component => {
     render(
-        <Component />,
+        <Provider {...store}>
+            <Component/>
+        </Provider>,
         window.document.getElementById('app')
     );
 };

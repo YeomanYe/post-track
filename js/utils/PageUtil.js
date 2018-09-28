@@ -10,15 +10,6 @@ export default class PageUtil{
                 self[key] = proto[key].bind(self);
         }
     }
-    /**
-     * 绑定mobx store
-     * @param Comp
-     * @param storeProp
-     * @returns {function(*): *}
-     */
-    static bindMobx(Comp,storeProp){
-        return props => <Comp {...props} {...storeProp}/>
-    }
 
     /**
      * 格式化href

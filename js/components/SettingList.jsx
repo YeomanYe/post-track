@@ -3,7 +3,7 @@ import * as FileSaver from 'file-saver';
 import PageUtil from '../utils/PageUtil';
 import Constant from '../config/Constant';
 import StoreUtil from '../utils/StoreUtil';
-import {observer} from 'mobx-react';
+import {observer,inject} from 'mobx-react';
 
 type State = {
     isShow: boolean
@@ -13,6 +13,7 @@ type Props = {
 }
 
 let {SHOW_SETTING,STOR_KEY_COLS} = Constant;
+@inject('colDataStore', 'showStore')
 @observer
 export default class SettingList extends Component<Props,State> {
 
