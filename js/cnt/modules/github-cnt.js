@@ -1,10 +1,17 @@
 import Constant from '../../config/Constant';
+import structObjArr from '../../config/data-struct/github';
+import {getTypeByHref} from '../helper';
 
-const {CUR_HREF} = Constant;
+const {CUR_HREF,TYPE_ISSUE} = Constant;
 
-export default function(curHref){
-    if(curHref.search(/https:\/\/github.com\/.*\/issues\/[\d]+/) < 0)return;
-    window.getCurInfo = getCurInfoGithub;
+export default function(){
+    let type = getTypeByHref(structObjArr);
+    let getCurInfo;
+    switch (type){
+        case TYPE_ISSUE: getCurInfo = getCurInfoGithub;break;
+        default:return;
+    }
+    window.getCurInfo = getCurInfo;
 }
 
 function getCurInfoGithub() {

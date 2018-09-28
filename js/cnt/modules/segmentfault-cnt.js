@@ -1,11 +1,17 @@
 import Constant from '../../config/Constant';
+import {getTypeByHref} from '../helper';
+import structObjArr from '../../config/data-struct/segmentfault';
+const {CUR_HREF,TYPE_ISSUE} = Constant;
 
-const {CUR_HREF} = Constant;
 
-
-export default function (curHref) {
-    if(curHref.search(/segmentfault\.com\/q\//) < 0)return;
-    window.getCurInfo = getCurInfoSf;
+export default function () {
+    let type = getTypeByHref(structObjArr);
+    let getCurInfo;
+    switch (type){
+        case TYPE_ISSUE: getCurInfo = getCurInfoSf;break;
+        default:return;
+    }
+    window.getCurInfo = getCurInfo;
 }
 
 

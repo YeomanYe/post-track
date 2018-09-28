@@ -1,10 +1,16 @@
 import Constant from '../../config/Constant';
+import {getTypeByHref} from '../helper';
+import structObjArr from '../../config/data-struct/stackoverflow';
+const {CUR_HREF,TYPE_ISSUE} = Constant;
 
-const {CUR_HREF} = Constant;
-
-export default function(curHref){
-    if(curHref.search(/https:\/\/stackoverflow.com\/questions\/[\d]+\/.+/) < 0)return;
-    window.getCurInfo = getCurInfoStackOverflow;
+export default function(){
+    let type = getTypeByHref(structObjArr);
+    let getCurInfo;
+    switch (type){
+        case TYPE_ISSUE: getCurInfo = getCurInfoStackOverflow;break;
+        default:return;
+    }
+    window.getCurInfo = getCurInfo;
 }
 
 function getCurInfoStackOverflow() {

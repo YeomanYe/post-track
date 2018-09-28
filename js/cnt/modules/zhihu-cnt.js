@@ -1,16 +1,23 @@
 import Constant from '../../config/Constant';
+import structObjArr from '../../config/data-struct/zhihu';
+import {getTypeByHref} from '../helper';
 
-const {CUR_HREF} = Constant;
+const {CUR_HREF,TYPE_ISSUE} = Constant;
 
-export default function(curHref){
-    if(curHref.search(/zhihu.com\/question\/[\d]+/) < 0)return;
-    window.getCurInfo = getCurInfoZhihu;
+export default function(){
+    let type = getTypeByHref(structObjArr);
+    let getCurInfo;
+    switch (type){
+        case TYPE_ISSUE: getCurInfo = getCurInfoZhihu;break;
+        default:return;
+    }
+    window.getCurInfo = getCurInfo;
 }
 
 function getCurInfoZhihu() {
     let title = $('.QuestionHeader-title').text().trim();
     if(!title) return ;
-    let answerNum = parseInt($('.List-headerText').text());
+    let answerNum = parseInt($('.QuestionMainAction').text().split(' ')[1]);
     let isAccept = false;
     return {
         title:title,

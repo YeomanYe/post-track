@@ -5,7 +5,7 @@ import {showTips} from '../utils/DialogUtil';
 import {getBaseStructByHref} from '../config/data-struct';
 import colDataStore from '../store/ColData';
 
-const {STOR_KEY_COLS,MSG_ADD_COL_SUC,MSG_DEL_COL_SUC} = Constant;
+const {STOR_KEY_COLS,MSG_ADD_COL_SUC,MSG_DEL_COL_SUC,CUR_HREF} = Constant;
 /**
  * 收藏或取消收藏
  * accessIndex是否访问目录页获取信息
@@ -23,6 +23,7 @@ export async function toggleCol(resSend) {
     }else{
         obj.url = obj.url.replace(baseUrl,'');
         showMsg = MSG_ADD_COL_SUC;
+        obj.answerNum = parseInt(obj.answerNum,10);
         cols.push(obj);
         isCol = true;
     }
@@ -65,4 +66,12 @@ async function getColsByHref(){
         cols = allCols[index].cols;
     }
     return {cols,allCols};
+}
+
+export function getTypeByHref(structObjArr) {
+    for(let structObj of structObjArr){
+        if(CUR_HREF.search(structObj.regExp) >= 0){
+            return structObj.type;
+        }
+    }
 }
