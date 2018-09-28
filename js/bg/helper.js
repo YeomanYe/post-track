@@ -66,6 +66,7 @@ export async function queryUpdateOfBg(site,type,callback){
                 complete:resolve,
             });
         }
+        if(cols.length === 0) resolve();
     });
 }
 /**
