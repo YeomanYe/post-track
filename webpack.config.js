@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const path = require('path');
 const fs = require('fs');
 
-
+const NODE_ENV = process.env.NODE_ENV;
 module.exports = {
     entry: {
         popup: ['babel-polyfill', './js/App.js'],
@@ -52,30 +52,22 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx']
     },
-    devtool: '#eval-source-map',
+    devtool: NODE_ENV === 'production' ? false : '#eval-source-map',
     plugins: [
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css'
         }),
-    ]
-};
-
-if (process.env.NODE_ENV === 'production') {
-    // module.exports.devtool = '#source-map'
-    module.exports.devtool = false;
-    // http://vue-loader.vuejs.org/en/workflow/production.html
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
         new UglifyJSPlugin({
-            sourceMap: false
+            sourceMap:NODE_ENV !== 'production'
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV:NODE_ENV === 'production' ? '"production"' : '"development"'
+            }
         }),
         new CopyWebpackPlugin([
             {
@@ -109,5 +101,5 @@ if (process.env.NODE_ENV === 'production') {
                 ignore: ['.*']
             },
         ])
-    ])
-}
+    ]
+};

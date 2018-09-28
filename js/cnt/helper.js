@@ -1,7 +1,7 @@
 import StoreUtil from '../utils/StoreUtil';
 import ArrayUtil from '../utils/ArrayUtil';
 import Constant from '../config/Constant';
-import {showTips} from '../utils/UIUtil';
+import {showTips} from '../utils/DialogUtil';
 import {getBaseStructByHref} from '../config/data-struct';
 import colDataStore from '../store/ColData';
 
@@ -36,9 +36,9 @@ export async function toggleCol(resSend) {
  * 更新浏览记录
  */
 export async function updatePageCol() {
+    if(!window.getCurInfo) return;
     let curInfo = window.getCurInfo();
     let {cols,allCols} = await getColsByHref();
-    if(!cols) return;
     //解析当前页面并更新阅读记录
     let index = ArrayUtil.getIndexEqStr(cols, {title: curInfo.title});
     if (index < 0) return;
