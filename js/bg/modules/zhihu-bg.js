@@ -3,7 +3,6 @@ import Constant from '../../config/Constant';
 const {SITE_ZHIHU,TYPE_ISSUE} = Constant;
 
 function resolve(data) {
-    console.log(data);
     let $html = $(data);
     let title = $html.find('.QuestionHeader-title').text().trim();
     if(!title) return ;

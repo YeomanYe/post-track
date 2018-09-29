@@ -38,15 +38,16 @@ export async function toggleCol(resSend) {
  */
 export async function updatePageCol() {
     if(!window.getCurInfo) return;
-    let curInfo = window.getCurInfo();
+    let {title,answerNum} = window.getCurInfo();
     let {cols,allCols} = await getColsByHref();
     //解析当前页面并更新阅读记录
-    let index = ArrayUtil.getIndexEqStr(cols, {title: curInfo.title});
+    let index = ArrayUtil.getIndexEqStr(cols, {title});
     if (index < 0) return;
     //更新图标
     let curItem = cols[index];
     curItem.timestamp = Date.now();
     curItem.isUpdate = false;
+    curItem.answerNum = parseInt(answerNum,10);
     //更新，当前更新的数量
     colDataStore.setAllCols(allCols);
 }

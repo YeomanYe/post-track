@@ -7,7 +7,7 @@ type State = {
     isShow: boolean
 }
 
-let {SHOW_COL} = Constant;
+let {SHOW_COL,TYPE_ISSUE} = Constant;
 @inject('colDataStore', 'showStore')
 @observer
 export default class ColList extends Component<any, State> {
@@ -30,8 +30,8 @@ export default class ColList extends Component<any, State> {
                         </a>
                     </div>
                     <div className="right">
-                        <p>是否解决:{data.isAccept ? '是' : '否'}</p>
-                        <p>跟帖数量:{data.answerNum}</p>
+                        <p style={{display: data.type !== TYPE_ISSUE ? 'none' : 'block'}}>是否解决:{data.isAccept ? '是' : '否'}</p>
+                        <p style={data.type !== TYPE_ISSUE ? {margin:'10px 0 20px'} : {}}>跟帖数量:{data.answerNum}</p>
                         <p><span onClick={()=>colDataStore.delCol(data)} className="del-col">删除</span></p>
                     </div>
                 </li>

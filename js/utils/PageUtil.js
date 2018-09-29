@@ -32,4 +32,14 @@ export default class PageUtil{
         }
         return retHref;
     }
+
+    /**
+     * 获取纯粹的url，去除?内容，以及#内容
+     * @param url
+     * @returns {*}
+     */
+    static getPureUrl(url){
+        let retUrl = url.split('?')[0].split('#')[0];
+        return retUrl;
+    }
 }

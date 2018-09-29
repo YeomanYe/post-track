@@ -34,7 +34,7 @@ export async function queryUpdateOfBg(site,type,callback){
                 try {
                     let resObj = callback(data);
                     let {answerNum,isAccept} = resObj;
-                    if (col.isAccept !== isAccept || col.answerNum !== answerNum) {
+                    if (col.isAccept != isAccept || col.answerNum !== answerNum) {
                         let isCloseTips = await StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
                         if (!isCloseTips) {
                             //生成提示
@@ -57,14 +57,25 @@ export async function queryUpdateOfBg(site,type,callback){
                 }
             };
         };
+        let query = (col,callback) => {
+            let data,url = PageUtil.formatHref(col.url, baseUrl),type = 'GET';
+            if(col.queryInfo){
+                data = col.queryInfo.param;
+                url = col.queryInfo.url;
+                type = col.queryInfo.type;
+            }
+            $.ajax(url, {
+                success: callback,
+                error:err => console.log(siteName+' ajax',err),
+                complete:resolve,
+                data,
+                type
+            });
+        };
         for (let i = 0, len = cols.length; i < len; i++) {
             let col = cols[i];
             let url = col.url;
-            $.ajax(PageUtil.formatHref(url, baseUrl), {
-                success: createSucCall(col),
-                error:err => console.log('ajax',err),
-                complete:resolve,
-            });
+            query(col,createSucCall(col));
         }
         if(cols.length === 0) resolve();
     });

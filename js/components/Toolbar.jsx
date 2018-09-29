@@ -23,7 +23,7 @@ export default class Toolbar extends Component<any, State> {
 
     setIcon(props) {
         TabUtil.getCurTab(tab => {
-            let index = ArrayUtil.getIndexEqStr(props.colDataStore.displayCols, {url: tab.url});
+            let index = ArrayUtil.getIndexEqStr(props.colDataStore.displayCols, {url: PageUtil.getPureUrl(tab.url)});
             let isCol = true;
             if (index < 0) isCol = false;
             this.setState({isCol});
