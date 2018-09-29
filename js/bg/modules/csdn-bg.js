@@ -1,5 +1,5 @@
 import Constant from '../../config/Constant';
-
+import $ from 'jquery';
 const {SITE_CSDN, TYPE_ISSUE} = Constant;
 
 

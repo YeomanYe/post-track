@@ -55,7 +55,7 @@ export default class Toolbar extends Component<any, State> {
                 </div>
                 <div className="bd">
                     <img onClick={this.toggleCol}
-                         src={isCol ? '../../images/star-yellow.png' : '../../images/star-white.png'} alt=""/>
+                         src={isCol ? require('../../images/star-yellow.png') : require('../../images/star-white.png')} alt=""/>
                 </div>
             </header>
         );

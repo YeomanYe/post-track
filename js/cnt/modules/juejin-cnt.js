@@ -1,6 +1,7 @@
 import Constant from '../../config/Constant';
 import structObjArr from '../../config/data-struct/juejin';
 import {getTypeByHref} from '../helper';
+import $ from 'jquery';
 
 const {TYPE_TOPIC,CUR_HREF} = Constant;
 export default function(){

@@ -6,8 +6,10 @@ import zhihuCntResolve from './modules/zhihu-cnt';
 import juejinCntResolve from './modules/juejin-cnt';
 import Constant from '../config/Constant';
 import {toggleCol, updatePageCol} from './helper';
+import $ from 'jquery';
 
 const {CNT_CMD_TOGGLE_CUR_COL,CNT_CMD_UPDATE_CUR_FAV} = Constant;
+window.$ = window.jQuery = $;
 $(function () {
     csdnCntResolve();
     githubCntResolve();

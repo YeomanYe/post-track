@@ -4,6 +4,7 @@ import colDataStore from '../store/ColData';
 import ArrayUtil from '../utils/ArrayUtil';
 import Constant from '../config/Constant';
 import PageUtil from '../utils/PageUtil';
+import $ from 'jquery-ajax';
 
 let cGetUrl = chrome.runtime.getURL;
 const {STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS} = Constant;
@@ -34,11 +35,12 @@ export async function queryUpdateOfBg(site,type,callback){
                 try {
                     let resObj = callback(data);
                     let {answerNum,isAccept} = resObj;
+                    //不能使用全等，对于没有设置isAccept会有问题
                     if (col.isAccept != isAccept || col.answerNum !== answerNum) {
                         let isCloseTips = await StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
                         if (!isCloseTips) {
                             //生成提示
-                            if (col.isAccept === isAccept) createNotify(siteName + ' 【更新】', icon, col.title, PageUtil.formatHref(col.url, baseUrl));
+                            if (col.isAccept == isAccept) createNotify(siteName + ' 【更新】', icon, col.title, PageUtil.formatHref(col.url, baseUrl));
                             else {
                                 createNotify(siteName + ' 【采纳】', icon, col.title, PageUtil.formatHref(col.url, baseUrl));
                             }
@@ -50,7 +52,7 @@ export async function queryUpdateOfBg(site,type,callback){
                         if (!col.isUpdate) {
                             col.isUpdate = true;
                         }
-                        colDataStore.setAllCols(allCols);
+                        await StoreUtil.save(STOR_KEY_COLS,allCols);
                     }
                 } catch (e) {
                     console.log(e);

@@ -1,4 +1,5 @@
 import Constant from '../../config/Constant';
+import $ from 'jquery';
 
 const {SITE_GITHUB,TYPE_ISSUE} = Constant;
 

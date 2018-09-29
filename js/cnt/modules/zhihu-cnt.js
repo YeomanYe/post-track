@@ -1,6 +1,7 @@
 import Constant from '../../config/Constant';
 import structObjArr from '../../config/data-struct/zhihu';
 import {getTypeByHref} from '../helper';
+import $ from 'jquery';
 
 const {CUR_HREF,TYPE_ISSUE} = Constant;
 

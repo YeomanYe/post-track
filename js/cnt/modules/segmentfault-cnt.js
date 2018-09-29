@@ -2,6 +2,7 @@ import Constant from '../../config/Constant';
 import {getTypeByHref} from '../helper';
 import structObjArr from '../../config/data-struct/segmentfault';
 const {CUR_HREF,TYPE_ISSUE} = Constant;
+import $ from 'jquery';
 
 
 export default function () {

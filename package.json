@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack-watch": "webpack --watch",
-    "start": "rm -rf build && cross-env NODE_ENV=development webpack --progress --colors --watch",
-    "build": "rm -rf build && rm -rf build.zip && cross-env NODE_ENV=production webpack --progress --hide-modules && zip -r build.zip build"
+    "start": "npm run clean && cross-env NODE_ENV=development webpack --progress --colors --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --hide-modules && zip -r build.zip build",
+    "clean": "rm -rf build && rm -rf build.zip "
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,8 @@
     "file-saver": "^1.3.8",
     "flow": "^0.2.3",
     "html-webpack-plugin": "^3.2.0",
+    "jquery": "^3.3.1",
+    "jquery-ajax": "^2.1.4",
     "mobx": "^5.1.1",
     "mobx-react": "^5.2.8",
     "mobx-react-devtools": "^6.0.3",
@@ -47,7 +49,6 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "babel-preset-stage-1": "^6.24.1",
     "babel-register": "^6.26.0",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",

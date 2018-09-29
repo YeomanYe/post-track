@@ -1,4 +1,5 @@
 import Constant from '../../config/Constant';
+import $ from 'jquery';
 
 const {SITE_SEGMENT_FAULT,TYPE_ISSUE} = Constant;
 

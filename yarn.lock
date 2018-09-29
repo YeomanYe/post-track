@@ -3782,6 +3782,14 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
+jquery-ajax@^2.1.4:
+  version "2.1.4"
+  resolved "http://registry.npm.taobao.org/jquery-ajax/download/jquery-ajax-2.1.4.tgz#eb7bcc07b3d0f021b75e6029e886ac78ced67a36"
+
+jquery@^3.3.1:
+  version "3.3.1"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+
 js-base64@^2.1.8:
   version "2.4.9"
   resolved "http://registry.npm.taobao.org/js-base64/download/js-base64-2.4.9.tgz#748911fb04f48a60c4771b375cac45a80df11c03"
