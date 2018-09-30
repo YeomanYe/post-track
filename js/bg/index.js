@@ -19,6 +19,7 @@ let allQuery = function () {
             await queryUpdateOfBg(site,type,resolve);
         }
         isQuery = false;
+        // await colDataStore.loadCols();
         setBadge(colDataStore.updateNum);
         setTimeout(allQuery, 1000 * 60 * 10);
     };

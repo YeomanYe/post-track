@@ -24,6 +24,8 @@ export default {
     SITE_STACK_OVERFLOW: 'stackoverflow',
     SITE_ZHIHU: 'zhihu',
     SITE_JUEJIN:'juejin',
+    SITE_TIEBA:'tieba',
+    SITE_WEIBO:'weibo',
 
     TIME_SHORT: 1000,
     TIME_LONG: 5 * 1000,

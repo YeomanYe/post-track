@@ -7,7 +7,7 @@ import PageUtil from '../utils/PageUtil';
 import $ from 'jquery-ajax';
 
 let cGetUrl = chrome.runtime.getURL;
-const {STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS} = Constant;
+const {STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS,TYPE_ISSUE} = Constant;
 
 function createNotify(title, iconUrl, message, newUrl) {
     var options = {
@@ -35,24 +35,27 @@ export async function queryUpdateOfBg(site,type,callback){
                 try {
                     let resObj = callback(data);
                     let {answerNum,isAccept} = resObj;
+                    answerNum = parseInt(answerNum,10);
+                    isAccept = !!isAccept;
                     //不能使用全等，对于没有设置isAccept会有问题
                     if (col.isAccept != isAccept || col.answerNum !== answerNum) {
                         let isCloseTips = await StoreUtil.load(STOR_KEY_IS_CLOSE_TIPS);
                         if (!isCloseTips) {
                             //生成提示
-                            if (col.isAccept == isAccept) createNotify(siteName + ' 【更新】', icon, col.title, PageUtil.formatHref(col.url, baseUrl));
+                            if (type !== TYPE_ISSUE || col.isAccept == isAccept) createNotify(siteName + ' 【更新】', icon, col.title, PageUtil.formatHref(col.url, baseUrl));
                             else {
                                 createNotify(siteName + ' 【采纳】', icon, col.title, PageUtil.formatHref(col.url, baseUrl));
                             }
                         }
 
-                        col.answerNum = parseInt(answerNum,10);
-                        col.isAccept = !!isAccept;
+                        col.answerNum = answerNum;
+                        col.isAccept = isAccept;
 
                         if (!col.isUpdate) {
                             col.isUpdate = true;
                         }
-                        await StoreUtil.save(STOR_KEY_COLS,allCols);
+                        colDataStore.setAllCols(allCols);
+                        resolve();
                     }
                 } catch (e) {
                     console.log(e);
@@ -60,19 +63,26 @@ export async function queryUpdateOfBg(site,type,callback){
             };
         };
         let query = (col,callback) => {
-            let data,url = PageUtil.formatHref(col.url, baseUrl),type = 'GET';
-            if(col.queryInfo){
-                data = col.queryInfo.param;
-                url = col.queryInfo.url;
-                type = col.queryInfo.type;
+            try{
+                let data,url = PageUtil.formatHref(col.url, baseUrl),type = 'GET';
+                if(col.queryInfo){
+                    data = col.queryInfo.param;
+                    url = col.queryInfo.url;
+                    type = col.queryInfo.type;
+                }
+                $.ajax(url, {
+                    success: callback,
+                    error:err => {
+                        console.log(siteName+' ajax err',err);
+                        resolve();
+                    },
+                    data,
+                    type
+                });
+            }catch(e){
+                console.warn('ajax error',e);
+                resolve();
             }
-            $.ajax(url, {
-                success: callback,
-                error:err => console.log(siteName+' ajax',err),
-                complete:resolve,
-                data,
-                type
-            });
         };
         for (let i = 0, len = cols.length; i < len; i++) {
             let col = cols[i];

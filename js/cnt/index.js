@@ -4,6 +4,9 @@ import segmentfaultCntResolve from './modules/segmentfault-cnt';
 import stackoverflowCntResolve from './modules/stackoverflow-cnt';
 import zhihuCntResolve from './modules/zhihu-cnt';
 import juejinCntResolve from './modules/juejin-cnt';
+import tiebaCntResolve from './modules/tieba-cnt';
+import weiboCntResolve from './modules/weibo-cnt';
+
 import Constant from '../config/Constant';
 import {toggleCol, updatePageCol} from './helper';
 import $ from 'jquery';
@@ -17,6 +20,8 @@ $(function () {
     stackoverflowCntResolve();
     zhihuCntResolve();
     juejinCntResolve();
+    tiebaCntResolve();
+    weiboCntResolve();
     init();
 });
 
