@@ -5,6 +5,7 @@ export default {
     TYPE_ARTICLE:'article',//文章
     TYPE_TOPIC:'topic', //话题
     TYPE_POST:'post', //帖子
+    TYPE_USER:'user',
 
     BG_CMD_UPDATE_NUM: 'updateNumChange',
     BG_CMD_UPDATE_FAV_BTN: 'updateFavBtn', //更新content页的favbtn图标
