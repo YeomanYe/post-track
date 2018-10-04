@@ -19,7 +19,7 @@ let allQuery = function () {
             await queryUpdateOfBg(site,type,resolve);
         }
         isQuery = false;
-        await colDataStore.loadCols(); //防止不重载
+        // await colDataStore.loadCols(); //防止不重载
         setBadge(colDataStore.updateNum);
         setTimeout(allQuery, 1000 * 60 * 10);
     };

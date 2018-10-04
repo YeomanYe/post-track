@@ -10,7 +10,7 @@ let cGetUrl = chrome.runtime.getURL;
 const {STOR_KEY_IS_CLOSE_TIPS,STOR_KEY_COLS,TYPE_ISSUE} = Constant;
 
 function createNotify(title, iconUrl, message, newUrl) {
-    var options = {
+    let options = {
         type: chrome.notifications.TemplateType.BASIC,
         title: title,
         iconUrl: iconUrl,
@@ -29,7 +29,7 @@ function createNotify(title, iconUrl, message, newUrl) {
 export async function queryUpdateOfBg(site,type,callback){
     const {baseUrl,siteName,icon} = getBaseStruct(site,type);
     let {cols,allCols} = await getCol(site,type);
-    return new Promise((resolve,reject)=>{
+    return new Promise((resolve)=>{
         let createSucCall = function (col) {
             return async function (data) {
                 try {
@@ -55,10 +55,11 @@ export async function queryUpdateOfBg(site,type,callback){
                             col.isUpdate = true;
                         }
                         colDataStore.setAllCols(allCols);
-                        resolve();
                     }
                 } catch (e) {
                     console.log(e);
+                } finally {
+                    resolve();
                 }
             };
         };
