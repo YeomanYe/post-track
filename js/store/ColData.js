@@ -5,7 +5,7 @@ import TabUtil from '../utils/TabUtil';
 import Constant from '../config/Constant';
 import PageUtil from '../utils/PageUtil';
 
-const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS,BG_CMD_UPDATE_NUM} = Constant;
+const {CNT_CMD_UPDATE_CUR_FAV,STOR_KEY_COLS,BG_CMD_UPDATE_NUM,TYPE_USER,TYPE_ISSUE,TYPE_TOPIC} = Constant;
 class ColData {
     @observable allCols = [];
 
@@ -58,8 +58,14 @@ class ColData {
             let iconStyle = {backgroundImage: `url('${icon}')`};
             datas = [...datas,...item.cols.map((col) => {
                 let {title, url, isAccept, answerNum, isUpdate} = col;
+                let numText;
+                switch (type){
+                    case TYPE_ISSUE:numText = '回答总数';break;
+                    case TYPE_USER:numText = '发帖总数';break;
+                    default: numText = '跟帖总数';break;
+                }
                 return {
-                    type, site, title, isAccept,icon, answerNum, isUpdate, origin, iconStyle, siteName,
+                    numText,type, site, title, isAccept,icon, answerNum, isUpdate, origin, iconStyle, siteName,
                     url: PageUtil.formatHref(url, baseUrl)
                 };
             })];

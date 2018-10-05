@@ -11,7 +11,7 @@ function resolve(data) {
 
 function resolveUser(data) {
     console.log('juejin user', data);
-    let userObj = data.d;
+    let userObj = JSON.parse(data).d;
     let answerNum = 0, title;
     for (let key in userObj) {
         if (userObj.hasOwnProperty(key)) {

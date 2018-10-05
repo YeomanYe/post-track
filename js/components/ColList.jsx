@@ -31,7 +31,7 @@ export default class ColList extends Component<any, State> {
                     </div>
                     <div className="right">
                         <p style={{display: data.type !== TYPE_ISSUE ? 'none' : 'block'}}>是否解决:{data.isAccept ? '是' : '否'}</p>
-                        <p style={data.type !== TYPE_ISSUE ? {margin:'10px 0 20px'} : {}}>跟帖数量:{data.answerNum}</p>
+                        <p style={data.type !== TYPE_ISSUE ? {margin:'10px 0 20px'} : {}}>{data.numText}:{data.answerNum}</p>
                         <p><span onClick={()=>colDataStore.delCol(data)} className="del-col">删除</span></p>
                     </div>
                 </li>
