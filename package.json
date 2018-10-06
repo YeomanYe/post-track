@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run clean && cross-env NODE_ENV=development webpack --progress --colors --watch",
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --hide-modules && zip -r build.zip build",
+    "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --hide-modules && zip -r build.zip build && zip -r 360build.zip 360build",
     "clean": "rm -rf build && rm -rf build.zip "
   },
   "repository": {

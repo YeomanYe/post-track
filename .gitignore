@@ -1,7 +1,6 @@
-bower_components/
+360build/*.crx
 node_modules/
 *.pem
-dist/
 .idea
 *.zip
 
