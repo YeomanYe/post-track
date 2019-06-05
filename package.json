@@ -55,7 +55,6 @@
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
     "fs": "^0.0.1-security",
-    "gulp-webpack": "^1.5.0",
     "mini-css-extract-plugin": "^0.4.2",
     "node-sass": "^4.9.3",
     "path": "^0.12.7",
